@@ -1,5 +1,4 @@
 D:\repos\smartstall\bin\Debug\net7.0\appsettings.Development.json
-D:\repos\smartstall\bin\Debug\net7.0\appsettings.json
 D:\repos\smartstall\bin\Debug\net7.0\smartstall.staticwebassets.runtime.json
 D:\repos\smartstall\bin\Debug\net7.0\smartstall.exe
 D:\repos\smartstall\bin\Debug\net7.0\smartstall.deps.json
@@ -55,3 +54,4 @@ D:\repos\smartstall\obj\Debug\net7.0\refint\smartstall.dll
 D:\repos\smartstall\obj\Debug\net7.0\smartstall.pdb
 D:\repos\smartstall\obj\Debug\net7.0\smartstall.genruntimeconfig.cache
 D:\repos\smartstall\obj\Debug\net7.0\ref\smartstall.dll
+D:\repos\smartstall\bin\Debug\net7.0\appsettings.Production.json

@@ -8,22 +8,20 @@ namespace smartstall.Controllers
 {
     public class ReceiveDataController : Controller
     {
+        private readonly DbWriteService writeService;
+        public ReceiveDataController(DbWriteService myService)
+        {
+            writeService = myService;
+        }
         [HttpPost]
         public ActionResult ReceiveData([FromBody]Datenpaket data)
         {
             if (data != null)
-            {
-                // Datenverarbeitung
-                // Zum Beispiel: Daten in einer Datenbank speichern
-                // oder weitere Aktionen durchführen
-
-                // Beispiel: Daten in der Konsole ausgeben                
-                System.Console.WriteLine($"Received sensor data: {JsonConvert.SerializeObject(data)}");
-
-                DbWriteService writeService = new DbWriteService();
+            {                
+                data.Timestamp = DateTime.Now;
+                System.Console.WriteLine($"Received sensor data: {JsonConvert.SerializeObject(data)}");               
+                
                 writeService.InsertData(data);
-
-
 
                 // Rückgabe einer erfolgreichen Antwort
                 return Content("Data received successfully");

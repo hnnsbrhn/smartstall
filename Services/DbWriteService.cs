@@ -5,18 +5,20 @@ using MySql.Data.MySqlClient;
 using smartstall.Models;
 using smartstall;
 using ConfigurationManager = System.Configuration.ConfigurationManager;
+using Microsoft.Extensions.Configuration;
 
 namespace smartstall.Services
 {
     public class DbWriteService
     {
         private string connectionString;
+        private readonly IConfiguration _configuration;
+        public DbWriteService(IConfiguration configuration)
 
-        public DbWriteService()
         {
-            // Die Verbindungszeichenfolge aus der Konfigurationsdatei lesen           
-            connectionString = "Server=127.0.0.1; port=3306; Database=smartstall; user=root; password=password;";
-            //connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            _configuration = configuration;
+            // Die Verbindungszeichenfolge aus der Konfigurationsdatei lesen                       
+            connectionString = _configuration.GetConnectionString("DefaultConnection");
 
         }
 
@@ -32,7 +34,7 @@ namespace smartstall.Services
                                    "VALUES (@Timestamp, @Temperatur, @Luftdruck, @Luftfeuchtigkeit, @Gas, @Ammoniak)";
 
                     MySqlCommand command = new MySqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@Timestamp", DateTime.Now);
+                    command.Parameters.AddWithValue("@Timestamp", data.Timestamp);
                     command.Parameters.AddWithValue("@Temperatur", data.Temperatur);
                     command.Parameters.AddWithValue("@Luftdruck", data.Luftdruck);
                     command.Parameters.AddWithValue("@Luftfeuchtigkeit", data.Luftfeuchtigkeit);

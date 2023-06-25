@@ -37,7 +37,7 @@
     <canvas id="lineChartLuftfeuchtigkeit"></canvas>
 </div>
 
-<!----------------------------------------Luftfeuchtigkeit----------------------------------------------->
+<!----------------------------------------Temperatur----------------------------------------------->
 <br />
 <br />
 <br />
@@ -81,8 +81,7 @@
                 success: function (ammoniakData) {
 
                     lineChartAmmoniak.data.datasets[0].data = JSON.parse(ammoniakData["ammoniakWerteTagDurchschnitt"]); //Durchschnitt
-                    lineChartAmmoniak.data.datasets[1].data = JSON.parse(ammoniakData["ammoniakWerteTagAktuell"]); //Aktuell
-
+                    lineChartAmmoniak.data.datasets[1].data = JSON.parse(ammoniakData["ammoniakWerteTagAktuell"]); //Aktuell                   
                     // Diagramm neu zeichnen
                     lineChartAmmoniak.update();
                 },

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting.Internal;
 using smartstall.Services;
 using System.Configuration;
 
@@ -7,17 +8,39 @@ namespace smartstall
     public class Startup
     {        
         
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
-            Configuration = configuration;         
+            Configuration = configuration;
+            HostEnvironment = env;
         }
 
+        public IWebHostEnvironment HostEnvironment { get; }
         public IConfiguration Configuration { get; }        
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();            
-        }
+            //create config based on hosting environment (development/production)
+            var configpath = "";
+            if (HostEnvironment.IsDevelopment())
+            {
+                configpath = "appsettings.Development.json";
+            }
+            else
+            {
+                configpath = "appsettings.Production.json";
+            }
+            IConfiguration configuration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile(configpath)
+            .Build();
+            services.AddSingleton(configuration);
+
+            services.AddControllersWithViews();
+            services.AddScoped<DbWriteService>();
+            services.AddScoped<DbReadService>();
+
+        }        
+
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

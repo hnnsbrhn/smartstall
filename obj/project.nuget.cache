@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "QfDT0DfUTAQK7mILptqS0nWkkAlnD2zdVxBAOynJvC+IKSHVw8KDx7AIwUJmsRcEHzdm/8vK5K1LG0aJkAXhBw==",
+  "dgSpecHash": "gSwLraiAvGtr6JLckzeRVW1ZnCbQgQ77TQAemA5U6tIOI0Os+Sl1Oabe5DVZSv5qedCIXX71I0JMp6oAB0NrRw==",
   "success": true,
   "projectFilePath": "D:\\repos\\smartstall\\smartstall.csproj",
   "expectedPackageFiles": [
@@ -25,20 +25,11 @@
     "C:\\Users\\crazy\\.nuget\\packages\\mysql.data\\8.0.33\\mysql.data.8.0.33.nupkg.sha512",
     "C:\\Users\\crazy\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\crazy\\.nuget\\packages\\portable.bouncycastle\\1.9.0\\portable.bouncycastle.1.9.0.nupkg.sha512",
-    "C:\\Users\\crazy\\.nuget\\packages\\runtime.any.system.io\\4.3.0\\runtime.any.system.io.4.3.0.nupkg.sha512",
-    "C:\\Users\\crazy\\.nuget\\packages\\runtime.any.system.reflection\\4.3.0\\runtime.any.system.reflection.4.3.0.nupkg.sha512",
-    "C:\\Users\\crazy\\.nuget\\packages\\runtime.any.system.reflection.primitives\\4.3.0\\runtime.any.system.reflection.primitives.4.3.0.nupkg.sha512",
-    "C:\\Users\\crazy\\.nuget\\packages\\runtime.any.system.runtime\\4.3.0\\runtime.any.system.runtime.4.3.0.nupkg.sha512",
-    "C:\\Users\\crazy\\.nuget\\packages\\runtime.any.system.text.encoding\\4.3.0\\runtime.any.system.text.encoding.4.3.0.nupkg.sha512",
-    "C:\\Users\\crazy\\.nuget\\packages\\runtime.any.system.threading.tasks\\4.3.0\\runtime.any.system.threading.tasks.4.3.0.nupkg.sha512",
-    "C:\\Users\\crazy\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
-    "C:\\Users\\crazy\\.nuget\\packages\\runtime.unix.system.private.uri\\4.3.0\\runtime.unix.system.private.uri.4.3.0.nupkg.sha512",
     "C:\\Users\\crazy\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\crazy\\.nuget\\packages\\system.configuration.configurationmanager\\4.4.1\\system.configuration.configurationmanager.4.4.1.nupkg.sha512",
     "C:\\Users\\crazy\\.nuget\\packages\\system.drawing.common\\4.7.0\\system.drawing.common.4.7.0.nupkg.sha512",
     "C:\\Users\\crazy\\.nuget\\packages\\system.io\\4.3.0\\system.io.4.3.0.nupkg.sha512",
     "C:\\Users\\crazy\\.nuget\\packages\\system.io.pipelines\\6.0.3\\system.io.pipelines.6.0.3.nupkg.sha512",
-    "C:\\Users\\crazy\\.nuget\\packages\\system.private.uri\\4.3.0\\system.private.uri.4.3.0.nupkg.sha512",
     "C:\\Users\\crazy\\.nuget\\packages\\system.reflection\\4.3.0\\system.reflection.4.3.0.nupkg.sha512",
     "C:\\Users\\crazy\\.nuget\\packages\\system.reflection.primitives\\4.3.0\\system.reflection.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\crazy\\.nuget\\packages\\system.runtime\\4.3.0\\system.runtime.4.3.0.nupkg.sha512",
@@ -54,10 +45,7 @@
     "C:\\Users\\crazy\\.nuget\\packages\\system.text.json\\7.0.1\\system.text.json.7.0.1.nupkg.sha512",
     "C:\\Users\\crazy\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
     "C:\\Users\\crazy\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
-    "C:\\Users\\crazy\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512",
-    "C:\\Users\\crazy\\.nuget\\packages\\microsoft.netcore.app.runtime.linux-x64\\7.0.7\\microsoft.netcore.app.runtime.linux-x64.7.0.7.nupkg.sha512",
-    "C:\\Users\\crazy\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.linux-x64\\7.0.7\\microsoft.aspnetcore.app.runtime.linux-x64.7.0.7.nupkg.sha512",
-    "C:\\Users\\crazy\\.nuget\\packages\\microsoft.netcore.app.host.linux-x64\\7.0.7\\microsoft.netcore.app.host.linux-x64.7.0.7.nupkg.sha512"
+    "C:\\Users\\crazy\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512"
   ],
   "logs": []
 }

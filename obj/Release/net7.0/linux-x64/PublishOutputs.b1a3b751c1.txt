@@ -1,0 +1,4 @@
+D:\repos\smartstall\obj\Release\net7.0\linux-x64\PubTmp\Out\appsettings.Development.json
+D:\repos\smartstall\obj\Release\net7.0\linux-x64\PubTmp\Out\appsettings.json
+D:\repos\smartstall\obj\Release\net7.0\linux-x64\PubTmp\Out\smartstall.pdb
+D:\repos\smartstall\obj\Release\net7.0\linux-x64\PubTmp\Out\smartstall

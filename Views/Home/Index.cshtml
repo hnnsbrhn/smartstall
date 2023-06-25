@@ -1,0 +1,431 @@
+﻿<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+<div class="text-center">
+    <h1 class="display-4">SmartStall</h1>
+</div>
+<br />
+<br />
+<div class="custom-control custom-switch text-right">
+    <input type="checkbox" class="custom-control-input" id="customSwitch1">
+    <label class="custom-control-label" for="customSwitch1">Benachrichtigung</label>
+</div>
+<div class="custom-control custom-switch container text-right">
+    <input type="checkbox" class="custom-control-input" id="customSwitch2">
+    <label class="custom-control-label" for="customSwitch2">Belüftung &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+</div>
+<!----------------------------------------Ammoniak----------------------------------------------->
+<div>
+    <h2>Ammoniak</h2>
+    <div class="btn-group" role="group" aria-label="Chart View">
+        <button id="wocheBtnAmmoniak" type="button" class="btn btn-secondary">Woche</button>
+        <button id="tagBtnAmmoniak" type="button" class="btn btn-secondary active">Tag</button>
+    </div>
+    <canvas id="lineChartAmmoniak"></canvas>
+</div>
+
+<!----------------------------------------Luftfeuchtigkeit----------------------------------------------->
+<br />
+<br />
+<br />
+<br />
+<div>
+    <h2>Luftfeuchtigkeit</h2>
+    <div class="btn-group" role="group" aria-label="Chart View">
+        <button id="wocheBtnLuftfeuchtigkeit" type="button" class="btn btn-secondary">Woche</button>
+        <button id="tagBtnLuftfeuchtigkeit" type="button" class="btn btn-secondary active">Tag</button>
+    </div>
+    <canvas id="lineChartLuftfeuchtigkeit"></canvas>
+</div>
+
+<!----------------------------------------Luftfeuchtigkeit----------------------------------------------->
+<br />
+<br />
+<br />
+<br />
+<div>
+    <h2>Temperatur</h2>
+    <div class="btn-group" role="group" aria-label="Chart View">
+        <button id="wocheBtnTemperatur" type="button" class="btn btn-secondary">Woche</button>
+        <button id="tagBtnTemperatur" type="button" class="btn btn-secondary active">Tag</button>
+    </div>
+    <canvas id="lineChartTemperatur"></canvas>
+</div>
+
+<!---------------------------------------------------------------------------------------------->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+@*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>*@
+
+<script>
+        var lineChartAmmoniak;
+        var dataAmmoniak;
+        var lineChartLuftfeuchtigkeit;
+    var dataLuftfeuchtigkeit;
+    var lineChartTemperatur;
+    var dataTemperatur;
+        var labelWoche = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"];
+        var labelTag = ["00-01 Uhr", "02-03 Uhr", "04-05 Uhr", "06-07 Uhr", "08-09 Uhr", "10-11 Uhr", "12-13 Uhr", "14-15 Uhr", "16-17 Uhr", "18-19 Uhr", "20-21 Uhr", "22-23 Uhr"];
+
+        buildDiagramms();
+        setInterval(aktualisiereView, 60000);
+
+        document.getElementById("tagBtnAmmoniak").addEventListener("click", function () {
+            var dataLabels = labelTag;
+            dataAmmoniak.labels = dataLabels;
+
+            $.ajax({
+                url: "/Home/GetAmmoniak", // Die URL des Controller-Endpunkts, um die aktualisierten Daten abzurufen
+                type: "GET",
+                success: function (ammoniakData) {
+
+                    lineChartAmmoniak.data.datasets[0].data = JSON.parse(ammoniakData["ammoniakWerteTagDurchschnitt"]); //Durchschnitt
+                    lineChartAmmoniak.data.datasets[1].data = JSON.parse(ammoniakData["ammoniakWerteTagAktuell"]); //Aktuell
+
+                    // Diagramm neu zeichnen
+                    lineChartAmmoniak.update();
+                },
+                error: function (xhr, status, error) {
+                    console.log("Fehler beim Abrufen der Ammoniakdaten:", error);
+                }
+            });
+        });
+
+        document.getElementById("tagBtnLuftfeuchtigkeit").addEventListener("click", function () {
+            var dataLabels = labelTag;
+            dataLuftfeuchtigkeit.labels = dataLabels;
+
+            $.ajax({
+                url: "/Home/GetLuftfeuchtigkeit", // Die URL des Controller-Endpunkts, um die aktualisierten Daten abzurufen
+                type: "GET",
+                success: function (luftfeuchtigkeitData) {
+
+                    lineChartLuftfeuchtigkeit.data.datasets[0].data = JSON.parse(luftfeuchtigkeitData["luftfeuchtigkeitWerteTagDurchschnitt"]); //Durchschnitt
+                    lineChartLuftfeuchtigkeit.data.datasets[1].data = JSON.parse(luftfeuchtigkeitData["luftfeuchtigkeitWerteTagAktuell"]); //Aktuell
+
+                    // Diagramm neu zeichnen
+                    lineChartLuftfeuchtigkeit.update();
+                },
+                error: function (xhr, status, error) {
+                    console.log("Fehler beim Abrufen der Luftfeuchtigkeitdaten:", error);
+                }
+            });
+
+            lineChartLuftfeuchtigkeit.update();
+        });
+
+    document.getElementById("tagBtnTemperatur").addEventListener("click", function () {
+        var dataLabels = labelTag;
+        dataTemperatur.labels = dataLabels;
+
+        $.ajax({
+            url: "/Home/GetTemperatur", // Die URL des Controller-Endpunkts, um die aktualisierten Daten abzurufen
+            type: "GET",
+            success: function (temperaturData) {
+
+                lineChartTemperatur.data.datasets[0].data = JSON.parse(temperaturData["temperaturWerteTagAktuell"]);
+
+                // Diagramm neu zeichnen
+                lineChartTemperatur.update();
+            },
+            error: function (xhr, status, error) {
+                console.log("Fehler beim Abrufen der Temperaturdaten:", error);
+            }
+        });
+
+        lineChartTemperatur.update();
+    });
+
+        document.getElementById("wocheBtnAmmoniak").addEventListener("click", function () {
+            var dataLabels = labelWoche;
+            dataAmmoniak.labels = dataLabels;
+
+            $.ajax({
+                url: "/Home/GetAmmoniak", // Die URL des Controller-Endpunkts, um die aktualisierten Daten abzurufen
+                type: "GET",
+                success: function (ammoniakData) {
+
+                    lineChartAmmoniak.data.datasets[0].data = JSON.parse(ammoniakData["ammoniakWerteWocheDurchschnitt"]); //Durchschnitt
+                    lineChartAmmoniak.data.datasets[1].data = JSON.parse(ammoniakData["ammoiakWerteWocheAktuell"]); //Aktuell
+
+                    // Diagramm neu zeichnen
+                    lineChartAmmoniak.update();
+                },
+                error: function (xhr, status, error) {
+                    console.log("Fehler beim Abrufen der Ammoniakdaten:", error);
+                }
+            });
+        });
+
+        document.getElementById("wocheBtnLuftfeuchtigkeit").addEventListener("click", function () {
+            var dataLabels = labelWoche;
+            dataLuftfeuchtigkeit.labels = dataLabels;
+
+            $.ajax({
+                url: "/Home/GetLuftfeuchtigkeit", // Die URL des Controller-Endpunkts, um die aktualisierten Daten abzurufen
+                type: "GET",
+                success: function (luftfeuchtigkeitData) {
+
+                    lineChartLuftfeuchtigkeit.data.datasets[0].data = JSON.parse(luftfeuchtigkeitData["luftfeuchtigkeitWerteWocheDurchschnitt"]); //Durchschnitt
+                    lineChartLuftfeuchtigkeit.data.datasets[1].data = JSON.parse(luftfeuchtigkeitData["luftfeuchtigkeitWerteWocheAktuell"]); //Aktuell
+
+                    // Diagramm neu zeichnen
+                    lineChartLuftfeuchtigkeit.update();
+                },
+                error: function (xhr, status, error) {
+                    console.log("Fehler beim Abrufen der Luftfeuchtigkeitdaten:", error);
+                }
+            });
+
+            lineChartLuftfeuchtigkeit.update();
+        });
+
+    document.getElementById("wocheBtnTemperatur").addEventListener("click", function () {
+        var dataLabels = labelWoche;
+        dataTemperatur.labels = dataLabels;
+
+        $.ajax({
+            url: "/Home/GetTemperatur", // Die URL des Controller-Endpunkts, um die aktualisierten Daten abzurufen
+            type: "GET",
+            success: function (temperaturData) {
+
+                lineChartTemperatur.data.datasets[0].data = JSON.parse(temperaturData["temperaturWerteWocheAktuell"]); //Durchschnitt
+
+                // Diagramm neu zeichnen
+                lineChartTemperatur.update();
+            },
+            error: function (xhr, status, error) {
+                console.log("Fehler beim Abrufen der Temperaturdaten:", error);
+            }
+        });
+
+        lineChartTemperatur.update();
+    });
+
+        function buildDiagramms() {
+
+            ammoniakDiagramm();
+            luftfeuchtigkeitDiagramm()
+            temperaturDiagramm()
+        }
+
+        function ammoniakDiagramm() {
+
+            var ammoniakWerteTagDurchschnitt = @Html.Raw(ViewBag.ammoniakWerteTagDurchschnitt);
+            var ammoniakWerteTagAktuell = @Html.Raw(ViewBag.ammoniakWerteTagAktuell);
+
+            var grenzeTag = ["10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10"];
+
+            dataAmmoniak = {
+                labels: labelTag,
+                datasets: [
+                    {
+                        label: "Ammoniak-Durchschnitt",
+                        data: ammoniakWerteTagDurchschnitt,
+                        fill: true,
+                        borderColor: "rgb(219, 211, 123)",
+                        tension: 0.2
+                    },
+                    {
+                        label: "Ammoniak aktuell",
+                        data: ammoniakWerteTagAktuell,
+                        fill: false,
+                        borderColor: "rgb(13, 13, 13)",
+                        tension: 0.2
+                    },
+                    {
+                        label: "Ammoniakgrenze",
+                        data: grenzeTag,
+                        fill: true,
+                        borderColor: "rgb(240, 2, 2)",
+                        tension: 0.1
+                    }
+                ]
+            };
+
+            var optionsAmmoniak = {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Amminiakgehalt in ppm'
+                        }
+                    }
+                }
+            };
+
+            lineChartAmmoniak = new Chart($("#lineChartAmmoniak"), {
+                type: "line",
+                data: dataAmmoniak,
+                options: optionsAmmoniak
+            });
+    }
+
+    function luftfeuchtigkeitDiagramm() {
+
+        var luftfeuchtigkeitWerteTagDurchschnitt = @Html.Raw(ViewBag.luftfeuchtigkeitWerteTagDurchschnitt);
+        var luftfeuchtigkeitWerteTagAktuell = @Html.Raw(ViewBag.luftfeuchtigkeitWerteTagAktuell);
+
+            var grenzeTag = ["10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10"];
+
+        dataLuftfeuchtigkeit = {
+                labels: labelTag,
+                datasets: [
+                    {
+                        label: "Luftfeuchtigkeit-Durchschnitt",
+                        data: luftfeuchtigkeitWerteTagDurchschnitt,
+                        fill: true,
+                        borderColor: "rgb(219, 211, 123)",
+                        tension: 0.2
+                    },
+                    {
+                        label: "Luftfeuchtigkeit aktuell",
+                        data: luftfeuchtigkeitWerteTagAktuell,
+                        fill: false,
+                        borderColor: "rgb(13, 13, 13)",
+                        tension: 0.2
+                    },
+                    {
+                        label: "Luftfeuchtigkeitgrenze",
+                        data: grenzeTag,
+                        fill: true,
+                        borderColor: "rgb(240, 2, 2)",
+                        tension: 0.1
+                    }
+                ]
+            };
+
+        var optionsLuftfeuchtigkeit = {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Luftfeuchtigkeit in Prozent'
+                        }
+                    }
+                }
+            };
+
+        lineChartLuftfeuchtigkeit = new Chart($("#lineChartLuftfeuchtigkeit"), {
+                type: "line",
+            data: dataLuftfeuchtigkeit,
+            options: optionsLuftfeuchtigkeit
+            });
+    }
+
+     function temperaturDiagramm() {
+
+         var temperaturWerteTagAktuell = @Html.Raw(ViewBag.temperaturWerteTagAktuell);
+
+         var grenzeTag = ["25", "25", "25", "25", "25", "25", "25", "25", "25", "25", "25", "25"];
+
+        dataTemperatur = {
+                labels: labelTag,
+                datasets: [
+                    {
+                        label: "Temperatur aktuell",
+                        data: temperaturWerteTagAktuell,
+                        fill: false,
+                        borderColor: "rgb(13, 13, 13)",
+                        tension: 0.2
+                    },
+                    {
+                        label: "Temperaturgrenze",
+                        data: grenzeTag,
+                        fill: true,
+                        borderColor: "rgb(240, 2, 2)",
+                        tension: 0.1
+                    }
+                ]
+            };
+
+        var optionsTemperatur = {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Temperatur in Grad Celsuis'
+                        }
+                    }
+                }
+            };
+
+         lineChartTemperatur = new Chart($("#lineChartTemperatur"), {
+                type: "line",
+             data: dataTemperatur,
+             options: optionsTemperatur
+            });
+        }
+
+        function aktualisiereView() {
+            $.ajax({
+                url: "/Home/GetAmmoniak", // Die URL des Controller-Endpunkts, um die aktualisierten Daten abzurufen
+                type: "GET",
+                success: function (ammoniakData) {
+
+                    var button = document.getElementById("tagBtnAmmoniak");
+                    if (button.classList.contains("active")) {
+                        lineChartLuftfeuchtigkeit.data.datasets[0].data = JSON.parse(ammoniakData["ammoniakWerteTagDurchschnitt"]); //Durchschnitt
+                        lineChartLuftfeuchtigkeit.data.datasets[1].data = JSON.parse(ammoniakData["ammoniakWerteTagAktuell"]); //Aktuell
+                    } else {
+                        lineChartLuftfeuchtigkeit.data.datasets[0].data = JSON.parse(ammoniakData["ammoniakWerteWocheDurchschnitt"]); //Durchschnitt
+                        lineChartLuftfeuchtigkeit.data.datasets[1].data = JSON.parse(ammoniakData["ammoniakWerteWocheAktuell"]); //Aktuell
+                    }
+
+                    // Diagramm neu zeichnen
+                    lineChartAmmoniak.update();
+                },
+                error: function (xhr, status, error) {
+                    console.log("Fehler beim Abrufen der Ammoniakdaten:", error);
+                }
+            });
+
+            $.ajax({
+                url: "/Home/GetLuftfeuchtigkeit", // Die URL des Controller-Endpunkts, um die aktualisierten Daten abzurufen
+                type: "GET",
+                success: function (luftfeuchtigkeitData) {
+                    var button = document.getElementById("tagBtnLuftfeuchtigkeit");
+                    if (button.classList.contains("active")) {
+                        lineChartLuftfeuchtigkeit.data.datasets[0].data = JSON.parse(luftfeuchtigkeitData["luftfeuchtigkeitWerteTagDurchschnitt"]); //Durchschnitt
+                        lineChartLuftfeuchtigkeit.data.datasets[1].data = JSON.parse(luftfeuchtigkeitData["luftfeuchtigkeitWerteTagAktuell"]); //Aktuell
+                    } else {
+                        lineChartLuftfeuchtigkeit.data.datasets[0].data = JSON.parse(luftfeuchtigkeitData["luftfeuchtigkeitWerteWocheDurchschnitt"]); //Durchschnitt
+                        lineChartLuftfeuchtigkeit.data.datasets[1].data = JSON.parse(luftfeuchtigkeitData["luftfeuchtigkeitWerteWocheAktuell"]); //Aktuell
+                    }
+
+                    // Diagramm neu zeichnen
+                    lineChartLuftfeuchtigkeit.update();
+                },
+                error: function (xhr, status, error) {
+                    console.log("Fehler beim Abrufen der Luftfeuchtigkeitdaten:", error);
+                }
+            });
+
+            $.ajax({
+                url: "/Home/GetTemperatur", // Die URL des Controller-Endpunkts, um die aktualisierten Daten abzurufen
+                type: "GET",
+                success: function (temperaturData) {
+
+                    var button = document.getElementById("tagBtnTemperatur");
+                    if (button.classList.contains("active")) {
+                        lineChartTemperatur.data.datasets[0].data = JSON.parse(temperaturData["temperaturWerteTagAktuell"]); //Durchschnitt
+                    } else {
+                        lineChartTemperatur.data.datasets[0].data = JSON.parse(temperaturData["temperaturWerteWocheAktuell"]); //Durchschnitt
+                    }
+
+                    // Diagramm neu zeichnen
+                    lineChartTemperatur.update();
+                },
+                error: function (xhr, status, error) {
+                    console.log("Fehler beim Abrufen der Temperaturdaten:", error);
+                }
+            });
+    }
+</script>

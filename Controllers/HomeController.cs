@@ -36,24 +36,35 @@ namespace smartstall.Controllers
 
         public ActionResult GetAmmoniak()
         {
-            Dictionary<string, string> ammoniakWerte = new Dictionary<string, string>();
-                       
+            Dictionary<string, string> ammoniakWerte = new Dictionary<string, string>();                       
 
             //get Dictionary with all times and ammoniak values for a speciffic day
-            // "ammoniak" can be replaced with "luftfeuchtigkeit" and "temperature" for the other diagrams
-            Dictionary<DateTime, string> ammoniakTag = _readService.GetDataByDay(DateTime.Now, "ammoniak");
-            List<string> ammonaikValues = new List<string>();
-            foreach (string ammoniakValue in ammoniakTag.Values)
+            // "ammoniak" can be replaced with "luftfeuchtigkeit" and "temperatur" for the other diagrams
+            Dictionary<DateTime, string> ammoniakTag = _readService.GetDataForDay(DateTime.Now, "ammoniak");
+            List<string> ammoniakValuesDay = new List<string>();
+            foreach (string ammoniakValueDay in ammoniakTag.Values)
             {
-                ammonaikValues.Add(ammoniakValue);
+                ammoniakValuesDay.Add(ammoniakValueDay);
             }
             //create full string to replace "amonniak.AmmoniakAktuellListeTag" with
-            string ammoniakStringFull = "[" + string.Join(", ", ammonaikValues) + "]";
+            string ammoniakStringDay = "[" + string.Join(", ", ammoniakValuesDay) + "]";
             //ammoniakWerte.Add("ammoniakWerteTagAktuell", amonniak.AmmoniakAktuellListeTag);
-            ammoniakWerte.Add("ammoniakWerteTagAktuell", ammoniakStringFull);
-            
+            ammoniakWerte.Add("ammoniakWerteTagAktuell", ammoniakStringDay);                        
+            //todo: average values
             ammoniakWerte.Add("ammoniakWerteTagDurchschnitt", amonniak.AmmoniakDurschnittListeTag);
-            ammoniakWerte.Add("ammoiakWerteWocheAktuell", amonniak.AmmoniakAktuellWoche);
+
+
+            //same thing for week (dictionary contains all data from last 7 days)
+            Dictionary<DateTime, string> ammoniakWoche = _readService.GetDataForWeek(DateTime.Now, "ammoniak");            
+            List<string> ammoniakValuesWeek = new List<string>();
+            foreach (string ammoniakValue in ammoniakWoche.Values)
+            {
+                ammoniakValuesWeek.Add(ammoniakValue);
+            }            
+            string ammoniakStringWeek = "[" + string.Join(", ", ammoniakValuesWeek) + "]";
+            //ammoniakWerte.Add("ammoiakWerteWocheAktuell", amonniak.AmmoniakAktuellWoche);
+            ammoniakWerte.Add("ammoniakWerteWocheAktuell", ammoniakStringWeek);
+            //todo: average values
             ammoniakWerte.Add("ammoniakWerteWocheDurchschnitt", amonniak.AmmoniakDurchschnittWoche);
             return Json(ammoniakWerte);
         }

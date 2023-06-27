@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Web;
 using smartstall.Models;
+using smartstall.Services;
 
 namespace smartstall.Controllers
 {
@@ -13,6 +14,12 @@ namespace smartstall.Controllers
         Ammoniak amonniak = new Ammoniak();
         Luftfeuchtigkeit luftfeuchtigkeit = new Luftfeuchtigkeit();
         Temperatur temperatur = new Temperatur();
+        private readonly DbReadService _readService;
+
+        public HomeController(DbReadService readService)
+        {
+            _readService = readService;
+        }
 
         public ActionResult Index()
         {
@@ -30,9 +37,22 @@ namespace smartstall.Controllers
         public ActionResult GetAmmoniak()
         {
             Dictionary<string, string> ammoniakWerte = new Dictionary<string, string>();
-            ammoniakWerte.Add("ammoniakWerteTagAktuell", amonniak.AmmoniakAktuellListeTag);
-            ammoniakWerte.Add("ammoniakWerteTagDurchschnitt", amonniak.AmmoniakDurschnittListeTag);
+                       
 
+            //get Dictionary with all times and ammoniak values for a speciffic day
+            // "ammoniak" can be replaced with "luftfeuchtigkeit" and "temperature" for the other diagrams
+            Dictionary<DateTime, string> ammoniakTag = _readService.GetDataByDay(DateTime.Now, "ammoniak");
+            List<string> ammonaikValues = new List<string>();
+            foreach (string ammoniakValue in ammoniakTag.Values)
+            {
+                ammonaikValues.Add(ammoniakValue);
+            }
+            //create full string to replace "amonniak.AmmoniakAktuellListeTag" with
+            string ammoniakStringFull = "[" + string.Join(", ", ammonaikValues) + "]";
+            //ammoniakWerte.Add("ammoniakWerteTagAktuell", amonniak.AmmoniakAktuellListeTag);
+            ammoniakWerte.Add("ammoniakWerteTagAktuell", ammoniakStringFull);
+            
+            ammoniakWerte.Add("ammoniakWerteTagDurchschnitt", amonniak.AmmoniakDurschnittListeTag);
             ammoniakWerte.Add("ammoiakWerteWocheAktuell", amonniak.AmmoniakAktuellWoche);
             ammoniakWerte.Add("ammoniakWerteWocheDurchschnitt", amonniak.AmmoniakDurchschnittWoche);
             return Json(ammoniakWerte);

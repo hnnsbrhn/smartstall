@@ -112,3 +112,5 @@ C:\Users\Benutzer1\Source\Repos\smartstall_17_07\obj\Debug\net7.0\refint\smartst
 C:\Users\Benutzer1\Source\Repos\smartstall_17_07\obj\Debug\net7.0\smartstall.pdb
 C:\Users\Benutzer1\Source\Repos\smartstall_17_07\obj\Debug\net7.0\smartstall.genruntimeconfig.cache
 C:\Users\Benutzer1\Source\Repos\smartstall_17_07\obj\Debug\net7.0\ref\smartstall.dll
+C:\Users\Benutzer1\source\repos\smartstall_17_07\bin\Debug\net7.0\package-lock.json
+C:\Users\Benutzer1\source\repos\smartstall_17_07\bin\Debug\net7.0\package.json

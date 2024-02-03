@@ -1,0 +1,25 @@
+1.  Einleitung
+1.1 Ziel des Projekts
+1.2 Aufbau der Dokumentation
+
+2.  Hardware-Komponenten
+2.1 Raspberry Pi
+2.2 BME680
+2.3 MQ137
+2.4 Verbindung der Sensoren mit Raspberry Pi
+
+3.  Einrichtung Raspberry Pi
+3.1 Konfiguration 
+3.2 Software und Bibliotheken
+3.3 Datenübertragung
+
+4.  Webanwendung
+4.1 Architektur und Design
+4.2 Empfangen der Daten
+4.3 Einrichtung und Anbindung einer MYSQL Datenbank
+4.4 Auslesen und Anzeigen der Sensordaten 
+4.5 Benutzeroberfläche
+4.7 Telegram Anbindung
+4.6 Ansteuern der Belüftung
+
+5. Zusammenfassung und Ausblick

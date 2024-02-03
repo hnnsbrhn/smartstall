@@ -2,7 +2,6 @@ using smartstall.Models;
 using smartstall.Services;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace smartstall.Controllers
 {

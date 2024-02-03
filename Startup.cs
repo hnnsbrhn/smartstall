@@ -69,8 +69,20 @@ namespace smartstall
                     pattern: "{controller=Home}/{action=Index}/{id?}");
 
                 endpoints.MapControllerRoute(
-                    name: "default",
+                    name: "receiveData",
                     pattern: "{controller=ReceiveData}/{action=ReceiveData}/{id?}");
+
+                endpoints.MapControllerRoute(
+                    name: "hauptseite",
+                    pattern: "{controller=Home}/{action=Hauptseite}/{id?}");
+
+                endpoints.MapControllerRoute(
+                                    name: "about",
+                                    pattern: "{controller=Home}/{action=About}/{id?}");
+
+                endpoints.MapControllerRoute(
+                                   name: "faq",
+                                   pattern: "{controller=Home}/{action=FAQ}/{id?}");
             });
         }
     }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.Routing.Constraints;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting.Internal;
 using smartstall.Services;
 using System.Configuration;
@@ -76,13 +77,6 @@ namespace smartstall
                     name: "hauptseite",
                     pattern: "{controller=Home}/{action=Hauptseite}/{id?}");
 
-                endpoints.MapControllerRoute(
-                                    name: "about",
-                                    pattern: "{controller=Home}/{action=About}/{id?}");
-
-                endpoints.MapControllerRoute(
-                                   name: "faq",
-                                   pattern: "{controller=Home}/{action=FAQ}/{id?}");
             });
         }
     }

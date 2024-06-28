@@ -1,47 +1,98 @@
-﻿
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="text-center">Login</h3>
-                </div>
-                <div class="card-body">
-                    <form onsubmit="return validateLogin()">
-                        <div class="form-group">
-                            <label for="username">Benutzername:</label>
-                            <input type="text" class="form-control" id="username" placeholder="Benutzername">
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> - SmartStall</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/site.css?v=pAGv4ietcJNk_EwsQZ5BN9-K4MuNYS2a9wl4Jw-q9D0" />
+    <link rel="stylesheet" href="/smartstall.styles.css?v=S_HW1qc5OepOfS4d6qS-bvr9c58fDwmndakPk4dyODc" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <main role="main" class="pb-3">
+
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+
+            <div class="container mt-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="text-center">Login</h3>
+                            </div>
+                            <div class="card-body">
+                                <form onsubmit="return validateLogin()">
+                                    <div class="form-group">
+                                        <label for="username">Benutzername:</label>
+                                        <input type="text" class="form-control" id="username" placeholder="Benutzername">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">Passwort:</label>
+                                        <input type="password" class="form-control" id="password" placeholder="Passwort">
+                                    </div>
+                                    <br />
+                                    <button type="submit" class="btn btn-primary btn-block">Anmelden</button>
+                                </form>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="password">Passwort:</label>
-                            <input type="password" class="form-control" id="password" placeholder="Passwort">
-                        </div>
-                        <br />
-                        <button type="submit" class="btn btn-primary btn-block">Anmelden</button>
-                    </form>
+                    </div>
                 </div>
             </div>
-        </div>
+
+            <script>
+                function validateLogin() {
+                    var username = document.getElementById("username").value;
+                    var password = document.getElementById("password").value;
+
+                    //Ajax-Anfrage an den Server senden
+                    $.ajax({
+                        url: '/Home/Checkpassword', // URL der Controller-Methode
+                        type: 'POST',
+                        data: { username: username, password: password }, // Daten als JSON senden
+                        success: function (response) {
+                            if (response) {
+                                window.location.href = "Home/Hauptseite";
+                            }else{
+                                alert("Falscher Benutzername oder Passwort");
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('Error:', error);
+                        }
+                    });
+                    return false; // Verhindert das Standardformular-Submit-Verhalten
+                }
+            </script>
+        </main>
     </div>
-</div>
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0"></script>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 
-<script>
-    function validateLogin() {
-        var username = document.getElementById("username").value;
-        var password = document.getElementById("password").value;
-
-        if (username === "smartstallUser" && password === "default") {
-            window.location.href = "Home/Hauptseite"; 
-            return false;
-        } else {
-            alert("Falscher Benutzername oder Passwort");
-            return false;
+    <script>
+        function meineJavascriptFunktion() {
+            if (window.location.pathname === "/") {
+                // Wenn ja, verweise auf die Indexseite
+                window.location.href = "/";
+            } else {
+                // Wenn nein, verweise auf die Hauptseite (oder andere Seite)
+                window.location.href = "Hauptseite";
+            }
         }
-    }
-</script>
+    </script>
+
+    <!-- Visual Studio Browser Link -->
+    <script type="text/javascript" src="/_vs/browserLink" async="async" id="__browserLink_initializationData" data-requestId="a59907835e9745d7815190f85a81d942" data-requestMappingFromServer="false" data-connectUrl="http://localhost:49348/2732c78b3d9d4d99be060d3d25ba3925/browserLink"></script>
+    <!-- End Browser Link -->
+
+    <script src="/_framework/aspnetcore-browser-refresh.js"></script>
+</body>
+</html>

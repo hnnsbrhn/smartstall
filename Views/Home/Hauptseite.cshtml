@@ -121,43 +121,95 @@
     var luftfeuchtigkeitButtonWoche = false;
     var temperaturButtonWoche = false;
 
-    var benachrichtigungflag = false;
-    var belüftungflag = false;
+    var benachrichtigungflag;
+    var belüftungflag;
 
-    var ammoniakCurrent = false;
-    var temperaturCurrent = false;
-    var luftfeuchtigkeitCurrent = false;
+    var ammoniakCurrent;
+    var temperaturCurrent;
+    var luftfeuchtigkeitCurrent;
 
     $(document).ready(init);
 
     function init(){
+
+        $.ajax({
+            url: 'GetBelüftungUndBenachrichtigung',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+               
+                belüftungflag = data.Belüftung;
+                document.getElementById("customSwitch2").checked = data.Belüftung;
+
+                benachrichtigungflag = data.Benachrichtigung;
+                document.getElementById("customSwitch1").checked = data.Benachrichtigung;
+            },
+            error: function (error) {
+                console.error('Fehler beim Abrufen der Daten:', error);
+            }
+        });
+
+        initializeDiagrams();
+
+        var timer = setInterval(updatedFunction, 1000 * 60 * 1);
+    }
+
+    function delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function initializeDiagrams(){
         buildAmmoniakDiagramTag();
         var buttonAmmoniakWoche = document.getElementById('wocheBtnAmmoniak');
         buttonAmmoniakWoche.addEventListener('click', handleButtonAmmoniakWocheClick);
         var buttonAmmoniakTag = document.getElementById('tagBtnAmmoniak');
         buttonAmmoniakTag.addEventListener('click', handleButtonAmmoniakTagClick);
+        await delay(1000); // 1 Sekunde warten
 
         buildLuftfeuchtigkeitDiagramTag();
         var buttonLuftfeuchtigkeitWoche = document.getElementById('wocheBtnLuftfeuchtigkeit');
         buttonLuftfeuchtigkeitWoche.addEventListener('click', handleButtonLuftfeuchtigkeitWocheClick);
         var buttonLuftfeuchtigkeitTag = document.getElementById('tagBtnLuftfeuchtigkeit');
         buttonLuftfeuchtigkeitTag.addEventListener('click', handleButtonLuftfeuchtigkeitTagClick);
+        await delay(1000); // 1 Sekunde warten
 
         buildTemperaturDiagramTag();
         var buttonTemperaturWoche = document.getElementById('wocheBtnTemperatur');
         buttonTemperaturWoche.addEventListener('click', handleButtonTemperaturWocheClick);
         var buttonTemperaturTag = document.getElementById('tagBtnTemperatur');
         buttonTemperaturTag.addEventListener('click', handleButtonTemperaturTagClick);
-
-        var timer = setInterval(updatedFunction, 1000 * 60 * 5);
     }
 
+    //hier habe ich ein asnyc entfernt
     function handleCheckboxChangeBenachrichtigung(checkbox) {
         benachrichtigungflag = checkbox.checked; // true, wenn angehakt, false, wenn ausgehakt
+        $.ajax({
+            url: 'SetAttributes', // Ersetzen Sie 'ControllerName' durch den Namen Ihres Controllers
+            type: 'POST',
+            data: { attribute: "Benachrichtigung", flag: checkbox.checked }, // Beispielwerte für 'attribute' und 'flag'
+            success: function (response) {
+                console.log('Erfolgreich:', response);
+            },
+            error: function (xhr, status, error) {
+                console.error('Fehler:', error);
+            }
+        });
     }
 
     function handleCheckboxChangeBelüftung(checkbox) {
         belüftungflag = checkbox.checked; // true, wenn angehakt, false, wenn ausgehakt
+
+        $.ajax({
+            url: 'SetAttributes', // Ersetzen Sie 'ControllerName' durch den Namen Ihres Controllers
+            type: 'POST',
+            data: { attribute: "Belüftung", flag: checkbox.checked }, // Beispielwerte für 'attribute' und 'flag'
+            success: function (response) {
+                console.log('Erfolgreich:', response);
+            },
+            error: function (xhr, status, error) {
+                console.error('Fehler:', error);
+            }
+        });
     }
 
     function buildAmmoniakDiagramTag() {
@@ -196,21 +248,17 @@
             }
 
             var dataAmmoniakValues = parseDictionary(labels, dataValues);
-            var minDay = minDayFunction(labels[0]);
-            var maxDay = maxDayFunction(labels[0]);
-            ammoniakCurrent = dataValues[dataValues.length - 1];
+            var minDay = minDayFunctionDay(labels[0]);
+            var maxDay = maxDayFunctionDay(labels[0]);
 
-            document.getElementById('wertAmmoniak').innerHTML = dataValues[dataValues.length - 1]
+            ammoniakCurrent = parseFloat(dataValues[dataValues.length - 1].replace(',', '.'));
+            document.getElementById('wertAmmoniak').innerHTML = ammoniakCurrent
 
-            if (dataValues[dataValues.length - 1] > 20)
-            {
-                sendMessagetoTelegram("Der Ammoniakgehalt liegt derzeit bei " + dataValues[dataValues.length - 1] + " ppm und somit im schädlichen Bereich.");
+            if (ammoniakCurrent > 20) {
                 var meinElement = document.getElementById("wertAmmoniak");
                 meinElement.style.color = "red";
             } 
-            else if (dataValues[dataValues.length - 1] < 15) 
-            {
-                belüftungOff();
+            else if (ammoniakCurrent < 15) {
                 var meinElement = document.getElementById("wertAmmoniak");
                 meinElement.style.color = "green";
             } 
@@ -281,7 +329,10 @@
         var dataPoints = []
 
         for (var i = 0; i < dataValues.length; i++) {
-            dataPoints.push(createDataPoint(labels[i], dataValues[i]))
+            var dataValue = parseFloat(dataValues[i].replace(',', '.'));
+            var currentTimestamp = new Date(labels[i]);
+            currentTimestamp.setHours(currentTimestamp.getHours() + 1);
+            dataPoints.push(createDataPoint(currentTimestamp.toISOString(), dataValue))
         }
 
         return dataPoints;
@@ -321,11 +372,18 @@
         return zeitstempel;
     }
 
+    function maxDayFunctionDay(xvalue) {
+        var originalTimestamp = xvalue;
+        var dateObject = new Date(originalTimestamp);
+        dateObject.setDate(dateObject.getDate() + 1);
+        var zeitstempel = dateObject.toISOString().slice(0, -13) + "23:59:59";
+        return zeitstempel;
+    }
+
     function maxDayFunction(xvalue) {
         var originalTimestamp = xvalue;
         var dateObject = new Date(originalTimestamp);
         dateObject.setHours(dateObject.getHours() + 1);
-        var zeitstempel = dateObject.toISOString().slice(0, -13) + "23:59:59";
         var zeitstempel = dateObject.toISOString().slice(0, -13) + "23:59:59";
         return zeitstempel;
     }
@@ -384,18 +442,15 @@
             var dataAmmoniakValues = parseDictionary(labels, dataValues);
             var minDay = minDayFunctionDay(labels[0]);
             var maxDay = maxDayFunction(labels[labels.length-1]);
-            ammoniakCurrent = dataValues[dataValues.length - 1];
 
-            document.getElementById('wertAmmoniak').innerHTML = dataValues[dataValues.length - 1]
+        ammoniakCurrent = parseFloat(dataValues[dataValues.length - 1].replace(',', '.'));
+        document.getElementById('wertAmmoniak').innerHTML = ammoniakCurrent
 
-            if(dataValues[dataValues.length-1] > 20)
-            {
-                sendMessagetoTelegram("Der Ammoniakgehalt liegt derzeit bei " + dataValues[dataValues.length - 1] + " ppm und somit im schädlichen Bereich.");
+        if (ammoniakCurrent > 20) {
                 var meinElement = document.getElementById("wertAmmoniak");
                 meinElement.style.color = "red";
             }
-            else if (dataValues[dataValues.length - 1] < 15) {
-                belüftungOff();
+        else if (ammoniakCurrent < 15) {
                 var meinElement = document.getElementById("wertAmmoniak");
                 meinElement.style.color = "green";
             }
@@ -497,19 +552,17 @@
             }
 
             var dataLuftfeuchtigkeitValues = parseDictionary(labels, dataValues);
-            var minDay = minDayFunction(labels[0]);
-            var maxDay = maxDayFunction(labels[0]);
-            luftfeuchtigkeitCurrent = dataValues[dataValues.length - 1];
+            var minDay = minDayFunctionDay(labels[0]);
+            var maxDay = maxDayFunctionDay(labels[0]);
 
-            document.getElementById('wertLuftfeuchtigkeit').innerHTML = dataValues[dataValues.length - 1]
+        luftfeuchtigkeitCurrent = parseFloat(dataValues[dataValues.length - 1].replace(',', '.'));
+            document.getElementById('wertLuftfeuchtigkeit').innerHTML = luftfeuchtigkeitCurrent
 
-            if (dataValues[dataValues.length - 1] > 60) {
-                sendMessagetoTelegram("Die Luftfeuchtigkeit liegt derzeit bei " + dataValues[dataValues.length - 1] + " Prozent und somit im schädlichen Bereich.");
+            if (luftfeuchtigkeitCurrent > 60) {
                 var meinElement = document.getElementById("wertLuftfeuchtigkeit");
                 meinElement.style.color = "red";
             }
-            else if (dataValues[dataValues.length - 1] < 50) {
-                belüftungOff();
+            else if (luftfeuchtigkeitCurrent < 60) {
                 var meinElement = document.getElementById("wertLuftfeuchtigkeit");
                 meinElement.style.color = "green";
             }
@@ -618,17 +671,15 @@
         var dataLuftfeuchtigkeitValues = parseDictionary(labels, dataValues);
         var minDay = minDayFunctionDay(labels[0]);
         var maxDay = maxDayFunction(labels[labels.length - 1]);
-        luftfeuchtigkeitCurrent = dataValues[dataValues.length - 1];
 
-        document.getElementById('wertLuftfeuchtigkeit').innerHTML = dataValues[dataValues.length - 1]
+        luftfeuchtigkeitCurrent = parseFloat(dataValues[dataValues.length - 1].replace(',', '.'));
+        document.getElementById('wertLuftfeuchtigkeit').innerHTML = luftfeuchtigkeitCurrent
 
-        if (dataValues[dataValues.length - 1] > 60) {
-            sendMessagetoTelegram("Die Luftfeuchtigkeit liegt derzeit bei " + dataValues[dataValues.length - 1] + " Prozent und somit im schädlichen Bereich.");
+        if (luftfeuchtigkeitCurrent > 60) {
             var meinElement = document.getElementById("wertLuftfeuchtigkeit");
             meinElement.style.color = "red";
         } 
-        else if (dataValues[dataValues.length - 1] < 50) {
-            belüftungOff();
+        else if (luftfeuchtigkeitCurrent < 60) {
             var meinElement = document.getElementById("wertLuftfeuchtigkeit");
             meinElement.style.color = "green";
         }
@@ -738,19 +789,17 @@
         }
 
         var dataTemperaturValues = parseDictionary(labels, dataValues);
-        var minDay = minDayFunction(labels[0]);
-        var maxDay = maxDayFunction(labels[0]);
+        var minDay = minDayFunctionDay(labels[0]);
+        var maxDay = maxDayFunctionDay(labels[0]);
 
-        document.getElementById('wertTemperatur').innerHTML = dataValues[dataValues.length - 1]
-        temperaturCurrent = dataValues[dataValues.length - 1];
+        temperaturCurrent = parseFloat(dataValues[dataValues.length - 1].replace(',', '.'));
+        document.getElementById('wertTemperatur').innerHTML = temperaturCurrent
 
-        if (dataValues[dataValues.length - 1] > 25) {
-            sendMessagetoTelegram("Die Temperatur liegt derzeit bei " + dataValues[dataValues.length - 1] + " Grad Celsius und somit im schädlichen Bereich.");
+        if (temperaturCurrent > 25) {
             var meinElement = document.getElementById("wertTemperatur");
             meinElement.style.color = "red";
         }
-        else if (dataValues[dataValues.length - 1] < 24) {
-            belüftungOff();
+        else if (temperaturCurrent < 24) {
             var meinElement = document.getElementById("wertTemperatur");
             meinElement.style.color = "green";
         }
@@ -816,8 +865,8 @@
 
     function handleButtonTemperaturWocheClick(){
 
-        temperaturButtonTag = true;
-        temperaturButtonWoche = false;
+        temperaturButtonTag = false;
+        temperaturButtonWoche = true;
 
         Chart.getChart('lineChartTemperatur').destroy();
 
@@ -858,16 +907,15 @@
         var dataTemperaturValues = parseDictionary(labels, dataValues);
         var minDay = minDayFunctionDay(labels[0]);
         var maxDay = maxDayFunction(labels[labels.length - 1]);
-        temperaturCurrent = dataValues[dataValues.length - 1];
-        document.getElementById('wertTemperatur').innerHTML = dataValues[dataValues.length - 1]
 
-        if (dataValues[dataValues.length - 1] > 25) {
-            sendMessagetoTelegram("Die Temperatur liegt derzeit bei " + dataValues[dataValues.length - 1] + " Grad Celsius und somit im schädlichen Bereich.");
+        temperaturCurrent = parseFloat(dataValues[dataValues.length - 1].replace(',', '.'));
+        document.getElementById('wertTemperatur').innerHTML = temperaturCurrent
+
+        if (temperaturCurrent > 25) {
             var meinElement = document.getElementById("wertTemperatur");
             meinElement.style.color = "red";
         }
-        else if (dataValues[dataValues.length - 1] < 24) {
-            belüftungOff();
+        else if (temperaturCurrent < 24) {
             var meinElement = document.getElementById("wertTemperatur");
             meinElement.style.color = "green";
         }
@@ -934,14 +982,14 @@
 
     function handleButtonTemperaturTagClick()
     {
-        temperaturButtonTag = false;
-        temperaturButtonWoche = true;
+        temperaturButtonTag = true;
+        temperaturButtonWoche = false;
 
         Chart.getChart('lineChartTemperatur').destroy();
         buildTemperaturDiagramTag();
     }
 
-    function updatedFunction(){
+    async function updatedFunction(){
 
         //Update Ammoniak
         if (ammoniakButtonTag){
@@ -950,6 +998,7 @@
         else{
             handleButtonAmmoniakWocheClick();
         }
+        await delay(1000); // 1 Sekunde warten
 
         //Update Luftfeuchtigkeit
         if (luftfeuchtigkeitButtonTag)
@@ -960,6 +1009,7 @@
         {
             handleButtonLuftfeuchtigkeitWocheClick();
         }
+        await delay(1000); // 1 Sekunde warten
 
         //Update Temperatur
         if (temperaturButtonTag)
@@ -971,62 +1021,6 @@
             handleButtonTemperaturWocheClick();
         }
 
-    }
-
-    function sendMessagetoTelegram(message) {
-
-        if(belüftungflag)
-        {
-            belüftungOn();
-        }
-
-        if (benachrichtigungflag)
-        {
-            const botToken = '6076806213:AAEXa-EkyOE9ImDtQO9BwmwXtMOMPNgCIjI';
-            const chatId = '-4018396712';
-            const nachricht = message;
-
-            const apiUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
-
-            axios.post(apiUrl, {
-                chat_id: chatId,
-                text: nachricht
-            })
-        }
-    }
-
-    function belüftungOn(){
-            // URL für den Webbefehl
-            const url = 'http://192.168.178.63/cm?cmnd=Power%20On';
-
-            // XMLHttpRequest erstellen
-            var xhr = new XMLHttpRequest();
-
-            // XMLHttpRequest konfigurieren (asynchroner GET-Request)
-            xhr.open('GET', url, true,);
-
-            // XMLHttpRequest abschicken
-            xhr.send();
-    }
-
-    function belüftungOff() {
-        if(ausschaltenPrüfen()){
-             // URL für den Webbefehl
-             const url = 'http://192.168.178.63/cm?cmnd=Power%20Off';
-
-             // XMLHttpRequest erstellen
-             var xhr = new XMLHttpRequest();
-
-             // XMLHttpRequest konfigurieren (asynchroner GET-Request)
-             var x = xhr.open('GET', url, true,);
-
-             // XMLHttpRequest abschicken
-             var y = xhr.send();           
-        }
-    }
-
-    function ausschaltenPrüfen(){
-        return (ammoniakCurrent < 15) & (luftfeuchtigkeitCurrent < 50) & (temperaturCurrent < 24);
     }
 
 </script>

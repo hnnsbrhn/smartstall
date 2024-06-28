@@ -359,14 +359,15 @@
     function minDayFunctionDay(xvalue) {
         var originalTimestamp = xvalue;
         var dateObject = new Date(originalTimestamp);
-        dateObject.setDate(dateObject.getDate() + 1);
+        //dateObject.setDate(dateObject.getDate() + 1);
         var zeitstempel = dateObject.toISOString().slice(0, -13) + "00:00:00";
         return zeitstempel;
     }
 
-    function minDayFunction(xvalue) {
+    function minDayFunctionWeek(xvalue) {
         var originalTimestamp = xvalue;
         var dateObject = new Date(originalTimestamp);
+        dateObject.setDate(dateObject.getDate() + 1);
         var zeitstempel = dateObject.toISOString().slice(0, -13) + "00:00:00";
 
         return zeitstempel;
@@ -375,12 +376,12 @@
     function maxDayFunctionDay(xvalue) {
         var originalTimestamp = xvalue;
         var dateObject = new Date(originalTimestamp);
-        dateObject.setDate(dateObject.getDate() + 1);
+        //dateObject.setDate(dateObject.getDate() + 1);
         var zeitstempel = dateObject.toISOString().slice(0, -13) + "23:59:59";
         return zeitstempel;
     }
 
-    function maxDayFunction(xvalue) {
+    function maxDayFunctionWeek(xvalue) {
         var originalTimestamp = xvalue;
         var dateObject = new Date(originalTimestamp);
         dateObject.setHours(dateObject.getHours() + 1);
@@ -440,8 +441,8 @@
             }
 
             var dataAmmoniakValues = parseDictionary(labels, dataValues);
-            var minDay = minDayFunctionDay(labels[0]);
-            var maxDay = maxDayFunction(labels[labels.length-1]);
+            var minDay = minDayFunctionWeek(labels[0]);
+            var maxDay = maxDayFunctionWeek(labels[labels.length-1]);
 
         ammoniakCurrent = parseFloat(dataValues[dataValues.length - 1].replace(',', '.'));
         document.getElementById('wertAmmoniak').innerHTML = ammoniakCurrent
@@ -669,8 +670,8 @@
         }
 
         var dataLuftfeuchtigkeitValues = parseDictionary(labels, dataValues);
-        var minDay = minDayFunctionDay(labels[0]);
-        var maxDay = maxDayFunction(labels[labels.length - 1]);
+        var minDay = minDayFunctionWeek(labels[0]);
+        var maxDay = maxDayFunctionWeek(labels[labels.length - 1]);
 
         luftfeuchtigkeitCurrent = parseFloat(dataValues[dataValues.length - 1].replace(',', '.'));
         document.getElementById('wertLuftfeuchtigkeit').innerHTML = luftfeuchtigkeitCurrent
@@ -905,8 +906,8 @@
         }
 
         var dataTemperaturValues = parseDictionary(labels, dataValues);
-        var minDay = minDayFunctionDay(labels[0]);
-        var maxDay = maxDayFunction(labels[labels.length - 1]);
+        var minDay = minDayFunctionWeek(labels[0]);
+        var maxDay = maxDayFunctionWeek(labels[labels.length - 1]);
 
         temperaturCurrent = parseFloat(dataValues[dataValues.length - 1].replace(',', '.'));
         document.getElementById('wertTemperatur').innerHTML = temperaturCurrent

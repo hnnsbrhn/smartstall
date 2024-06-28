@@ -47,6 +47,14 @@ Das Projekt Smartstall ist im Rahmen des Moduls "Hardware cypher-physischer Syst
 Ziel dieses Projekts ist die Erfassung unterschiedlicher Sensordaten zur Überwachung der Luftqualität in einem Stall. Die erfassten Daten sollen über einen Raspberry Pi an eine, für dieses Projekt entwickelte Webanwendung gesendet werden. Dadurch soll der Anwender die Möglichkeit erhalten, die Daten über eine benutzerfreundliche Oberfläche anzuzeigen und zu analysieren. Bei der Überschreitung von festlegbaren Schwellwerten bestimmter Attribute wie Temperatur, Luftfeuchtigkeit oder Ammoniakgehalt, soll der Anwender außerdem per Push-Up Benachrichtigung auf seinem Smartphone informiert werden können. \\
 Des Weiteren soll die Belüftung von der Webanwendung bei Bedarf ein- und ausgeschaltet werden können, um die Schwellwerte auch ohne aktives Eingreifen des Anwenders wieder unterschreiten zu können. Dies soll durch die Ansteuerung einer WLAN-Steckdose umgesetzt werden. Durch regelmäßige und kontinuierliche Datenerfassung wird dafür gesorgt, dass die Belüftung nur so lange wie nötig aktiviert ist, womit die Aspekte Effizienz und Nachhaltigkeit berücksichtigt und in das Projekt integriert werden. 
 
+\section{Überblick}
+%sowas wie aufbau der doku
+
+\section{Anforderungserhebung}
+%Ursprügnliche Vorstellung
+%Gespräch mit Bauern
+%Resultat
+
 \section{Hardware Komponenten}
 \subsection{Raspberry Pi 3B}
 Der Raspberry Pi (Modell 3B) ist ein beliebter Einplatinencomputer, der von der Raspberry Pi Foundation entwickelt wurde. Er bietet ausreichend Rechenleistung, Speicher und Konnektivität, um komplexe Aufgaben auszuführen und eine Vielzahl von Erweiterungen und Anwendungen zu unterstützen und ist somit ein kostengünstige und vielseitige Plattform für Projekte im Bereich der Einbettung von Computern und des IoT. Die umfangreiche Community und Dokumentation rund um den Raspberry Pi machen es einfach, Projekte zu starten und Unterstützung zu erhalten. Es gibt eine Vielzahl von Erweiterungsmodulen und Zubehörteilen, die den Raspberry Pi erweitern und an individuelle Anforderungen anpassen können. Um den Raspberry Pi 3B zu nutzen, ist eine grundlegende Einrichtung erforderlich, auf welche in Kapitel \ref{pi} genauer eingegangen wird. \cite{raspy} 
@@ -147,7 +155,24 @@ Nach der Einrichtung des Raspberry Pi musste zunächst das I2C (Inter-Integrated
 \subsection{Benutzeroberfläche}
 \subsection{Telegram Anbindung}
 \subsection{Ansteuerung der Steckdose}
+\subsubsection{Dyndns}
+\subsubsection{Portfreigabe}
 
+
+\section{Test des gesamten Systemaufbaus}
+%Funktionsfähigkeit der Sensoren (Raspberry Pi Skript Log)
+%Senden der Daten an Webanwendung und Datenbank
+%Anzeigen der Daten in Benutzeroberfläche
+%Nachricht von Telegram Bot
+%Einschalten der Steckdose
+
+\section{Zusammenfassung und Ausblick}
+%Ausblick: 
+%Überwachung durch mehrere Sensoren
+%Datenbankausbau
+%Login Datenbank
+%Schwellwert variabel einstellen durch Bauern (Überforderung?)
+%An und Ausschalten der Steckdose durch Telegram?
 
 \begin{thebibliography}{00}
 \bibitem{raspy}

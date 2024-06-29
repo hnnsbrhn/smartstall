@@ -164,14 +164,14 @@
         buttonAmmoniakWoche.addEventListener('click', handleButtonAmmoniakWocheClick);
         var buttonAmmoniakTag = document.getElementById('tagBtnAmmoniak');
         buttonAmmoniakTag.addEventListener('click', handleButtonAmmoniakTagClick);
-        await delay(1000); // 1 Sekunde warten
+        await delay(5000); // 5 Sekunde warten
 
         buildLuftfeuchtigkeitDiagramTag();
         var buttonLuftfeuchtigkeitWoche = document.getElementById('wocheBtnLuftfeuchtigkeit');
         buttonLuftfeuchtigkeitWoche.addEventListener('click', handleButtonLuftfeuchtigkeitWocheClick);
         var buttonLuftfeuchtigkeitTag = document.getElementById('tagBtnLuftfeuchtigkeit');
         buttonLuftfeuchtigkeitTag.addEventListener('click', handleButtonLuftfeuchtigkeitTagClick);
-        await delay(1000); // 1 Sekunde warten
+        await delay(5000); // 5 Sekunde warten
 
         buildTemperaturDiagramTag();
         var buttonTemperaturWoche = document.getElementById('wocheBtnTemperatur');
@@ -258,7 +258,7 @@
                 var meinElement = document.getElementById("wertAmmoniak");
                 meinElement.style.color = "red";
             } 
-            else if (ammoniakCurrent < 15) {
+            else if (ammoniakCurrent < 20) {
                 var meinElement = document.getElementById("wertAmmoniak");
                 meinElement.style.color = "green";
             } 
@@ -451,7 +451,7 @@
                 var meinElement = document.getElementById("wertAmmoniak");
                 meinElement.style.color = "red";
             }
-        else if (ammoniakCurrent < 15) {
+        else if (ammoniakCurrent < 20) {
                 var meinElement = document.getElementById("wertAmmoniak");
                 meinElement.style.color = "green";
             }
@@ -999,7 +999,7 @@
         else{
             handleButtonAmmoniakWocheClick();
         }
-        await delay(1000); // 1 Sekunde warten
+        await delay(5000); // 5 Sekunde warten
 
         //Update Luftfeuchtigkeit
         if (luftfeuchtigkeitButtonTag)
@@ -1010,7 +1010,7 @@
         {
             handleButtonLuftfeuchtigkeitWocheClick();
         }
-        await delay(1000); // 1 Sekunde warten
+        await delay(5000); // 5 Sekunde warten
 
         //Update Temperatur
         if (temperaturButtonTag)

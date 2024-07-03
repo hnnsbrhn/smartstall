@@ -6,11 +6,8 @@ import random
 import datetime
 import RPi.GPIO as GPIO
 
-print("""read-and-send.py - Reads sensor data and sends it to a web application.
-
-Press Ctrl+C to exit!
-""")
-
+print("Skript zum Erfassen der Sensordaten und Senden an Webanwendung gestartet")
+print()
 # Get sensor data from BME680
 try:
     sensor = bme680.BME680(bme680.I2C_ADDR_PRIMARY)
@@ -37,6 +34,7 @@ if sensor_status == GPIO.HIGH:
 else:
     print("MQ137-Sensor nicht erkannt")
 
+print()
 # Daten senden
 url = "http://141.147.6.122:8081/ReceiveData"
 try:
@@ -53,12 +51,17 @@ try:
         }
         header = {'Content-Type': 'application/json'}
         response = requests.post(url, json=data, headers=header, verify=False)
+        print(f"Erfasste Sensorwerte um {uhrzeit_string}")
+        print("Ammoniak:\t\t" + str(ammoniak))
+        print("Luftfeuchtigkeit:\t" + str(sensor.data.humidity))
+        print("Temperatur:\t\t" + str(sensor.data.temperature))
+        print()
         if response.status_code == 200:
-            print(f"Sensor data successfully sent to web application. ({uhrzeit_string})")
+            print("Sensordaten erfolgreich an Webanwendung gesendet")
         else:
-            print(f"Failed to send sensor data to web application ({uhrzeit_string})")
+            print("Fehler beim Senden der Daten an Webanwendung")
 except Exception as e:
-    print(f"Failed to send sensor data ({uhrzeit_string}): {e}")
-
+    print("Fehler beim Senden:")
+    print(e)
 # GPIO cleanup
 GPIO.cleanup()

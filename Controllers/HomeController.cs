@@ -24,7 +24,7 @@ namespace smartstall.Controllers
 
             if(timer == null)
             {
-                timer = new System.Timers.Timer(1000 * 60 * 1);
+                timer = new System.Timers.Timer(1000 * 60 * 3);
                 timer.Elapsed += TimerElapsed;
                 timer.AutoReset = true;
                 timer.Start();

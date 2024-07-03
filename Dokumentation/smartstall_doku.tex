@@ -53,13 +53,18 @@ Des Weiteren soll die Belüftung von der Webanwendung bei Bedarf ein- und ausges
 \section{Anforderungserhebung}
 \subsection{Ursprüngliche Überlegungen}
 Das Ziel von SmartStall ist die Kontrolle der Luftqualität in einem Stall. Durch den Einsatz von Sensoren sollen Ammoniak, Temperatur und Luftfeuchtigkeit überwacht werden, um sicherzustellen, dass diese Werte nicht in schädliche Bereiche gelangen. Da die Umrüstung auf eine neue smarte Belüftung sehr kostspielig sein kann, soll SmartStall eine kostengünstige Alternative bieten.
-Die erfassten Luftqualitätsdaten sollen in Diagrammen für einen Tag und eine Woche in einer Webanwendung visualisiert werden. Diese Webanwendung soll mit einem Login, bei dem Benutzername und Passwort eingegeben werden muss, geschützt werden. In den Diagrammen soll die Grenzen, ab denen die einzelnen Luftdaten schädlich werden, rot markiert sein. Neben den aktuellen Daten sollen auch die durchschnittlichen Werte für eine Woche und einen Tag angezeigt werden. Es gibt insgesamt drei Diagramme: eines für Ammoniak, eines für Temperatur und eines für Luftfeuchtigkeit
+Die erfassten Luftqualitätsdaten sollen in Diagrammen für einen Tag und eine Woche in einer Webanwendung visualisiert werden. Diese Webanwendung soll mit einem Login, bei dem Benutzername und Passwort eingegeben werden muss, geschützt werden. In den Diagrammen sollen die Grenzen, ab denen die einzelnen Luftdaten schädlich werden, rot markiert sein. Neben den aktuellen Daten sollen auch die durchschnittlichen Werte für eine Woche und einen Tag angezeigt werden. Es gibt insgesamt drei Diagramme: eines für Ammoniak, eines für Temperatur und eines für Luftfeuchtigkeit
 Der Landwirt soll eine Push-Benachrichtigung erhalten, wenn ein Schwellwert überschritten wird, und die Belüftung soll automatisch eingeschaltet werden. Sobald alle Werte unter den Schwellwerten liegen, soll die Belüftung wieder ausgeschaltet werden.
-Es ist von großer Bedeutung, dass die Werte für Ammoniak, Luftfeuchtigkeit und Temperatur in einem Stall nicht zu hoch sind. Hohe Ammoniakkonzentrationen können die Atemwege der Tiere und Menschen reizen und zu ernsthaften gesundheitlichen Problemen führen. Eine zu hohe Luftfeuchtigkeit kann das Wachstum von Schimmel und anderen schädlichen Mikroorganismen fördern, was wiederum die Gesundheit der Tiere beeinträchtigt. Extreme Temperaturen, ob zu hoch oder zu niedrig, können den Komfort und das Wohlbefinden der Tiere negativ beeinflussen, was zu Stress und einer verminderten Produktivität führen kann. Daher soll die Überwachung und Regelung dieser Parameter essenziell für die Gesundheit und das Wohlbefinden der Tiere sowie für eine effiziente landwirtschaftliche Produktion sein. 
+Es ist von großer Bedeutung, dass die Werte für Ammoniak, Luftfeuchtigkeit und Temperatur in einem Stall nicht zu hoch sind. Hohe Ammoniakkonzentrationen können die Atemwege der Tiere und Menschen reizen und zu ernsthaften gesundheitlichen Problemen führen. Eine zu hohe Luftfeuchtigkeit kann das Wachstum von Schimmel und anderen schädlichen Mikroorganismen fördern, was wiederum die Gesundheit der Tiere beeinträchtigt. Extreme Temperaturen, ob zu hoch oder zu niedrig, können den Komfort und das Wohlbefinden der Tiere negativ beeinflussen, was zu Stress und einer verminderten Produktivität führen kann. Daher ist die Überwachung und Regelung dieser Parameter essenziell für die Gesundheit und das Wohlbefinden der Tiere sowie für eine effiziente landwirtschaftliche Produktion. 
 Nach den ersten Überlegungen zu dem Projekt SmartStall wurde folgende Skizze zu einem möglichen Userinterface entwickelt:
-%Bild einfügen
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=90mm]{fig/firstUI.JPG}
+	\caption{Erstentwurf eines möglichen Userinterfaces für die Webanwendung von smartStall nach den ursprünglichen Überlegungen}
+	\label{firstUI}
+\end{figure}
 \subsection{Gespräch mit Landwirten}
-Da SmartStall ein IT-Produkt für Landwirte mit Stalltieren werden soll, wurde nach den ersten Überlegungen und der ersten Skizze ein Gespräch mit zwei verschiedenen Landwirten geführt. Der erste landwirtschaftliche Betrieb ist der Bauernhof Stenglein in Rothwind, der etwa 80 Kühe in einem Stall hält. Der zweite landwirtschaftliche Betrieb ist der Bauernhof der Familie Stark aus Eichberg, die in der Ferkelerzeugung tätig sind. Beide reagierten positiv auf die Idee von SmartStall und fanden die Grundidee gut, brachten jedoch einige Verbesserungsvorschläge und wichtige Anmerkungen ein:
+Da SmartStall ein IT-Produkt für Landwirte mit Tierhaltungsbetriebe werden soll, wurde nach den ersten Überlegungen und der ersten Skizze ein Gespräch mit zwei verschiedenen Landwirten geführt. Der erste landwirtschaftliche Betrieb ist der Bauernhof Stenglein in Rothwind, der etwa 80 Kühe in einem Stall hält. Der zweite landwirtschaftliche Betrieb ist der Bauernhof der Familie Stark aus Eichberg, die in der Ferkelerzeugung tätig sind. Beide reagierten positiv auf die Idee von SmartStall und fanden die Grundidee gut, brachten jedoch einige Verbesserungsvorschläge und wichtige Anmerkungen ein:
 Die Landwirte waren der Meinung, dass es wenig Sinn macht, die durchschnittlichen Werte der einzelnen Luftqualitätsdaten anzuzeigen, da diese wenig aussagekräftig sind. Als Beispiel nannten sie die Temperatur: Im Sommer ist diese sehr hoch, im Winter eher niedrig. Ein Mittelwert daraus liefert keine nützlichen Informationen im Vergleich zum aktuellen Wert. Der Mittelwert wäre nur dann sinnvoll, wenn der Stall das ganze Jahr über konstante Bedingungen hätte, wie gleiche Außentemperatur und gleiche Dauer von geöffneten bzw. geschlossenen Türen und Fenstern, was in der Praxis jedoch nicht vorkommt. Da die Stalltüren ab spätem Frühling meist bis Herbst fast durchgängig geöffnet sind, herrschen unterschiedliche Bedingungen im Stall. Aus diesem Grund kann der durchschnittliche Wert der einzelnen Daten aus den Diagrammen entfernt werden, was zusätzlich die Lesbarkeit der Diagramme verbessert.
 Den Landwirten war es außerdem wichtig, dass sie die Steuerung der Belüftung und die Push-Benachrichtigungen kontrollieren können. Da es sich um ein erstmaliges Projekt handelt, das noch nicht im Einsatz war, möchten sie sich nicht vollständig auf das System verlassen und die Möglichkeit haben, wie gewohnt vorzugehen.
 Ein weiterer Verbesserungsvorschlag war das Hinzufügen des aktuellen Werts zu jedem Diagramm, damit man auf einen Blick den aktuellen Zustand im Stall erkennen kann.
@@ -68,7 +73,7 @@ Da der Bauernhof der Familie Stenglein recht groß ist und auch Angestellte im S
 }Das Resultat des Projekts SmartStall ist wie folgt:
 Die Luftqualitätsdaten des Stalls werden über einen Raspberry Pi in eine Datenbank geschrieben. Diese Daten werden in einer passwortgeschützten Webanwendung visualisiert, die drei verschiedene Diagramme enthält: eines für Ammoniak, eines für Luftfeuchtigkeit und eines für Temperatur. Die Diagramme zeigen die aktuellen Werte des Tages bzw. der letzten sieben Tage an. Die durchschnittlichen Werte für Tag und Woche wurden entfernt, um die Lesbarkeit zu verbessern.
 Neben den Diagrammen wird der aktuelle Wert angezeigt, der in roter Schrift dargestellt ist, wenn der Wert die schädliche Grenze überschreitet, und in grüner Schrift, wenn er im unkritischen Bereich liegt. Es gibt außerdem zwei Schalter, mit denen die Automatisierung der Belüftung und das Benachrichtigen per Push-Nachricht bei Überschreitung des Grenzwerts aktiviert werden können.
-Die Push-Benachrichtigungen werden an eine Telegram-Gruppe gesendet, in die alle Mitarbeiter eines Bauernhofs aufgenommen werden können, sodass jeder informiert ist. Eine Benachrichtigung wird auch gesendet, wenn die Steuerung der Belüftung deaktiviert wird, woraufhin das System die Belüftung abschaltet. Dies verhindert, dass die Belüftung unnötig lange läuft, falls sie zum Zeitpunkt der Deaktivierung noch aktiv ist, und trägt dazu bei, den Energieverbrauch des Stalls zu reduzieren. In Kapitel xy wird genauer auf das finale Userinterface eingeangen.
+Die Push-Benachrichtigungen werden an eine Telegram-Gruppe gesendet, in die alle Mitarbeiter eines Bauernhofs aufgenommen werden können, sodass jeder informiert ist. Eine Benachrichtigung wird auch gesendet, wenn die Steuerung der Belüftung deaktiviert wird, woraufhin das System die Belüftung abschaltet. Dies verhindert, dass die Belüftung unnötig lange läuft, falls sie zum Zeitpunkt der Deaktivierung noch aktiv ist, und trägt dazu bei, den Energieverbrauch des Stalls zu reduzieren. In Abschnitt \ref{ui} wird genauer auf das finale Userinterface eingeangen.
 
 
 
@@ -169,7 +174,7 @@ Nach der Einrichtung des Raspberry Pi musste zunächst das I2C (Inter-Integrated
 \subsection{Empfangen der Daten}
 \subsection{Anbindung einer MYSQL Datenbank}
 \subsection{Auslesen und Anzeigen der Sensordaten}
-Für die Anzeige der Sensordaten in einer Webanwendung wurden bestimmte Anforderungen definiert. Zum einen sollten die Daten in einem Liniendiagramm dargestellt werden, und zum anderen sollte die Webanwendung sowohl auf PCs und Laptops als auch auf mobilen Geräten reibungslos funktionieren. Dies erforderte die Nutzung eines responsiven Frameworks wie Bootstrap.
+Für die Anzeige der Sensordaten in der Webanwendung wurden bestimmte Anforderungen definiert. Zum einen sollten die Daten in einem Liniendiagramm dargestellt werden, und zum anderen sollte die Webanwendung sowohl auf PCs und Laptops als auch auf mobilen Geräten reibungslos funktionieren. Dies erforderte die Nutzung eines responsiven Frameworks wie Bootstrap.
 Bootstrap wurde gewählt, da es eine breite Palette an vorgefertigten UI-Komponenten und ein responsives Grid-System bietet. Dies ermöglicht eine einfache Integration und schnelle Entwicklung von modernen und benutzerfreundlichen Webseiten, unabhängig vom verwendeten Gerät.
 Um Bootstrap effektiv zu nutzen, wurden folgende JavaScript-Bibliotheken integriert:
 jQuery: Diese leistungsstarke Bibliothek unterstützt die Manipulation des DOM und erleichtert AJAX-Interaktionen. In Verbindung mit Bootstrap ermöglicht sie die dynamische Aktualisierung von Inhalten und die Interaktion mit Benutzeroberflächenelementen wie Dropdown-Menüs oder Modalfenstern.
@@ -177,13 +182,13 @@ jQuery: Diese leistungsstarke Bibliothek unterstützt die Manipulation des DOM u
 <script src="https://code.jquery.com/
 jquery-3.6.0.min.js"></scrip
 \end{verbatim}
-Popper.js: Diese Bibliothek wird verwendet, um Popups, Tooltips und Dropdown-Menüs präzise innerhalb einer Bootstrap-Anwendung zu positionieren. Dies verbessert die Benutzerfreundlichkeit und sorgt für eine optimale Platzierung basierend auf dem verfügbaren Bildschirmraum
+Popper.js: Diese Bibliothek wird verwendet, um Popups, Tooltips und Dropdown-Menüs präzise innerhalb einer Bootstrap-Anwendung zu positionieren. Dies verbessert die Benutzerfreundlichkeit und sorgt für eine optimale Platzierung basierend auf dem verfügbaren Bildschirmraum.
 \begin{verbatim}
 <script src="https://cdn.jsdelivr.net/
 npm/popper.js@1.16.1/dist/umd/popper.min.
 js"></script>
 \end{verbatim}
-Bootstrap: Das Bootstrap-Bundle enthält das Haupt-JavaScript von Bootstrap sowie die erforderlichen Abhängigkeiten wie jQuery und Popper.js. Diese Kombination bietet Funktionen wie responsives Design, Grid-Systeme und Modalkomponenten, die für die Implementierung des Liniendiagramms und anderer UI-Elemente essentiell sind.
+Bootstrap: Das Bootstrap-Bundle enthält das Haupt-JavaScript von Bootstrap. Dieses Framework bietet Funktionen wie responsives Design, Grid-Systeme und Modalkomponenten, die für die Implementierung des Liniendiagramms und anderer UI-Elemente essentiell sind.
 \begin{verbatim}
 <script src="https://cdn.jsdelivr.net/
 npm/bootstrap@4.6.2/dist/js/bootstrap.
@@ -200,17 +205,17 @@ chart.js"></script>
 adapter-date-fns.bundle.min.js"></script>
 \end{verbatim}
 Diese Entscheidungen zusammen ermöglichen eine effektive und effiziente Darstellung der Sensordaten in der Webanwendung, optimiert für verschiedene Geräte und Benutzerumgebungen.
-Nachdem die benötigten Bibliotheken eingebunden wurden, kann das Diagramm für die Temperatur in der Webanwendung aufgebaut werden. Der  HTML-Code in Anhang xy definiert die Struktur des Diagramms.
+Nachdem die benötigten Bibliotheken eingebunden wurden, können die Diagramme in der Webanwendung aufgebaut werden. Der  HTML-Code in \ref{sec:htmlCodeDiagrammAnhang} definiert die Struktur eines Diagramms inklusive dem aktuellen Wert anhand der Temperatur.
 
 Das eigentliche Diagramm wird durch das \texttt{<canvas>}-Element mit der ID \texttt{lineChartTemperatur} dargestellt.
-Um die Sensordaten für die Temperatur abzurufen, wird AJAX verwendet. AJAX ermöglicht es, Daten asynchron im Hintergrund zu laden, ohne die gesamte Webseite neu zu laden. Der JavaScript-Code in Anhang xy zeigt einen Beispielaufruf.
+Um die Sensordaten für die Temperatur abzurufen, wird AJAX verwendet. AJAX ermöglicht es, Daten asynchron im Hintergrund zu laden, ohne die gesamte Webseite neu zu laden. Der JavaScript-Code in Anhang \ref{sec:ajaxAnhang} zeigt einen Beispielaufruf.
 
 Hierbei ist \texttt{GetTemperatur} die URL, unter der die Sensordaten abgerufen werden. Die empfangenen Daten werden in ein JavaScript-Dictionary umgewandelt (\texttt{temperaturWerteTagAktuellDictionary}), um sie später im Diagramm anzuzeigen.
-Die Verwendung von AJAX ist besonders nützlich, da sie eine flüssige Benutzererfahrung ermöglicht, indem Daten im Hintergrund geladen werden, während die Benutzeroberfläche weiterhin interaktiv bleibt. Dies ist wichtig für die dynamische Aktualisierung und Visualisierung von Echtzeitdaten wie den Sensormessungen der Temperatur.
-In der Funktion createTemperaturDiagramTag wird das Diagramm erstellt, wobei die Sensordaten entsprechend bearbeitet werden müssen. Die folgenden Codeabschnitte sind hierbei von Bedeutung:
+Die Verwendung von AJAX ist besonders nützlich, da sie eine flüssige Benutzererfahrung ermöglicht, indem Daten im Hintergrund geladen werden, während die Benutzeroberfläche weiterhin interaktiv bleibt. Dies ist wichtig für die dynamische Aktualisierung und Visualisierung von Echtzeitdaten.
+In der Funktion \texttt{createTemperaturDiagramTag} wird das Diagramm erstellt, wobei die Sensordaten entsprechend bearbeitet werden müssen. Der folgenden Codeabschnitte ist hierbei von Bedeutung:
 \begin{verbatim}var dataTemperaturValues = 
 parseDictionary(labels, dataValues); \end{verbatim}
-\texttt{dataTemperaturValues} enthält die Datenpaare, die später im Diagramm angezeigt werden. Um sicherzustellen, dass diese korrekt dargestellt werden, müssen die Daten zunächst in das richtige Format gebracht werden. Die Funktion \texttt{parseDictionary} wandelt beispielsweise einzelne Temperaturwerte von 23,45 in 23.45 um, damit sie korrekt angezeigt werden. Ebenso müssen die Labels, also die Zeitstempel, angepasst werden.
+\texttt{dataTemperaturValues} enthält die Datenpaare, die später im Diagramm angezeigt werden. Um sicherzustellen, dass diese korrekt dargestellt werden, müssen die Daten zunächst in das richtige Format gebracht werden. Die Funktion \texttt{parseDictionary} wandelt beispielsweise einzelne Temperaturwerte von 23,45 in 23.45 um, da Chart.js nicht mit Kommazahlen umgehen kann. Ebenso müssen die Labels, also die Zeitstempel, angepasst werden.
 
 Sobald die Daten korrekt bearbeitet sind, kann das Diagramm mit folgendem Code aufgebaut werden:
 \begin{verbatim}
@@ -271,21 +276,26 @@ $("#lineChartTemperatur"), {
 \end{verbatim}
 
 Mit diesem Code wird das Diagramm konfiguriert und angezeigt. Dabei wird ein Liniendiagramm erstellt, das die aktuellen Temperaturwerte sowie eine festgelegte Temperaturgrenze darstellt. Die X-Achse ist als Zeitachse konfiguriert, die die Daten nach Stunden darstellt, während die Y-Achse die Temperatur in Grad Celsius anzeigt.
-Dieses Vorgehen wird ebenfalls für die Anzeige der Daten der letzten sieben Tage verwendet, wobei die entsprechenden Daten und Labels angepasst werden.
+Dieses Vorgehen wird ebenfalls für die Anzeige der Daten der letzten sieben Tage verwendet, wobei die entsprechenden Daten und Labels eebenfalls angepasst werden.
 
 \subsection{Benutzeroberfläche}
-Oben auf der Seite befindet sich der Titel "SmartStall", der das Dashboard kennzeichnet. Direkt darunter sind zwei Schalter platziert: Mit dem Schalter "Benachrichtigung" können Benachrichtigungen aktiviert oder deaktiviert werden. Bei Aktivierung werden Benachrichtigungen über Telegram gesendet, wenn die Messwerte bestimmte Grenzwerte überschreiten. Der Schalter "Belüftung" dient dazu, die automatische Belüftung ein- oder auszuschalten. Wenn dieser Schalter aktiviert ist, schaltet sich die Belüftung automatisch ein, sobald die Messwerte über die festgelegten Grenzwerte steigen.
+\label{ui}
+Oben auf der Seite befindet sich der Titel "SmartStall", der den Titel des Projekts kennzeichnet. Direkt darunter sind zwei Schalter platziert: Mit dem Schalter "Benachrichtigung" können Benachrichtigungen aktiviert oder deaktiviert werden. Bei Aktivierung werden Benachrichtigungen über Telegram gesendet, wenn die Messwerte bestimmte Grenzwerte überschreiten. Der Schalter "Belüftung" dient dazu, die automatische Belüftung ein- oder auszuschalten. Wenn dieser Schalter aktiviert ist, schaltet sich die Belüftung automatisch ein, sobald die Messwerte über die festgelegten Grenzwerte steigen.
 
-Das Dashboard umfasst drei Hauptsektionen zur Überwachung der Luftqualität: Ammoniak, Luftfeuchtigkeit und Temperatur. Jede dieser Sektionen enthält ein interaktives Diagramm, das die Messwerte über einen Tages- oder Wochenverlauf anzeigt, je nach gewählter Ansicht ("Tag" oder "Woche"). Die Diagramme haben eine x-Achse, die die Zeit über den Tag hinweg darstellt, und eine y-Achse, die die gemessenen Werte wie Ammoniakkonzentration in ppm (parts per million), Luftfeuchtigkeit in Prozent oder Temperatur in Grad Celsius zeigt. Eine schwarze Linie stellt die aktuellen Messwerte dar, während eine rote Linie die festgelegten Grenzwerte anzeigt.
+Die Webanwendung umfasst drei Hauptsektionen zur Überwachung der Luftqualität: Ammoniak, Luftfeuchtigkeit und Temperatur. Jede dieser Sektionen enthält ein interaktives Diagramm, das die Messwerte über einen Tages- oder Wochenverlauf anzeigt, je nach gewählter Ansicht ("Tag" oder "Woche") und alle 3 Minuten aktualisiert wird. Die Diagramme haben eine x-Achse, die die Zeit über den Tag hinweg darstellt, und eine y-Achse, die die gemessenen Werte wie Ammoniakkonzentration in ppm (parts per million), Luftfeuchtigkeit in Prozent oder Temperatur in Grad Celsius zeigt. Eine schwarze Linie stellt die aktuellen Messwerte dar, während eine rote Linie die festgelegten Grenzwerte anzeigt.
 
 Neben jedem Diagramm wird der aktuelle Messwert groß und deutlich angezeigt. Dieser Wert ist grün hinterlegt, wenn er unterhalb der festgelegten Grenzwerte liegt, und rot hinterlegt, wenn er die Grenzwerte überschreitet. Dies ermöglicht den Benutzern, die aktuellen Bedingungen im Stall schnell zu erkennen.
+Die strukturierte Gestaltung des Interface stellt sicher, dass alle wichtigen Informationen auf einen Blick verfügbar sind und einfach verwaltet werden können.
 
-Insgesamt ermöglicht die Webanwendung "SmartStall" eine kontinuierliche Überwachung der Luftqualität im Stall und ergreift automatisch Maßnahmen zur Verbesserung der Bedingungen, wenn die Messwerte die festgelegten Grenzwerte überschreiten. Die strukturierte Gestaltung des Interface stellt sicher, dass alle wichtigen Informationen auf einen Blick verfügbar sind und einfach verwaltet werden können.
-
-Das Userinterface kann den Anhängen xy und yz entnommen werden. Diese Bilder zeigen das Userinterface sowohl auf einem Handy als auch auf einem PC. Auf einem Handy kann die Webanwendung durch die Einstellung "Zum Startbildschirm hinzufügen" im Browser an den Bildschirm angeheftet werden. Das für SmartStall entworfene Icon enthält die Initialien "ST" sowie Abbildungen eines Schweins, einer Kuh und eines Huhns. Unter diesem Logo, das in Abbildung xy zu sehen ist, ist die Webanwendung auf dem Handy sichtbar und kann wie eine App verwendet werden.
+Das Userinterface kann den Anhängen  \ref{sec:uiHandyAnhang} und \ref{sec:uiPCAnhang} entnommen werden. Diese Bilder zeigen das Userinterface sowohl auf einem Handy als auch auf einem PC. Auf einem Handy kann die Webanwendung durch die Einstellung "Zum Startbildschirm hinzufügen" im Browser an den Bildschirm angeheftet werden. Das für SmartStall entworfene Icon enthält die Initialien "ST" sowie Abbildungen eines Schweins, einer Kuh und eines Huhns. Unter diesem Logo, das in Abbildung \ref{stApp} zu sehen ist, wird die Webanwendung auf dem Handy sichtbar und kann wie eine App verwendet werden.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=60mm]{fig/stApp.jpg}
+	\caption{Speichern der Webanwendung auf dem Startbildschirm des Smartphones, wodurch diese als App bedienbar ist}
+	\label{stApp}
+\end{figure}
 \subsection{Telegram Anbindung}
-Telegram Anbindung
-Die Benachrichtigung per Telegram wird ausgelöst, wenn ein bestimmter Wert, wie beispielsweise die Temperatur, einen definierten Schwellenwert überschreitet. Die versendete Nachricht enthält den aktuellen Wert und eine Warnung, dass dieser zu hoch ist. Zudem wird eine Nachricht gesendet, wenn die automatische Belüftungssteuerung deaktiviert wird. Entscheidet sich der Landwirt, die automatische Steuerung abzuschalten, erhält er eine Mitteilung darüber, dass die Belüftung ausgeschaltet ist und er diese nun manuell steuern muss.
+Die Benachrichtigung per Telegram wird ausgelöst, wenn ein bestimmter Wert, wie beispielsweise die Temperatur, einen definierten Schwellenwert überschreitet. Die versendete Nachricht enthält den aktuellen Wert und eine Warnung, dass dieser zu hoch ist. Entscheidet sich der Landwirt, die automatische Steuerung abzuschalten, erhält er zusätzlich eine Mitteilung darüber, dass die Belüftung ausgeschaltet ist und er diese nun manuell steuern muss.
 Der folgende Code wird verwendet, um eine Telegram-Nachricht zu verschicken:
 \begin{verbatim}
 string botToken = 
@@ -297,20 +307,20 @@ string apiUrl = $"https://api.telegram.org
 /bot{botToken}/sendMessage";
 using(HttpClient client = new HttpClient())
 {
-    var content = new StringContent(
-    $"chat_id={chatId}&text={nachricht}", 
-    Encoding.UTF8, 
-    "application/x-www-form-urlencoded");
-    HttpResponseMessage response = 
-    await client.PostAsync(apiUrl, content);
+  var content = new StringContent(
+  $"chat_id={chatId}&text={nachricht}", 
+  Encoding.UTF8, 
+  "application/x-www-form-urlencoded");
+  HttpResponseMessage response = 
+  await client.PostAsync(apiUrl, content);
 }
 \end{verbatim}
-In diesem Code werden zunächst die botToken und die chatId definiert. Das botToken ist der eindeutige Schlüssel, der den Bot bei Telegram authentifiziert, während die chatId die Identifikation des Chat-Kanals darstellt, in den die Nachricht gesendet wird. Die Nachricht selbst wird in der Variable nachricht gespeichert.
-Die URL der Telegram-API, die für das Senden von Nachrichten verwendet wird, wird in der Variable apiUrl gespeichert. Mit einem HttpClient wird eine HTTP-Post-Anfrage an diese URL gesendet. Dabei wird die Nachricht in einem Formular mit dem entsprechenden Chat-ID und dem Textinhalt als application/x-www-form-urlencoded kodiert und im Body der Anfrage übermittelt. Der Server antwortet daraufhin mit einem HttpResponseMessage, die den Erfolg oder Misserfolg der Anfrage dokumentiert.
+In diesem Code werden zunächst die botToken und die chatId definiert. Das botToken ist der eindeutige Schlüssel, der den Bot bei Telegram authentifiziert, während die chatId die Identifikation des Chat-Kanals darstellt, in den die Nachricht gesendet wird. Die Nachricht selbst wird in der Variable \texttt{nachricht} gespeichert.
+Die URL der Telegram-API, die für das Senden von Nachrichten verwendet wird, wird in der Variable \texttt{apiUrl} gespeichert. Mit einem \texttt{HttpClient} wird eine HTTP-Post-Anfrage an diese URL gesendet. Dabei wird die Nachricht in einem Formular mit dem entsprechenden Chat-ID und dem Textinhalt als application/x-www-form-urlencoded kodiert und im Body der Anfrage übermittelt. Der Server antwortet daraufhin mit einem HttpResponseMessage, die den Erfolg oder Misserfolg der Anfrage dokumentiert.
 
 
 \subsection{Ansteuerung der Steckdose}
-Um die Belüftung zu steuern, ist es notwendig, eine WLAN-Steckdose zu integrieren, die mittels einer POST-Anfrage ein- oder ausgeschaltet werden kann. Zunächst muss die Steckdose mit dem WLAN verbunden werden. Dies erfolgt, indem die Steckdose an eine Stromquelle angeschlossen wird. Daraufhin erzeugt sie ein eigenes WLAN, mit dem man sich mittels PC, Laptop oder Smartphone verbinden muss. Sobald die Verbindung hergestellt ist, öffnet sich eine Benutzeroberfläche, in der das WLAN und das zugehörige Passwort eingegeben werden. Nach einem Neustart verbindet sich die WLAN-Steckdose mit dem angegebenen Netzwerk.
+Um die Belüftung zu steuern, ist es notwendig, eine WLAN-Steckdose zu integrieren, die mittels einer POST-Anfrage ein- oder ausgeschaltet werden kann. Zunächst muss die Steckdose mit dem WLAN verbunden werden. Dies erfolgt, indem die Steckdose an eine Stromquelle angeschlossen wird. Daraufhin erzeugt sie ein eigenes WLAN, mit dem sich mittels PC, Laptop oder Smartphone verbunden werden muss. Sobald die Verbindung hergestellt ist, öffnet sich eine Benutzeroberfläche, in der das WLAN und das zugehörige Passwort eingegeben werden. Nach einem Neustart verbindet sich die WLAN-Steckdose mit dem angegebenen Netzwerk.
 Ist die Steckdose erfolgreich eingerichtet, kann sie entweder über das User Interface oder einen POST-Befehl im lokalen Netzwerk gesteuert werden. Beispielsweise kann folgende URL verwendet werden, um die Steckdose einzuschalten: \texttt{http://localhost/cm?cmnd=Power\%20On}. Diese URL funktioniert jedoch nur innerhalb des eigenen Netzwerks.
 
 \subsubsection{Dyndns}
@@ -344,5 +354,40 @@ Joy-It, "BME680", Online. Verfügbar unter: https://joy-it.net/de/products/SEN-B
 \bibitem{bme_anschluss}
 Laub-Home Wiki, "Raspberry Pi BME680 Gas Sensor", Online. Verfügbar unter: https://www.laub-home.de/wiki/Raspberry\_Pi\_BME680\_Gas\_Sensor. [Zugriffsdatum: 12. Juli 2023].
 \end{thebibliography}
+\clearpage
+\begin{appendices}
+\section{Userinterface Handy}
+\label{sec:uiHandyAnhang}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{fig/uiHandy.jpg}
+\end{figure}
+
+\clearpage
+
+\section{HTML-Code für Digrammabschnitt}
+\label{sec:htmlCodeDiagrammAnhang}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.99\textwidth]{fig/htmlcode.JPG}
+\end{figure}
+
+\clearpage
+\section{Userinterface PC}
+\label{sec:uiPCAnhang}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.99\textwidth]{fig/uiPC.jpg}
+\end{figure}
+
+\clearpage
+\section{AJAX-Aufruf, um Sensordaten asynchron zu laden}
+\label{sec:ajaxAnhang}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.99\textwidth]{fig/ajax.JPG}
+\end{figure}
+
+\end{appendices}
 
 \end{document}

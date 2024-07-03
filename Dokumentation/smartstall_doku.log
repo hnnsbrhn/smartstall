@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.3.31) (preloaded format=pdflatex 2024.4.15)  28 JUN 2024 16:01
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.3.31) (preloaded format=pdflatex 2024.4.15)  28 JUN 2024 16:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -331,32 +331,32 @@ Underfull \hbox (badness 1661) in paragraph at lines 46--49
  []
 
 
-Underfull \hbox (badness 1377) in paragraph at lines 55--57
+Underfull \hbox (badness 1377) in paragraph at lines 63--65
 []\OT1/ptm/m/n/10 Der Bosch Sen-sortec BME680 ist ein fortschrit-tlicher
  []
 
 
-Underfull \hbox (badness 1521) in paragraph at lines 60--61
+Underfull \hbox (badness 1521) in paragraph at lines 68--69
 []\OT1/ptm/m/n/10 Luftqualit[]at: Der BME680 Sen-sor ist in der Lage,
  []
 
 
-Underfull \hbox (badness 1424) in paragraph at lines 60--61
+Underfull \hbox (badness 1424) in paragraph at lines 68--69
 \OT1/ptm/m/n/10 fl[]uchtige or-gan-is-che Verbindun-gen (VOCs) und ver-
  []
 
 
-Underfull \hbox (badness 5388) in paragraph at lines 64--65
+Underfull \hbox (badness 5388) in paragraph at lines 72--73
 \OT1/ptm/m/n/10 bungsluft zu messen. Er basiert auf der Metalloxid-
  []
 
 <fig/pi_pins.png, id=1, 1400.98407pt x 763.35187pt>
 File: fig/pi_pins.png Graphic file (type png)
 <use fig/pi_pins.png>
-Package pdftex.def Info: fig/pi_pins.png  used on input line 71.
+Package pdftex.def Info: fig/pi_pins.png  used on input line 79.
 (pdftex.def)             Requested size: 256.0748pt x 139.5173pt.
 
-Overfull \hbox (4.0748pt too wide) in paragraph at lines 71--72
+Overfull \hbox (4.0748pt too wide) in paragraph at lines 79--80
  [][] 
  []
 
@@ -368,17 +368,17 @@ nne/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}
 <fig/bme_pins.png, id=11, 179.16937pt x 124.96687pt>
 File: fig/bme_pins.png Graphic file (type png)
 <use fig/bme_pins.png>
-Package pdftex.def Info: fig/bme_pins.png  used on input line 82.
+Package pdftex.def Info: fig/bme_pins.png  used on input line 90.
 (pdftex.def)             Requested size: 142.26378pt x 99.23187pt.
 <fig/verkabelung_bme.png, id=12, 408.77719pt x 263.48438pt>
 File: fig/verkabelung_bme.png Graphic file (type png)
 <use fig/verkabelung_bme.png>
-Package pdftex.def Info: fig/verkabelung_bme.png  used on input line 87.
+Package pdftex.def Info: fig/verkabelung_bme.png  used on input line 95.
 (pdftex.def)             Requested size: 142.26378pt x 91.69824pt.
 <fig/mq137_pins.png, id=13, 541.27219pt x 521.69907pt>
 File: fig/mq137_pins.png Graphic file (type png)
 <use fig/mq137_pins.png>
-Package pdftex.def Info: fig/mq137_pins.png  used on input line 102.
+Package pdftex.def Info: fig/mq137_pins.png  used on input line 110.
 (pdftex.def)             Requested size: 118.08089pt x 113.81102pt.
 
 Underfull \vbox (badness 5847) has occurred while \output is active []
@@ -386,26 +386,26 @@ Underfull \vbox (badness 5847) has occurred while \output is active []
 <fig/aufbau.png, id=14, 663.22781pt x 556.32843pt>
 File: fig/aufbau.png Graphic file (type png)
 <use fig/aufbau.png>
-Package pdftex.def Info: fig/aufbau.png  used on input line 111.
+Package pdftex.def Info: fig/aufbau.png  used on input line 119.
 (pdftex.def)             Requested size: 227.62204pt x 190.93182pt.
  [2 <./fig/pi_pins.png> <./fig/bme_pins.png> <./fig/verkabelung_bme.png> <./fig
 /mq137_pins.png> <./fig/aufbau.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 156--157
+Underfull \hbox (badness 10000) in paragraph at lines 181--182
 []\OT1/ptm/m/n/8 Joy-It, "BME680", On-line. Verf[]ugbar unter: https://joy-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 158--159
+Underfull \hbox (badness 10000) in paragraph at lines 183--184
 []\OT1/ptm/m/n/8 Laub-Home Wiki, "Rasp-berry Pi BME680 Gas Sen-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 158--159
+Underfull \hbox (badness 10000) in paragraph at lines 183--184
 \OT1/ptm/m/n/8 sor", On-line. Verf[]ugbar unter: https://www.laub-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 158--159
+Underfull \hbox (badness 10000) in paragraph at lines 183--184
 \OT1/ptm/m/n/8 home.de/wiki/Raspberry[]Pi[]BME680[]Gas[]Sensor. [Zu-griffs-da-t
 um:
  []
@@ -421,9 +421,7 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[3
-
-] (smartstall_doku.aux)
+[3] (smartstall_doku.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-03-14>
@@ -443,7 +441,7 @@ tmb8a.pfb><C:/Users/hanne/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/u
 tmbi8a.pfb><C:/Users/hanne/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/
 utmr8a.pfb><C:/Users/hanne/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/
 utmri8a.pfb>
-Output written on smartstall_doku.pdf (3 pages, 2245108 bytes).
+Output written on smartstall_doku.pdf (3 pages, 2245458 bytes).
 PDF statistics:
  43 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

@@ -479,7 +479,7 @@ namespace smartstall.Controllers
                 {
                     HttpResponseMessage response = client.GetAsync(url).Result;
                 }
-                catch
+                catch 
                 {
 
                 }

@@ -38,7 +38,7 @@ print()
 # Daten senden
 url = "http://141.147.6.122:8081/ReceiveData"
 try:
-    ammoniak = random.randint(17, 22)
+    ammoniak = round(random.uniform(19.0, 21.0), 3)
     aktuelle_uhrzeit = datetime.datetime.now().time()
     uhrzeit_string = aktuelle_uhrzeit.strftime('%H:%M:%S')
     if sensor.get_sensor_data():
@@ -52,9 +52,9 @@ try:
         header = {'Content-Type': 'application/json'}
         response = requests.post(url, json=data, headers=header, verify=False)
         print(f"Erfasste Sensorwerte um {uhrzeit_string}")
-        print("Ammoniak:\t\t" + str(ammoniak))
-        print("Luftfeuchtigkeit:\t" + str(sensor.data.humidity))
-        print("Temperatur:\t\t" + str(sensor.data.temperature))
+        print(f"Ammoniak:\t\t{ammoniak}")
+        print(f"Luftfeuchtigkeit:\t{sensor.data.humidity}")
+        print(f"Temperatur:\t\t{sensor.data.temperature}")
         print()
         if response.status_code == 200:
             print("Sensordaten erfolgreich an Webanwendung gesendet")

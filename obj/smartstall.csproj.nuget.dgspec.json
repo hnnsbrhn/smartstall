@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Benutzer1\\source\\repos\\smartstall_17_07\\smartstall.csproj": {}
+    "C:\\Users\\Benutzer1\\source\\repos\\smartstall_04.07.2024\\smartstall.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Benutzer1\\source\\repos\\smartstall_17_07\\smartstall.csproj": {
+    "C:\\Users\\Benutzer1\\source\\repos\\smartstall_04.07.2024\\smartstall.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Benutzer1\\source\\repos\\smartstall_17_07\\smartstall.csproj",
+        "projectUniqueName": "C:\\Users\\Benutzer1\\source\\repos\\smartstall_04.07.2024\\smartstall.csproj",
         "projectName": "smartstall",
-        "projectPath": "C:\\Users\\Benutzer1\\source\\repos\\smartstall_17_07\\smartstall.csproj",
+        "projectPath": "C:\\Users\\Benutzer1\\source\\repos\\smartstall_04.07.2024\\smartstall.csproj",
         "packagesPath": "C:\\Users\\Benutzer1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Benutzer1\\source\\repos\\smartstall_17_07\\obj\\",
+        "outputPath": "C:\\Users\\Benutzer1\\source\\repos\\smartstall_04.07.2024\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Benutzer1\\AppData\\Roaming\\NuGet\\NuGet.Config",

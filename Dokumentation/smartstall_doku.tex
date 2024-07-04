@@ -207,73 +207,16 @@ adapter-date-fns.bundle.min.js"></script>
 Diese Entscheidungen zusammen ermöglichen eine effektive und effiziente Darstellung der Sensordaten in der Webanwendung, optimiert für verschiedene Geräte und Benutzerumgebungen.
 Nachdem die benötigten Bibliotheken eingebunden wurden, können die Diagramme in der Webanwendung aufgebaut werden. Der  HTML-Code in \ref{sec:htmlCodeDiagrammAnhang} definiert die Struktur eines Diagramms inklusive dem aktuellen Wert anhand der Temperatur.
 
-Das eigentliche Diagramm wird durch das \texttt{<canvas>}-Element mit der ID \texttt{lineChartTemperatur} dargestellt.
+Das eigentliche Diagramm wird durch das \texttt{<canvas>}-Element mit der ID \texttt{lineChartTemperatur} dargestellt. Mir dieser ID kann genau dieses Diagramm bearbeitet werden.
 Um die Sensordaten für die Temperatur abzurufen, wird AJAX verwendet. AJAX ermöglicht es, Daten asynchron im Hintergrund zu laden, ohne die gesamte Webseite neu zu laden. Der JavaScript-Code in Anhang \ref{sec:ajaxAnhang} zeigt einen Beispielaufruf.
-
-Hierbei ist \texttt{GetTemperatur} die URL, unter der die Sensordaten abgerufen werden. Die empfangenen Daten werden in ein JavaScript-Dictionary umgewandelt (\texttt{temperaturWerteTagAktuellDictionary}), um sie später im Diagramm anzuzeigen.
+Hierbei ist \texttt{GetTemperatur} die URL, unter der die Sensordaten abgerufen werden. Hinter dieser URL steckt eine Funktion, die im C\#-Code implementiert ist. Diese Funktion ist dafür zuständig, alle Daten aus der Datenbank für einen Zeitraum von einer Woche und einem Tag abzurufen, sie in ein Objekt zu transformieren und dieses an die aufrufende Stelle zurückzusenden. Die empfangenen Daten werden anschließend im Frontend in ein JavaScript-Dictionary (\texttt{temperaturWerteTagAktuellDictionary}) umgewandelt, um sie später im Diagramm anzeigen zu können.
 Die Verwendung von AJAX ist besonders nützlich, da sie eine flüssige Benutzererfahrung ermöglicht, indem Daten im Hintergrund geladen werden, während die Benutzeroberfläche weiterhin interaktiv bleibt. Dies ist wichtig für die dynamische Aktualisierung und Visualisierung von Echtzeitdaten.
 In der Funktion \texttt{createTemperaturDiagramTag} wird das Diagramm erstellt, wobei die Sensordaten entsprechend bearbeitet werden müssen. Der folgenden Codeabschnitte ist hierbei von Bedeutung:
 \begin{verbatim}var dataTemperaturValues = 
 parseDictionary(labels, dataValues); \end{verbatim}
 \texttt{dataTemperaturValues} enthält die Datenpaare, die später im Diagramm angezeigt werden. Um sicherzustellen, dass diese korrekt dargestellt werden, müssen die Daten zunächst in das richtige Format gebracht werden. Die Funktion \texttt{parseDictionary} wandelt beispielsweise einzelne Temperaturwerte von 23,45 in 23.45 um, da Chart.js nicht mit Kommazahlen umgehen kann. Ebenso müssen die Labels, also die Zeitstempel, angepasst werden.
 
-Sobald die Daten korrekt bearbeitet sind, kann das Diagramm mit folgendem Code aufgebaut werden:
-\begin{verbatim}
-dataTemperatur = {
-    datasets: [
-        {
-            label: "Temperatur-Aktuell",
-            data: dataTemperaturValues,
-            fill: true,
-            borderColor: "rgb(13, 13, 13)",
-            tension: 0.2
-        },
-        {
-            label: "Temperaturgrenze",
-            data: [
-              { x: minDay, y: 25 },
-              { x: maxDay, y: 25 },
-            ],
-            fill: true,
-            borderColor: "rgb(240, 2, 2)",
-            tension: 0.1
-        }
-    ]
-};
-
-optionsTemperatur = {
-    responsive: true,
-    scales: {
-        x: {
-            type: 'time',
-            time: {
-              unit: 'hour'
-            },
-            min: minDay,
-            max: maxDay,
-            title: {
-              display: true,
-              text: 'Uhrzeit'
-            }
-        },
-        y: {
-            suggestedMin: 5,
-            suggestedMax: 30,
-            title: {
-              display: true,
-              text: 'Temperatur in Grad 
-              Celsius'
-            }
-        }
-    }
-};
-lineChartTemperatur = new Chart(
-$("#lineChartTemperatur"), {
-    type: "line",
-    data: dataTemperatur,
-    options: optionsTemperatur
-});
-\end{verbatim}
+Sobald die Daten korrekt bearbeitet wurden, kann das Diagramm aufgebaut werden. Der Code wurde exemplarisch für das Diagramm in Anhang \ref{sec:jsdiagrammanhang} hinterlegt.
 
 Mit diesem Code wird das Diagramm konfiguriert und angezeigt. Dabei wird ein Liniendiagramm erstellt, das die aktuellen Temperaturwerte sowie eine festgelegte Temperaturgrenze darstellt. Die X-Achse ist als Zeitachse konfiguriert, die die Daten nach Stunden darstellt, während die Y-Achse die Temperatur in Grad Celsius anzeigt.
 Dieses Vorgehen wird ebenfalls für die Anzeige der Daten der letzten sieben Tage verwendet, wobei die entsprechenden Daten und Labels eebenfalls angepasst werden.
@@ -287,7 +230,14 @@ Die Webanwendung umfasst drei Hauptsektionen zur Überwachung der Luftqualität:
 Neben jedem Diagramm wird der aktuelle Messwert groß und deutlich angezeigt. Dieser Wert ist grün hinterlegt, wenn er unterhalb der festgelegten Grenzwerte liegt, und rot hinterlegt, wenn er die Grenzwerte überschreitet. Dies ermöglicht den Benutzern, die aktuellen Bedingungen im Stall schnell zu erkennen.
 Die strukturierte Gestaltung des Interface stellt sicher, dass alle wichtigen Informationen auf einen Blick verfügbar sind und einfach verwaltet werden können.
 
-Das Userinterface kann den Anhängen  \ref{sec:uiHandyAnhang} und \ref{sec:uiPCAnhang} entnommen werden. Diese Bilder zeigen das Userinterface sowohl auf einem Handy als auch auf einem PC. Auf einem Handy kann die Webanwendung durch die Einstellung "Zum Startbildschirm hinzufügen" im Browser an den Bildschirm angeheftet werden. Das für SmartStall entworfene Icon enthält die Initialien "ST" sowie Abbildungen eines Schweins, einer Kuh und eines Huhns. Unter diesem Logo, das in Abbildung \ref{stApp} zu sehen ist, wird die Webanwendung auf dem Handy sichtbar und kann wie eine App verwendet werden.
+Das Userinterface kann dem Anhang \ref{sec:uiPCAnhang} für den PC und der Abbildung \ref{uiHandy} für das Handy entnommen werden entnommen werden. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=60mm]{fig/uiHandy.jpg}
+	\caption{Userinterface auf dem Smartphone}
+	\label{uiHandy}
+\end{figure}
+Auf einem Handy kann die Webanwendung zusätzlich durch die Einstellung "Zum Startbildschirm hinzufügen" im Browser an den Bildschirm angeheftet werden. Das für SmartStall entworfene Icon enthält die Initialien "ST" sowie Abbildungen eines Schweins, einer Kuh und eines Huhns. Unter diesem Logo, das in Abbildung \ref{stApp} zu sehen ist, wird die Webanwendung auf dem Handy sichtbar und kann wie eine App verwendet werden.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=60mm]{fig/stApp.jpg}
@@ -295,7 +245,8 @@ Das Userinterface kann den Anhängen  \ref{sec:uiHandyAnhang} und \ref{sec:uiPCA
 	\label{stApp}
 \end{figure}
 \subsection{Telegram Anbindung}
-Die Benachrichtigung per Telegram wird ausgelöst, wenn ein bestimmter Wert, wie beispielsweise die Temperatur, einen definierten Schwellenwert überschreitet. Die versendete Nachricht enthält den aktuellen Wert und eine Warnung, dass dieser zu hoch ist. Entscheidet sich der Landwirt, die automatische Steuerung abzuschalten, erhält er zusätzlich eine Mitteilung darüber, dass die Belüftung ausgeschaltet ist und er diese nun manuell steuern muss.
+Die Benachrichtigung per Telegram wird ausgelöst, wenn ein bestimmter Wert, wie beispielsweise die Temperatur, einen definierten Schwellenwert überschreitet. Telegram bietet sich aus mehreren Gründen hervorragend an, um Nachrichten in diesem Szenario zu versenden. Zum einen ist Telegram eine weit verbreitete Messaging-App, die auf verschiedenen Plattformen wie Android, iOS, Windows, macOS und im Web verfügbar ist. Das bedeutet, dass der Landwirt die Benachrichtigungen auf seinem Smartphone, Tablet oder Computer empfangen kann, unabhängig davon, welches Gerät er verwendet. Außerdem unterstützt Telegram Push-Benachrichtigungen, die in Echtzeit gesendet werden. Ein weiterer Vorteil ist die einfache Implementierung. Telegram bietet eine API,  die es Entwicklern ermöglicht, automatisierte Nachrichten einfach und effizient zu versenden. Darüber hinaus legt Telegram großen Wert auf Datenschutz und Sicherheit. Nachrichten werden verschlüsselt gesendet, was bedeutet, dass nur der Landwirt und die von ihm autorisierten Personen Zugriff auf die Informationen haben. Dies ist besonders wichtig, um sicherzustellen, dass sensible Daten nicht in die falschen Hände geraten. Ein weiterer Pluspunkt ist die Kosteneffizienz: Telegram ist kostenlos nutzbar und erfordert keine zusätzlichen Kosten für den Versand von Nachrichten.
+In diesem Projekt enthält die Nachricht den aktuellen Wert und eine Warnung, dass dieser zu hoch ist. Entscheidet sich der Landwirt, die automatische Steuerung abzuschalten, erhält er zusätzlich eine Mitteilung darüber, dass die Belüftung ausgeschaltet ist und er diese nun manuell steuern muss.
 Der folgende Code wird verwendet, um eine Telegram-Nachricht zu verschicken:
 \begin{verbatim}
 string botToken = 
@@ -329,13 +280,33 @@ Um die Steckdose auch außerhalb des eigenen Netzwerks steuern zu können, sind 
 Für die Portfreigabe muss man sich in die Benutzeroberfläche des Routers einloggen und die Einstellungen für die Portweiterleitung suchen. Hier wird eine Regel hinzugefügt, die den Port (in diesem Projekt der Port 80), über den die WLAN-Steckdose kommuniziert, an deren lokale IP-Adresse weiterleitet. Durch diese Konfiguration wird die Steckdose über das Internet erreichbar und kann entsprechend gesteuert werden. Die URL zur Steuerung sieht dann so aus: \texttt{http://wlansteckdose.dnsuser.de/
 cm?cmnd=Power\%20On}
 
-
 \section{Test des gesamten Systemaufbaus}
-%Funktionsfähigkeit der Sensoren (Raspberry Pi Skript Log)
-%Senden der Daten an Webanwendung und Datenbank
-%Anzeigen der Daten in Benutzeroberfläche
-%Nachricht von Telegram Bot
-%Einschalten der Steckdose
+Im Folgenden werden zwei Tests unterschieden: ein Test, bei dem die Webanwendung lokal auf dem Rechner läuft, und ein finaler Test des gesamten Systems.
+
+Für den Test der lokalen Webanwendung musste zunächst ein Python-Skript erstellt werden, das regelmäßig Daten in die Testdatenbank schreibt. Da der Raspberry Pi die Sensordaten nur in die produktive Datenbank schreibt, die sich auf dem Server befindet und somit für die lokale Anwendung nicht zugänglich ist, musste das Senden der Sensordaten simuliert werden. Das Python-Skript verbindet sich mit der Testdatenbank und schreibt minütlich Daten für Ammoniak, Temperatur und Luftfeuchtigkeit, jeweils mit Zeitstempel, in die Datenbank. Dabei wurden Grenzen definiert, innerhalb derer sich die Daten befinden dürfen: Ammoniak zwischen 15 und 25, Temperatur zwischen 20 und 28, und Luftfeuchtigkeit zwischen 50 und 65.
+
+Die Webanwendung wurde lokal getestet. Dabei wurden beide Schalter für Benachrichtigung und Belüftung eingeschaltet und überprüft, ob diese gemäß der eingebauten Logik arbeiten und die Diagramme mit den entsprechenden Werten aktualisiert werden. Anschließend wurde der Schalter für die Belüftung ausgeschaltet und überprüft, ob eine Nachricht gesendet wird, die darüber informiert, dass die Belüftung ausgeschaltet ist und manuell gesteuert werden muss. Der lokale Test war erfolgreich.
+
+Der Test für die produktive Webanwendung verlief ähnlich. Zunächst wurde geprüft, ob der Raspberry Pi die Sensordaten mit dem korrekten Zeitstempel in die Datenbank schreibt. Dazu wurde eine Logdatei erstellt, mit der überprüft werden kann, welche Daten wann in die Datenbank geschrieben wurden, wie in Abbildung \ref{testdatasensor} zu sehen ist.
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=90mm]{fig/datasensorlog.png}
+	\caption{Logfile zum Testen, ob Daten erfolgreich und korrekt in die Datenbank geschrieben wurden}
+	\label{testdatasensor}
+\end{figure}
+
+Anschließend wurde überprüft, ob die Daten korrekt in der Webanwendung visualisiert werden. Wie im lokalen Test wurden die Schalter für Benachrichtigung und Belüftung eingeschaltet. Die Sensoren wurden mit einem Föhn beheizt. Ein deutlicher Anstieg der Temperatur konnte über die Webanwendung erfasst werden, wie in Abbildung \ref{webanwendungtest} zu sehen ist. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=90mm]{fig/anstiegTemperatur.jpg}
+	\caption{Visualisierung des Temperaturanstiegs in der Webanwendung}
+	\label{webanwendungtest}
+\end{figure}
+
+Die Temperaturwerte lagen dementsprechend über der festgelegten Grenze von 25. Die Benachrichtigung wurde korrekt gesendet und die WLAN-Steckdose eingeschaltet. Anschließend wurde der Schalter für die Belüftung ausgeschaltet und überprüft, ob eine Nachricht gesendet wird, die darüber informiert, dass die Belüftung ausgeschaltet ist und manuell gesteuert werden muss. Nachdem die Temperaturwerte sanken und alle Werte unter der Grenze lagen, schaltete sich die WLAN-Steckdose automatisch aus. Der produktive Test war ebenfalls erfolgreich.
 
 \section{Zusammenfassung und Ausblick}
 Um das Projekt "SmartStall" in Zukunft weiter auszubauen, gibt es verschiedene Möglichkeiten. Ein Vorteil wäre es, die Luftqualität nicht nur an einem Punkt, sondern an mehreren Stellen im Stall zu messen, da die Luftqualität in einem großen Stall an verschiedenen Punkten unterschiedlich sein kann. Mehrere Sensoren könnten im Stall installiert werden, um einen detaillierteren Einblick in die Luftqualität zu erhalten. Entsprechend könnte auch die Belüftung nur in bestimmten Bereichen des Stalls aktiviert werden. Falls mehrere Sensoren verbaut werden, könnte das Userinterface umgestaltet werden, sodass der Landwirt sehen kann, an welchen Punkten im Stall die Luftqualität schlecht ist.
@@ -356,15 +327,6 @@ Laub-Home Wiki, "Raspberry Pi BME680 Gas Sensor", Online. Verfügbar unter: http
 \end{thebibliography}
 \clearpage
 \begin{appendices}
-\section{Userinterface Handy}
-\label{sec:uiHandyAnhang}
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.4\textwidth]{fig/uiHandy.jpg}
-\end{figure}
-
-\clearpage
-
 \section{HTML-Code für Digrammabschnitt}
 \label{sec:htmlCodeDiagrammAnhang}
 \begin{figure}[h]
@@ -386,6 +348,14 @@ Laub-Home Wiki, "Raspberry Pi BME680 Gas Sensor", Online. Verfügbar unter: http
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.99\textwidth]{fig/ajax.JPG}
+\end{figure}
+
+\clearpage
+\section{Java-Scriptcode zum Aufbau eines Diagramms}
+\label{sec:jsdiagrammanhang}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.60\textwidth]{fig/diagrammCode.JPG}
 \end{figure}
 
 \end{appendices}

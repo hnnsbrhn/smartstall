@@ -331,7 +331,7 @@
         for (var i = 0; i < dataValues.length; i++) {
             var dataValue = parseFloat(dataValues[i].replace(',', '.'));
             var currentTimestamp = new Date(labels[i]);
-            currentTimestamp.setHours(currentTimestamp.getHours() + 1);
+            currentTimestamp.setHours(currentTimestamp.getHours() -1);
             dataPoints.push(createDataPoint(currentTimestamp.toISOString(), dataValue))
         }
 

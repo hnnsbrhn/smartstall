@@ -175,7 +175,7 @@ Nach der Einrichtung des Raspberry Pi musste zunächst das I2C (Inter-Integrated
 \subsection{Anbindung einer MYSQL Datenbank}
 \subsection{Auslesen und Anzeigen der Sensordaten}
 Für die Anzeige der Sensordaten in der Webanwendung wurden bestimmte Anforderungen definiert. Zum einen sollten die Daten in einem Liniendiagramm dargestellt werden, und zum anderen sollte die Webanwendung sowohl auf PCs und Laptops als auch auf mobilen Geräten reibungslos funktionieren. Dies erforderte die Nutzung eines responsiven Frameworks wie Bootstrap.
-Bootstrap wurde gewählt, da es eine breite Palette an vorgefertigten UI-Komponenten und ein responsives Grid-System bietet. Dies ermöglicht eine einfache Integration und schnelle Entwicklung von modernen und benutzerfreundlichen Webseiten, unabhängig vom verwendeten Gerät.
+Bootstrap wurde gewählt, da es eine breite Palette an vorgefertigten UI-Komponenten und ein responsives Grid-System bietet. Dies ermöglicht eine einfache Integration und schnelle Entwicklung von modernen und benutzerfreundlichen Webseiten, unabhängig vom verwendeten Gerät \cite{bootstrap}.
 Um Bootstrap effektiv zu nutzen, wurden folgende JavaScript-Bibliotheken integriert:
 jQuery: Diese leistungsstarke Bibliothek unterstützt die Manipulation des DOM und erleichtert AJAX-Interaktionen. In Verbindung mit Bootstrap ermöglicht sie die dynamische Aktualisierung von Inhalten und die Interaktion mit Benutzeroberflächenelementen wie Dropdown-Menüs oder Modalfenstern.
 \begin{verbatim}
@@ -195,7 +195,7 @@ npm/bootstrap@4.6.2/dist/js/bootstrap.
 bundle.min.js"></script>
 \end{verbatim}
 Zusammen stellen diese Skript-Links sicher, dass Bootstrap nahtlos in die Webanwendung integriert wird und eine optimale Benutzerinteraktion sowie eine responsive Darstellung auf verschiedenen Geräten gewährleistet ist.
-Für die Darstellung der Sensordaten in einem Liniendiagramm wurde Chart.js gewählt. Diese Bibliothek bietet eine einfache und flexible Möglichkeit, Daten visuell ansprechend darzustellen. Im Vergleich zu Grafana, das eher für umfangreichere und komplexe Datenvisualisierungen in großen Systemen verwendet wird, ist Chart.js leichter in kleinere Webanwendungen zu integrieren und bietet dennoch ausreichend Funktionalität für die Anforderungen der Sensordatenvisualisierung.
+Für die Darstellung der Sensordaten in einem Liniendiagramm wurde Chart.js gewählt. Diese Bibliothek bietet eine einfache und flexible Möglichkeit, Daten visuell ansprechend darzustellen. Im Vergleich zu Grafana, das eher für umfangreichere und komplexe Datenvisualisierungen in großen Systemen verwendet wird \cite{grafana}, ist Chart.js leichter in kleinere Webanwendungen zu integrieren und bietet dennoch ausreichend Funktionalität für die Anforderungen der Sensordatenvisualisierung \cite{chart.js}.
 Die folgenden Links integrieren Chart.js und das zugehörige Datum-Adapter-Bundle in die Webseite:
 \begin{verbatim}
 <script src="https://cdn.jsdelivr.net/npm/
@@ -245,7 +245,7 @@ Auf einem Handy kann die Webanwendung zusätzlich durch die Einstellung "Zum Sta
 	\label{stApp}
 \end{figure}
 \subsection{Telegram Anbindung}
-Die Benachrichtigung per Telegram wird ausgelöst, wenn ein bestimmter Wert, wie beispielsweise die Temperatur, einen definierten Schwellenwert überschreitet. Telegram bietet sich aus mehreren Gründen hervorragend an, um Nachrichten in diesem Szenario zu versenden. Zum einen ist Telegram eine weit verbreitete Messaging-App, die auf verschiedenen Plattformen wie Android, iOS, Windows, macOS und im Web verfügbar ist. Das bedeutet, dass der Landwirt die Benachrichtigungen auf seinem Smartphone, Tablet oder Computer empfangen kann, unabhängig davon, welches Gerät er verwendet. Außerdem unterstützt Telegram Push-Benachrichtigungen, die in Echtzeit gesendet werden. Ein weiterer Vorteil ist die einfache Implementierung. Telegram bietet eine API,  die es Entwicklern ermöglicht, automatisierte Nachrichten einfach und effizient zu versenden. Darüber hinaus legt Telegram großen Wert auf Datenschutz und Sicherheit. Nachrichten werden verschlüsselt gesendet, was bedeutet, dass nur der Landwirt und die von ihm autorisierten Personen Zugriff auf die Informationen haben. Dies ist besonders wichtig, um sicherzustellen, dass sensible Daten nicht in die falschen Hände geraten. Ein weiterer Pluspunkt ist die Kosteneffizienz: Telegram ist kostenlos nutzbar und erfordert keine zusätzlichen Kosten für den Versand von Nachrichten.
+Die Benachrichtigung per Telegram wird ausgelöst, wenn ein bestimmter Wert, wie beispielsweise die Temperatur, einen definierten Schwellenwert überschreitet. Telegram bietet sich aus mehreren Gründen hervorragend an, um Nachrichten in diesem Szenario zu versenden. Zum einen ist Telegram eine weit verbreitete Messaging-App, die auf verschiedenen Plattformen wie Android, iOS, Windows, macOS und im Web verfügbar ist. Das bedeutet, dass der Landwirt die Benachrichtigungen auf seinem Smartphone, Tablet oder Computer empfangen kann, unabhängig davon, welches Gerät er verwendet. Außerdem unterstützt Telegram Push-Benachrichtigungen, die in Echtzeit gesendet werden. Ein weiterer Vorteil ist die einfache Implementierung. Telegram bietet eine API,  die es Entwicklern ermöglicht, automatisierte Nachrichten einfach und effizient zu versenden. Darüber hinaus legt Telegram großen Wert auf Datenschutz und Sicherheit. Nachrichten werden verschlüsselt gesendet, was bedeutet, dass nur der Landwirt und die von ihm autorisierten Personen Zugriff auf die Informationen haben. Dies ist besonders wichtig, um sicherzustellen, dass sensible Daten nicht in die falschen Hände geraten. Ein weiterer Pluspunkt ist die Kosteneffizienz: Telegram ist kostenlos nutzbar und erfordert keine zusätzlichen Kosten für den Versand von Nachrichten \cite{telegram}.
 In diesem Projekt enthält die Nachricht den aktuellen Wert und eine Warnung, dass dieser zu hoch ist. Entscheidet sich der Landwirt, die automatische Steuerung abzuschalten, erhält er zusätzlich eine Mitteilung darüber, dass die Belüftung ausgeschaltet ist und er diese nun manuell steuern muss.
 Der folgende Code wird verwendet, um eine Telegram-Nachricht zu verschicken:
 \begin{verbatim}
@@ -272,12 +272,12 @@ Die URL der Telegram-API, die für das Senden von Nachrichten verwendet wird, wi
 
 \subsection{Ansteuerung der Steckdose}
 Um die Belüftung zu steuern, ist es notwendig, eine WLAN-Steckdose zu integrieren, die mittels einer POST-Anfrage ein- oder ausgeschaltet werden kann. Zunächst muss die Steckdose mit dem WLAN verbunden werden. Dies erfolgt, indem die Steckdose an eine Stromquelle angeschlossen wird. Daraufhin erzeugt sie ein eigenes WLAN, mit dem sich mittels PC, Laptop oder Smartphone verbunden werden muss. Sobald die Verbindung hergestellt ist, öffnet sich eine Benutzeroberfläche, in der das WLAN und das zugehörige Passwort eingegeben werden. Nach einem Neustart verbindet sich die WLAN-Steckdose mit dem angegebenen Netzwerk.
-Ist die Steckdose erfolgreich eingerichtet, kann sie entweder über das User Interface oder einen POST-Befehl im lokalen Netzwerk gesteuert werden. Beispielsweise kann folgende URL verwendet werden, um die Steckdose einzuschalten: \texttt{http://localhost/cm?cmnd=Power\%20On}. Diese URL funktioniert jedoch nur innerhalb des eigenen Netzwerks.
+Ist die Steckdose erfolgreich eingerichtet, kann sie entweder über das User Interface oder einen POST-Befehl im lokalen Netzwerk gesteuert werden. Beispielsweise kann folgende URL verwendet werden, um die Steckdose einzuschalten: \texttt{http://localhost/cm?cmnd=Power\%20On}. Diese URL funktioniert jedoch nur innerhalb des eigenen Netzwerks \cite{delock}.
 
 \subsubsection{Dyndns}
-Um die Steckdose auch außerhalb des eigenen Netzwerks steuern zu können, sind zusätzliche Schritte erforderlich, wie die Einrichtung von DynDNS und die Konfiguration der Portfreigabe. DynDNS (Dynamic Domain Name System) ermöglicht den Zugriff auf das Heimnetzwerk über das Internet, indem eine dynamische IP-Adresse in eine statische Domain umgewandelt wird. Dies erfolgt durch Registrierung bei einem DynDNS-Anbieter (in diesem Projekt der Anbieter dyndnsfree) und die Konfiguration des Dienstes auf dem Router, um eine Domain zu erstellen, die auf die dynamische IP-Adresse verweist.
+Um die Steckdose auch außerhalb des eigenen Netzwerks steuern zu können, sind zusätzliche Schritte erforderlich, wie die Einrichtung von DynDNS und die Konfiguration der Portfreigabe. DynDNS (Dynamic Domain Name System) ermöglicht den Zugriff auf das Heimnetzwerk über das Internet, indem eine dynamische IP-Adresse in eine statische Domain umgewandelt wird. Dies erfolgt durch Registrierung bei einem DynDNS-Anbieter (in diesem Projekt der Anbieter dyndnsfree) und die Konfiguration des Dienstes auf dem Router, um eine Domain zu erstellen, die auf die dynamische IP-Adresse verweist \cite{dyndns}.
 \subsubsection{Portfreigabe}
-Für die Portfreigabe muss man sich in die Benutzeroberfläche des Routers einloggen und die Einstellungen für die Portweiterleitung suchen. Hier wird eine Regel hinzugefügt, die den Port (in diesem Projekt der Port 80), über den die WLAN-Steckdose kommuniziert, an deren lokale IP-Adresse weiterleitet. Durch diese Konfiguration wird die Steckdose über das Internet erreichbar und kann entsprechend gesteuert werden. Die URL zur Steuerung sieht dann so aus: \texttt{http://wlansteckdose.dnsuser.de/
+Für die Portfreigabe muss man sich in die Benutzeroberfläche des Routers einloggen und die Einstellungen für die Portweiterleitung suchen. Hier wird eine Regel hinzugefügt, die den Port (in diesem Projekt der Port 80), über den die WLAN-Steckdose kommuniziert, an deren lokale IP-Adresse weiterleitet \cite{portfreigabe}. Durch diese Konfiguration wird die Steckdose über das Internet erreichbar und kann entsprechend gesteuert werden. Die URL zur Steuerung sieht dann so aus: \texttt{http://wlansteckdose.dnsuser.de/
 cm?cmnd=Power\%20On}
 
 \section{Test des gesamten Systemaufbaus}
@@ -318,13 +318,37 @@ Zwei weitere Punkte betreffen den Ausbau der Funktionen, die dem Landwirt in der
 Insgesamt bietet "SmartStall" viel Potenzial für den weiteren Ausbau des Projekts und ermöglicht es Landwirten, die Belüftung ihres Stalls mit IoT-Technologie zu überwachen und zu steuern.
 
 \begin{thebibliography}{00}
-\bibitem{raspy}
-Raspberry Pi Foundation, "Raspberry Pi", Online. Verfügbar unter: https://www.raspberrypi.com. [Zugriffsdatum: 10. Juli 2023].
+\bibitem{dyndns}
+AVM Foundation, "Dynamic DNS in FRITZ!Box einrichten",Online. Verfügbar unter: https://avm.de/service/wissensdatenbank/dok/FRITZ-Box-7590/30\_Dynamic-DNS-in-FRITZ-Box-einrichten/. [Zugriffsdatum: 05. Juli 2024].
+
+\bibitem{portfreigabe}
+AVM Foundation, "Portfreigabe in FRITZ!Box einrichten", Online. Verfügbar unter: https://avm.de/service/wissensdatenbank/dok/FRITZ-Box-7490/34\_Portfreigaben-in-FRITZ-Box-einrichten/. [Zugriffsdatum: 05. Juli 2024].
+
+\bibitem{chart.js}
+Chart.js, "Line Chart", Online. Verfügbar unter: https://www.chartjs.org/docs/latest/charts/line.html. [Zugriffsdatum: 05. Juli 2024].
+
+\bibitem{delock}
+Delock, "Wlan Power Socket Switch", Online. Verfügbar unter: https://www.delock.de/files/71415.download. [Zugriffsdatum: 05. Juli 2024].
+
+\bibitem{grafana}
+Grafana Labs, "Grafana documentation", Online. Verfügbar unter: https://grafana.com/docs/grafana/latest/. [Zugriffsdatum: 05. Juli 2024].
+
+\bibitem{bootstrap}
+JavaScript Bootstrap, "Get started with Bootstrap", Online. Verfügbar unter: https://getbootstrap.com/docs/5.3/getting-started/introduction/. [Zugriffsdatum: 05. Juli 2024].
+
 \bibitem{bme}
 Joy-It, "BME680", Online. Verfügbar unter: https://joy-it.net/de/products/SEN-BME680. [Zugriffsdatum: 10. Juli 2023].
+
 \bibitem{bme_anschluss}
 Laub-Home Wiki, "Raspberry Pi BME680 Gas Sensor", Online. Verfügbar unter: https://www.laub-home.de/wiki/Raspberry\_Pi\_BME680\_Gas\_Sensor. [Zugriffsdatum: 12. Juli 2023].
+
+\bibitem{raspy}
+Raspberry Pi Foundation, "Raspberry Pi", Online. Verfügbar unter: https://www.raspberrypi.com. [Zugriffsdatum: 10. Juli 2023].
+
+\bibitem{telegram}
+Telegram Foundation, "Telegram APIs", Online. Verfügbar unter: https://core.telegram.org/. [Zugriffsdatum: 05. Juli 2024].
 \end{thebibliography}
+
 \clearpage
 \begin{appendices}
 \section{HTML-Code für Digrammabschnitt}

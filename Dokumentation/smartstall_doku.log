@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.3.31) (preloaded format=pdflatex 2024.4.15)  8 JUL 2024 14:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.3.31) (preloaded format=pdflatex 2024.4.15)  8 JUL 2024 16:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -581,195 +581,227 @@ Underfull \hbox (badness 1755) in paragraph at lines 203--207
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 2
-24.
 
+Underfull \hbox (badness 10000) in paragraph at lines 218--219
+[]\OT1/ptm/m/n/10 Die An-bindung einer MySQL-Datenbank in der
+ []
+
+
+Underfull \hbox (badness 2409) in paragraph at lines 218--219
+\OT1/ptm/m/n/10 ASP.NET Core We-ban-wen-dung er-folgt []uber das En-tity
+ []
+
+
+Underfull \hbox (badness 5431) in paragraph at lines 218--219
+\OT1/ptm/m/n/10 Frame-work Core von Mi-crosoft, welches zun[]achst in
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 218--219
+\OT1/ptm/m/n/10 der En-twick-lung-sumge-bung in-stal-liert wer-den muss.
+ []
+
+
+Underfull \hbox (badness 6300) in paragraph at lines 218--219
+\OT1/ptm/m/n/10 An-schlie^^Yend wer-den Verbindungs-daten wie Host-name,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 218--219
+
+ []
+
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 2
+19.
 (C:\Users\hanne\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-Underfull \hbox (badness 4608) in paragraph at lines 228--229
-\OT1/ptm/m/n/10 Popper.js: Diese Bib-lio-thek wird ver-wen-det, um Pop-
+Underfull \hbox (badness 7362) in paragraph at lines 230--232
+\OT1/ptm/m/n/10 Die Funk-tion be-ginnt mit der Her-stel-lung einer
  []
 
 [6]
-Underfull \hbox (badness 7362) in paragraph at lines 253--258
+Underfull \hbox (badness 4608) in paragraph at lines 252--253
+\OT1/ptm/m/n/10 Popper.js: Diese Bib-lio-thek wird ver-wen-det, um Pop-
+ []
+
+
+Underfull \hbox (badness 7362) in paragraph at lines 277--282
 \OT1/ptm/m/n/10 (\OT1/pcr/m/n/10 temperaturWerteTagAktuellDictionary\OT1/ptm/m/
 n/10 ) umge-
  []
 
 
-Underfull \hbox (badness 2837) in paragraph at lines 260--261
+Underfull \hbox (badness 2837) in paragraph at lines 284--285
 \OT1/pcr/m/n/10 dataTemperaturValues \OT1/ptm/m/n/10 enth[]alt die Daten-paare,
  die
  []
 
-
-Underfull \hbox (badness 3179) in paragraph at lines 271--272
+[7]
+Underfull \hbox (badness 3179) in paragraph at lines 295--296
 []\OT1/ptm/m/n/10 Die We-ban-wen-dung um-fasst drei Haupt-sek-tio-nen zur
  []
 
-<fig/uiHandy.jpg, id=35, 924.45375pt x 2055.68pt>
+<fig/uiHandy.jpg, id=39, 924.45375pt x 2055.68pt>
 File: fig/uiHandy.jpg Graphic file (type jpg)
 <use fig/uiHandy.jpg>
-Package pdftex.def Info: fig/uiHandy.jpg  used on input line 279.
+Package pdftex.def Info: fig/uiHandy.jpg  used on input line 303.
 (pdftex.def)             Requested size: 170.71652pt x 379.60477pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [7]
 <fig/stApp.jpg, id=40, 693.34032pt x 1541.76pt>
 File: fig/stApp.jpg Graphic file (type jpg)
 <use fig/stApp.jpg>
-Package pdftex.def Info: fig/stApp.jpg  used on input line 286.
+Package pdftex.def Info: fig/stApp.jpg  used on input line 310.
 (pdftex.def)             Requested size: 170.71652pt x 379.60477pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [8 <./fig/uiHandy.jpg> <./fig/stApp.jpg>]
-Overfull \hbox (6.0pt too wide) in paragraph at lines 311--311
+ [8 <./fig/uiHandy.jpg>]
+Overfull \hbox (6.0pt too wide) in paragraph at lines 335--335
 []\OT1/pcr/m/n/10 using(HttpClient client = new HttpClient())[] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 317--319
+Underfull \hbox (badness 10000) in paragraph at lines 341--343
 \OT1/pcr/m/n/10 http://localhost/cm?cmnd=Power%20On\OT1/ptm/m/n/10 . Diese
  []
 
-[9]
+[9 <./fig/stApp.jpg>]
 <fig/anstiegTemperatur.jpg, id=47, 924.45375pt x 2055.68pt>
 File: fig/anstiegTemperatur.jpg Graphic file (type jpg)
 <use fig/anstiegTemperatur.jpg>
-Package pdftex.def Info: fig/anstiegTemperatur.jpg  used on input line 339.
+Package pdftex.def Info: fig/anstiegTemperatur.jpg  used on input line 363.
 (pdftex.def)             Requested size: 256.0748pt x 569.40717pt.
 
-Overfull \hbox (4.0748pt too wide) in paragraph at lines 339--340
+Overfull \hbox (4.0748pt too wide) in paragraph at lines 363--364
  [][] 
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
+ [10]
 Underfull \vbox (badness 2065) has occurred while \output is active []
 
- [10 <./fig/anstiegTemperatur.jpg>]
-Underfull \hbox (badness 1424) in paragraph at lines 357--358
+
+Underfull \hbox (badness 1424) in paragraph at lines 381--382
 \OT1/ptm/m/n/8 Verf[]ugbar unter: https://avm.de/service/wissensdatenbank/dok/F
 RITZ-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 357--358
+Underfull \hbox (badness 10000) in paragraph at lines 381--382
 \OT1/ptm/m/n/8 Box-7590/30[]Dynamic-DNS-in-FRITZ-Box-einrichten/. [Zu-griffs-da
 -
  []
 
 
-Underfull \hbox (badness 1424) in paragraph at lines 360--361
+Underfull \hbox (badness 1424) in paragraph at lines 384--385
 \OT1/ptm/m/n/8 Verf[]ugbar unter: https://avm.de/service/wissensdatenbank/dok/F
 RITZ-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 363--364
+Underfull \hbox (badness 10000) in paragraph at lines 387--388
 []\OT1/ptm/m/n/8 Chart.js, "Line Chart", On-line. Verf[]ugbar unter:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 363--364
+Underfull \hbox (badness 10000) in paragraph at lines 387--388
 \OT1/ptm/m/n/8 https://www.chartjs.org/docs/latest/charts/line.html. [Zu-griffs
 -da-tum:
  []
 
 
-Underfull \hbox (badness 2310) in paragraph at lines 366--367
+Underfull \hbox (badness 2310) in paragraph at lines 390--391
 []\OT1/ptm/m/n/8 Delock, "Wlan Power Socket Switch", On-line. Verf[]ugbar unter
 :
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 372--373
+Underfull \hbox (badness 10000) in paragraph at lines 396--397
 \OT1/ptm/m/n/8 unter: https://getbootstrap.com/docs/5.3/getting-started/introdu
 ction/.
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 375--376
+[11 <./fig/anstiegTemperatur.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 399--400
 []\OT1/ptm/m/n/8 Joy-It, "BME680", On-line. Verf[]ugbar unter: https://joy-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 378--379
+Underfull \hbox (badness 10000) in paragraph at lines 402--403
 []\OT1/ptm/m/n/8 Laub-Home Wiki, "Rasp-berry Pi BME680 Gas Sen-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 378--379
+Underfull \hbox (badness 10000) in paragraph at lines 402--403
 \OT1/ptm/m/n/8 sor", On-line. Verf[]ugbar unter: https://www.laub-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 378--379
+Underfull \hbox (badness 10000) in paragraph at lines 402--403
 \OT1/ptm/m/n/8 home.de/wiki/Raspberry[]Pi[]BME680[]Gas[]Sensor. [Zu-griffs-da-t
 um:
  []
 
 
-Underfull \hbox (badness 1852) in paragraph at lines 384--385
+Underfull \hbox (badness 1852) in paragraph at lines 408--409
 []\OT1/ptm/m/n/8 Telegram Foun-da-tion, "Tele-gram APIs", On-line. Verf[]ugbar 
 unter:
  []
 
-[11]
-<fig/htmlcode.JPG, id=54, 670.75594pt x 325.96782pt>
-File: fig/htmlcode.JPG Graphic file (type jpg)
-<use fig/htmlcode.JPG>
-Package pdftex.def Info: fig/htmlcode.JPG  used on input line 393.
-(pdftex.def)             Requested size: 510.84283pt x 248.25539pt.
-
-Overfull \hbox (258.84283pt too wide) in paragraph at lines 393--394
- [][] 
- []
-
 [12
 
+]
+<fig/htmlcode.JPG, id=57, 670.75594pt x 325.96782pt>
+File: fig/htmlcode.JPG Graphic file (type jpg)
+<use fig/htmlcode.JPG>
+Package pdftex.def Info: fig/htmlcode.JPG  used on input line 417.
+(pdftex.def)             Requested size: 510.84283pt x 248.25539pt.
 
- <./fig/htmlcode.JPG>]
-<fig/uiPC.jpg, id=58, 1096.84781pt x 1215.03937pt>
-File: fig/uiPC.jpg Graphic file (type jpg)
-<use fig/uiPC.jpg>
-Package pdftex.def Info: fig/uiPC.jpg  used on input line 401.
-(pdftex.def)             Requested size: 510.84283pt x 565.8774pt.
-
-Overfull \hbox (258.84283pt too wide) in paragraph at lines 401--402
+Overfull \hbox (258.84283pt too wide) in paragraph at lines 417--418
  [][] 
  []
 
 [13
 
 
- <./fig/uiPC.jpg>]
-<fig/ajax.JPG, id=63, 673.76718pt x 331.2375pt>
-File: fig/ajax.JPG Graphic file (type jpg)
-<use fig/ajax.JPG>
-Package pdftex.def Info: fig/ajax.JPG  used on input line 409.
-(pdftex.def)             Requested size: 510.84283pt x 251.14165pt.
+ <./fig/htmlcode.JPG>]
+<fig/uiPC.jpg, id=62, 1096.84781pt x 1215.03937pt>
+File: fig/uiPC.jpg Graphic file (type jpg)
+<use fig/uiPC.jpg>
+Package pdftex.def Info: fig/uiPC.jpg  used on input line 425.
+(pdftex.def)             Requested size: 510.84283pt x 565.8774pt.
 
-Overfull \hbox (258.84283pt too wide) in paragraph at lines 409--410
+Overfull \hbox (258.84283pt too wide) in paragraph at lines 425--426
  [][] 
  []
 
 [14
 
 
+ <./fig/uiPC.jpg>]
+<fig/ajax.JPG, id=66, 673.76718pt x 331.2375pt>
+File: fig/ajax.JPG Graphic file (type jpg)
+<use fig/ajax.JPG>
+Package pdftex.def Info: fig/ajax.JPG  used on input line 433.
+(pdftex.def)             Requested size: 510.84283pt x 251.14165pt.
+
+Overfull \hbox (258.84283pt too wide) in paragraph at lines 433--434
+ [][] 
+ []
+
+[15
+
+
  <./fig/ajax.JPG>]
-<fig/diagrammCode.JPG, id=67, 398.99063pt x 746.79pt>
+<fig/diagrammCode.JPG, id=70, 398.99063pt x 746.79pt>
 File: fig/diagrammCode.JPG Graphic file (type jpg)
 <use fig/diagrammCode.JPG>
-Package pdftex.def Info: fig/diagrammCode.JPG  used on input line 417.
+Package pdftex.def Info: fig/diagrammCode.JPG  used on input line 441.
 (pdftex.def)             Requested size: 309.60315pt x 579.50833pt.
 
-Overfull \hbox (57.60315pt too wide) in paragraph at lines 417--418
+Overfull \hbox (57.60315pt too wide) in paragraph at lines 441--442
  [][] 
  []
 
@@ -784,7 +816,7 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[15
+[16
 
 
  <./fig/diagrammCode.JPG>] (smartstall_doku.aux)
@@ -808,9 +840,9 @@ cmsy7.pfb><C:/Users/hanne/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier
 /utmbi8a.pfb><C:/Users/hanne/AppData/Local/Programs/MiKTeX/fonts/type1/urw/time
 s/utmr8a.pfb><C:/Users/hanne/AppData/Local/Programs/MiKTeX/fonts/type1/urw/time
 s/utmri8a.pfb>
-Output written on smartstall_doku.pdf (15 pages, 2858734 bytes).
+Output written on smartstall_doku.pdf (16 pages, 2862152 bytes).
 PDF statistics:
- 98 PDF objects out of 1000 (max. 8388607)
+ 101 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  71 words of extra memory for PDF output out of 10000 (max. 10000000)
 

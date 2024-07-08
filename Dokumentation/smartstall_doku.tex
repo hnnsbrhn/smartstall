@@ -214,8 +214,32 @@ Schritte für das Deployment:
 	Das Deployment Paket beinhaltet eine ausführbare \textit{.dll} Datei, welche von einer zusätzlich konfigurierten Linux Service-Datei automatisch beim Start des Webservers ausgeführt und somit die Webanwendung gestartet wird.
 \end{itemize}
 \subsection{Software Design}
-\subsection{Anbindung einer MYSQL Datenbank}
-\subsection{API-Schnittstelle zum Empfangen der Daten}
+\subsection{Anbindung der MYSQL Datenbank}
+Die Anbindung einer MySQL-Datenbank in der ASP.NET Core Webanwendung erfolgt über das Entity Framework Core von Microsoft, welches zunächst in der Entwicklungsumgebung installiert werden muss. Anschließend werden Verbindungsdaten wie Hostname, Benutzername, Passwort und Datenbankname der gehosteten Datenbank benötigt. Die Verbindung wird als sogenannter \textit{ConnectionString} in einer separaten Konfigurationsdatei der Webanwendung definiert. Dieser sieht wie folgt aus: \\
+\begin{verbatim}
+"DefaultConnection": "Server=localhost;
+Database=MeinDatenbankName;
+User=root;Password=MeinPasswort;"
+\end{verbatim}
+Die Webanwendung kann sich mit Hilfe des entsprechenden Frameworks und den Zugangsdaten mit der Datenbank verbinden und Anweisungen, sogenannte SQL-Querys in Form von Strings senden, welche der MYSQL-Syntax entsprechen müssen. Die Query-Strings können anschließend einem Objekt der Klasse \textit{MySqlCommand} zugewiesen und über dieses an die Datenbank übermittelt werden.
+
+\subsection{API-Schnittstelle zum Empfangen und Speichern der Daten}
+Um die vom Raspberry Pi gesendeten Daten zu empfangen und diese in die MYSQL-Datenbank einzufügen, sind unterschiedliche Schritte notwenig. Zunächst muss ein Endpunkt erstellt werden, welcher eine Route definiert. Dieser enthält eine Unterseite der Webanwendung, welche von der HTTP-Post Anfrage angesteuert werden muss und einen Controller, welcher die ankommenden Daten empfängt und weiterverarbeitet. Die Sub-URL, auf welche der Controller hört, lautet \textit{http://141.147.6.122:8081/ReceiveData} \\
+Der Controller ruft anschließend einen Service auf, welcher eine Funktion enthält, die dafür sorgt, dass die empfangenen Sensordaten in der Datenbank gespeichert werden. Der genaue Ablauf der Funktion sieht folgendermaßen aus:
+\begin{itemize}
+	\item Datenbankverbindung: \\
+	Die Funktion beginnt mit der Herstellung einer Verbindung zur MySQL-Datenbank. Dafür wird der im vorherigen Kapitel erwähnte ConnectionString verwendet.
+	\item Vorbereitung der SQL-Abfrage: \\
+	Eine SQL-INSERT-Abfrage wird vorbereitet, um die empfangenen Daten in die entsprechende Tabelle der Datenbank einzufügen. Die Abfrage enthält Platzhalter für die einzelnen Werte des Datenpaket, um eine sichere Parameterübergabe zu gewährleisten und SQL-Injections zu verhindern.
+	\item Parameterübergabe: \\
+	Die Werte werden den Platzhaltern der SQL-Abfrage zugewiesen. Dies umfasst den Zeitstempel sowie die Sensorwerte für Temperatur, Luftfeuchtigkeit und Ammoniak.
+	\item Ausführen der Abfrage: \\
+	Die vorbereitete und mit Parametern versehene SQL-Abfrage wird ausgeführt, wodurch die Daten in die Tabelle eingefügt werden.
+	\item Fehlerbehandlung: \\
+	Während der gesamten Operation wird ein try-catch-Block verwendet, um mögliche Fehler abzufangen. Wenn ein Fehler auftritt, wird dieser im catch-Block behandelt und eine entsprechende Fehlermeldung wird ausgegeben.
+\end{itemize}
+
+
 \subsection{Auslesen und Anzeigen der Sensordaten}
 Für die Anzeige der Sensordaten in der Webanwendung wurden bestimmte Anforderungen definiert. Zum einen sollten die Daten in einem Liniendiagramm dargestellt werden, und zum anderen sollte die Webanwendung sowohl auf PCs und Laptops als auch auf mobilen Geräten reibungslos funktionieren. Dies erforderte die Nutzung eines responsiven Frameworks wie Bootstrap.
 Bootstrap wurde gewählt, da es eine breite Palette an vorgefertigten UI-Komponenten und ein responsives Grid-System bietet. Dies ermöglicht eine einfache Integration und schnelle Entwicklung von modernen und benutzerfreundlichen Webseiten, unabhängig vom verwendeten Gerät \cite{bootstrap}.

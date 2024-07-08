@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.3.31) (preloaded format=pdflatex 2024.4.15)  28 JUN 2024 16:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.3.31) (preloaded format=pdflatex 2024.4.15)  8 JUL 2024 13:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -330,84 +330,312 @@ Underfull \hbox (badness 1661) in paragraph at lines 46--49
 \OT1/ptm/m/n/10 Daten[]ubertragung von Endger[]aten, sowie die An-bindung
  []
 
+<fig/firstUI.JPG, id=1, 387.849pt x 552.8655pt>
+File: fig/firstUI.JPG Graphic file (type jpg)
+<use fig/firstUI.JPG>
+Package pdftex.def Info: fig/firstUI.JPG  used on input line 62.
+(pdftex.def)             Requested size: 256.0748pt x 365.02733pt.
 
-Underfull \hbox (badness 1377) in paragraph at lines 63--65
+Overfull \hbox (4.0748pt too wide) in paragraph at lines 62--63
+ [][] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [1{C:/Users/hanne/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/h
+anne/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}
+
+
+]
+Underfull \hbox (badness 6559) in paragraph at lines 67--72
+\OT1/ptm/m/n/10 hal-tungs-be-triebe wer-den soll, wurde nach den er-sten
+ []
+
+
+Underfull \hbox (badness 2181) in paragraph at lines 67--72
+[]\OT1/ptm/m/n/10 Uberlegungen und der er-sten Skizze ein Gespr[]ach mit
+ []
+
+
+Underfull \hbox (badness 1701) in paragraph at lines 67--72
+\OT1/ptm/m/n/10 zwei ver-schiede-nen Land-wirten gef[]uhrt. Der er-ste land-
+ []
+
+
+Underfull \hbox (badness 1888) in paragraph at lines 67--72
+\OT1/ptm/m/n/10 land-wirtschaftliche Be-trieb ist der Bauern-hof der Fam-i-
+ []
+
+
+Underfull \hbox (badness 1609) in paragraph at lines 67--72
+\OT1/ptm/m/n/10 sind. Beide reagierten pos-i-tiv auf die Idee von Smart-
+ []
+
+[2 <./fig/firstUI.JPG>]
+Underfull \hbox (badness 1377) in paragraph at lines 85--87
 []\OT1/ptm/m/n/10 Der Bosch Sen-sortec BME680 ist ein fortschrit-tlicher
  []
 
 
-Underfull \hbox (badness 1521) in paragraph at lines 68--69
+Underfull \hbox (badness 1521) in paragraph at lines 90--91
 []\OT1/ptm/m/n/10 Luftqualit[]at: Der BME680 Sen-sor ist in der Lage,
  []
 
 
-Underfull \hbox (badness 1424) in paragraph at lines 68--69
+Underfull \hbox (badness 1424) in paragraph at lines 90--91
 \OT1/ptm/m/n/10 fl[]uchtige or-gan-is-che Verbindun-gen (VOCs) und ver-
  []
 
 
-Underfull \hbox (badness 5388) in paragraph at lines 72--73
+Underfull \hbox (badness 5388) in paragraph at lines 94--95
 \OT1/ptm/m/n/10 bungsluft zu messen. Er basiert auf der Metalloxid-
  []
 
-<fig/pi_pins.png, id=1, 1400.98407pt x 763.35187pt>
+<fig/pi_pins.png, id=13, 1400.98407pt x 763.35187pt>
 File: fig/pi_pins.png Graphic file (type png)
 <use fig/pi_pins.png>
-Package pdftex.def Info: fig/pi_pins.png  used on input line 79.
+Package pdftex.def Info: fig/pi_pins.png  used on input line 101.
 (pdftex.def)             Requested size: 256.0748pt x 139.5173pt.
 
-Overfull \hbox (4.0748pt too wide) in paragraph at lines 79--80
+Overfull \hbox (4.0748pt too wide) in paragraph at lines 101--102
  [][] 
  []
 
-[1{C:/Users/hanne/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/ha
-nne/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}
 
+Underfull \vbox (badness 2818) has occurred while \output is active []
 
-]
-<fig/bme_pins.png, id=11, 179.16937pt x 124.96687pt>
+<fig/bme_pins.png, id=14, 179.16937pt x 124.96687pt>
 File: fig/bme_pins.png Graphic file (type png)
 <use fig/bme_pins.png>
-Package pdftex.def Info: fig/bme_pins.png  used on input line 90.
+Package pdftex.def Info: fig/bme_pins.png  used on input line 112.
 (pdftex.def)             Requested size: 142.26378pt x 99.23187pt.
-<fig/verkabelung_bme.png, id=12, 408.77719pt x 263.48438pt>
+<fig/verkabelung_bme.png, id=15, 408.77719pt x 263.48438pt>
 File: fig/verkabelung_bme.png Graphic file (type png)
 <use fig/verkabelung_bme.png>
-Package pdftex.def Info: fig/verkabelung_bme.png  used on input line 95.
+Package pdftex.def Info: fig/verkabelung_bme.png  used on input line 117.
 (pdftex.def)             Requested size: 142.26378pt x 91.69824pt.
-<fig/mq137_pins.png, id=13, 541.27219pt x 521.69907pt>
+<fig/mq137_pins.png, id=16, 541.27219pt x 521.69907pt>
 File: fig/mq137_pins.png Graphic file (type png)
 <use fig/mq137_pins.png>
-Package pdftex.def Info: fig/mq137_pins.png  used on input line 110.
+Package pdftex.def Info: fig/mq137_pins.png  used on input line 132.
 (pdftex.def)             Requested size: 118.08089pt x 113.81102pt.
 
 Underfull \vbox (badness 5847) has occurred while \output is active []
 
-<fig/aufbau.png, id=14, 663.22781pt x 556.32843pt>
+ [3 <./fig/pi_pins.png> <./fig/bme_pins.png> <./fig/verkabelung_bme.png>]
+<fig/aufbau.png, id=21, 663.22781pt x 556.32843pt>
 File: fig/aufbau.png Graphic file (type png)
 <use fig/aufbau.png>
-Package pdftex.def Info: fig/aufbau.png  used on input line 119.
+Package pdftex.def Info: fig/aufbau.png  used on input line 141.
 (pdftex.def)             Requested size: 227.62204pt x 190.93182pt.
- [2 <./fig/pi_pins.png> <./fig/bme_pins.png> <./fig/verkabelung_bme.png> <./fig
-/mq137_pins.png> <./fig/aufbau.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 181--182
+<fig/daten_erfolgreich_gesendet.png, id=22, 438.8897pt x 182.18062pt>
+File: fig/daten_erfolgreich_gesendet.png Graphic file (type png)
+<use fig/daten_erfolgreich_gesendet.png>
+Package pdftex.def Info: fig/daten_erfolgreich_gesendet.png  used on input line
+ 175.
+(pdftex.def)             Requested size: 241.84842pt x 100.39145pt.
+ [4 <./fig/mq137_pins.png> <./fig/aufbau.png>]
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 1
+93.
+
+(C:\Users\hanne\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
+Underfull \hbox (badness 4608) in paragraph at lines 197--198
+\OT1/ptm/m/n/10 Popper.js: Diese Bib-lio-thek wird ver-wen-det, um Pop-
+ []
+
+[5 <./fig/daten_erfolgreich_gesendet.png>]
+Underfull \hbox (badness 7362) in paragraph at lines 222--227
+\OT1/ptm/m/n/10 (\OT1/pcr/m/n/10 temperaturWerteTagAktuellDictionary\OT1/ptm/m/
+n/10 ) umge-
+ []
+
+
+Underfull \hbox (badness 2837) in paragraph at lines 229--230
+\OT1/pcr/m/n/10 dataTemperaturValues \OT1/ptm/m/n/10 enth[]alt die Daten-paare,
+ die
+ []
+
+
+Underfull \hbox (badness 3179) in paragraph at lines 240--241
+[]\OT1/ptm/m/n/10 Die We-ban-wen-dung um-fasst drei Haupt-sek-tio-nen zur
+ []
+
+<fig/uiHandy.jpg, id=32, 924.45375pt x 2055.68pt>
+File: fig/uiHandy.jpg Graphic file (type jpg)
+<use fig/uiHandy.jpg>
+Package pdftex.def Info: fig/uiHandy.jpg  used on input line 248.
+(pdftex.def)             Requested size: 170.71652pt x 379.60477pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6]
+<fig/stApp.jpg, id=36, 693.34032pt x 1541.76pt>
+File: fig/stApp.jpg Graphic file (type jpg)
+<use fig/stApp.jpg>
+Package pdftex.def Info: fig/stApp.jpg  used on input line 255.
+(pdftex.def)             Requested size: 170.71652pt x 379.60477pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [7 <./fig/uiHandy.jpg> <./fig/stApp.jpg>]
+Overfull \hbox (6.0pt too wide) in paragraph at lines 280--280
+[]\OT1/pcr/m/n/10 using(HttpClient client = new HttpClient())[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 286--288
+\OT1/pcr/m/n/10 http://localhost/cm?cmnd=Power%20On\OT1/ptm/m/n/10 . Diese
+ []
+
+[8]
+<fig/datasensorlog.png, id=44, 440.39531pt x 201.00093pt>
+File: fig/datasensorlog.png Graphic file (type png)
+<use fig/datasensorlog.png>
+Package pdftex.def Info: fig/datasensorlog.png  used on input line 307.
+(pdftex.def)             Requested size: 256.0748pt x 116.87811pt.
+
+Overfull \hbox (4.0748pt too wide) in paragraph at lines 307--308
+ [][] 
+ []
+
+<fig/anstiegTemperatur.jpg, id=45, 924.45375pt x 2055.68pt>
+File: fig/anstiegTemperatur.jpg Graphic file (type jpg)
+<use fig/anstiegTemperatur.jpg>
+Package pdftex.def Info: fig/anstiegTemperatur.jpg  used on input line 316.
+(pdftex.def)             Requested size: 256.0748pt x 569.40717pt.
+
+Overfull \hbox (4.0748pt too wide) in paragraph at lines 316--317
+ [][] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 2065) has occurred while \output is active []
+
+ [9 <./fig/datasensorlog.png> <./fig/anstiegTemperatur.jpg>]
+Underfull \hbox (badness 1424) in paragraph at lines 334--335
+\OT1/ptm/m/n/8 Verf[]ugbar unter: https://avm.de/service/wissensdatenbank/dok/F
+RITZ-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 334--335
+\OT1/ptm/m/n/8 Box-7590/30[]Dynamic-DNS-in-FRITZ-Box-einrichten/. [Zu-griffs-da
+-
+ []
+
+
+Underfull \hbox (badness 1424) in paragraph at lines 337--338
+\OT1/ptm/m/n/8 Verf[]ugbar unter: https://avm.de/service/wissensdatenbank/dok/F
+RITZ-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 340--341
+[]\OT1/ptm/m/n/8 Chart.js, "Line Chart", On-line. Verf[]ugbar unter:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 340--341
+\OT1/ptm/m/n/8 https://www.chartjs.org/docs/latest/charts/line.html. [Zu-griffs
+-da-tum:
+ []
+
+
+Underfull \hbox (badness 2310) in paragraph at lines 343--344
+[]\OT1/ptm/m/n/8 Delock, "Wlan Power Socket Switch", On-line. Verf[]ugbar unter
+:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 349--350
+\OT1/ptm/m/n/8 unter: https://getbootstrap.com/docs/5.3/getting-started/introdu
+ction/.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 352--353
 []\OT1/ptm/m/n/8 Joy-It, "BME680", On-line. Verf[]ugbar unter: https://joy-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 183--184
+Underfull \hbox (badness 10000) in paragraph at lines 355--356
 []\OT1/ptm/m/n/8 Laub-Home Wiki, "Rasp-berry Pi BME680 Gas Sen-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 183--184
+Underfull \hbox (badness 10000) in paragraph at lines 355--356
 \OT1/ptm/m/n/8 sor", On-line. Verf[]ugbar unter: https://www.laub-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 183--184
+Underfull \hbox (badness 10000) in paragraph at lines 355--356
 \OT1/ptm/m/n/8 home.de/wiki/Raspberry[]Pi[]BME680[]Gas[]Sensor. [Zu-griffs-da-t
 um:
+ []
+
+
+Underfull \hbox (badness 1852) in paragraph at lines 361--362
+[]\OT1/ptm/m/n/8 Telegram Foun-da-tion, "Tele-gram APIs", On-line. Verf[]ugbar 
+unter:
+ []
+
+[10]
+<fig/htmlcode.JPG, id=53, 670.75594pt x 325.96782pt>
+File: fig/htmlcode.JPG Graphic file (type jpg)
+<use fig/htmlcode.JPG>
+Package pdftex.def Info: fig/htmlcode.JPG  used on input line 370.
+(pdftex.def)             Requested size: 510.84283pt x 248.25539pt.
+
+Overfull \hbox (258.84283pt too wide) in paragraph at lines 370--371
+ [][] 
+ []
+
+[11
+
+
+ <./fig/htmlcode.JPG>]
+<fig/uiPC.jpg, id=57, 1096.84781pt x 1215.03937pt>
+File: fig/uiPC.jpg Graphic file (type jpg)
+<use fig/uiPC.jpg>
+Package pdftex.def Info: fig/uiPC.jpg  used on input line 378.
+(pdftex.def)             Requested size: 510.84283pt x 565.8774pt.
+
+Overfull \hbox (258.84283pt too wide) in paragraph at lines 378--379
+ [][] 
+ []
+
+[12
+
+
+ <./fig/uiPC.jpg>]
+<fig/ajax.JPG, id=61, 673.76718pt x 331.2375pt>
+File: fig/ajax.JPG Graphic file (type jpg)
+<use fig/ajax.JPG>
+Package pdftex.def Info: fig/ajax.JPG  used on input line 386.
+(pdftex.def)             Requested size: 510.84283pt x 251.14165pt.
+
+Overfull \hbox (258.84283pt too wide) in paragraph at lines 386--387
+ [][] 
+ []
+
+[13
+
+
+ <./fig/ajax.JPG>]
+<fig/diagrammCode.JPG, id=66, 398.99063pt x 746.79pt>
+File: fig/diagrammCode.JPG Graphic file (type jpg)
+<use fig/diagrammCode.JPG>
+Package pdftex.def Info: fig/diagrammCode.JPG  used on input line 394.
+(pdftex.def)             Requested size: 309.60315pt x 579.50833pt.
+
+Overfull \hbox (57.60315pt too wide) in paragraph at lines 394--395
+ [][] 
  []
 
 
@@ -421,29 +649,33 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[3] (smartstall_doku.aux)
+[14
+
+
+ <./fig/diagrammCode.JPG>] (smartstall_doku.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-03-14>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 4299 strings out of 474423
- 68335 string characters out of 5741718
- 1941496 words of memory out of 5000000
- 26615 multiletter control sequences out of 15000+600000
- 594467 words of font info for 109 fonts, out of 8000000 for 9000
+ 4430 strings out of 474423
+ 71048 string characters out of 5741718
+ 1943496 words of memory out of 5000000
+ 26741 multiletter control sequences out of 15000+600000
+ 594982 words of font info for 111 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,11n,65p,1056b,334s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,11n,65p,1515b,334s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/hanne/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
-cmsy7.pfb><C:/Users/hanne/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/u
-tmb8a.pfb><C:/Users/hanne/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/u
-tmbi8a.pfb><C:/Users/hanne/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/
-utmr8a.pfb><C:/Users/hanne/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/
-utmri8a.pfb>
-Output written on smartstall_doku.pdf (3 pages, 2245458 bytes).
+cmsy7.pfb><C:/Users/hanne/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier
+/ucrr8a.pfb><C:/Users/hanne/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times
+/utmb8a.pfb><C:/Users/hanne/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times
+/utmbi8a.pfb><C:/Users/hanne/AppData/Local/Programs/MiKTeX/fonts/type1/urw/time
+s/utmr8a.pfb><C:/Users/hanne/AppData/Local/Programs/MiKTeX/fonts/type1/urw/time
+s/utmri8a.pfb>
+Output written on smartstall_doku.pdf (14 pages, 2861121 bytes).
 PDF statistics:
- 43 PDF objects out of 1000 (max. 8388607)
+ 97 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 76 words of extra memory for PDF output out of 10000 (max. 10000000)
 

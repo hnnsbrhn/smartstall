@@ -1,48 +1,86 @@
 \relax 
-\citation{raspy}
-\citation{bme}
 \@writefile{toc}{\contentsline {section}{\numberline {I}Hintergrund und Ziel des Projekts}{1}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {II}Überblick}{1}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {III}Anforderungserhebung}{1}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {IV}Hardware Komponenten}{1}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-A}}Raspberry Pi 3B}{1}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-B}}Bosch Sensortec BME680 Sensor}{1}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-C}}MQ137 NH3-Gassensormodul}{1}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-D}}Verbinden der Komponenten}{1}{}\protected@file@percent }
-\citation{bme_anschluss}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-A}}Ursprüngliche Überlegungen}{1}{}\protected@file@percent }
 \citation{raspy}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Raspberry Pi 3B Pin Belegung}}{2}{}\protected@file@percent }
-\newlabel{pi_pins}{{1}{2}{}{}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-D}1}Anschließen des BME680 Sensors}{2}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces BME680 Pins}}{2}{}\protected@file@percent }
-\newlabel{bme_pins}{{2}{2}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Pin Verbindungen von Raspberry Pi und BME680}}{2}{}\protected@file@percent }
-\newlabel{verkabelung_bme}{{3}{2}{}{}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-D}2}Anschließen des MQ137 Sensors}{2}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces MQ137 Gassensormodul}}{2}{}\protected@file@percent }
-\newlabel{mq137_pins}{{4}{2}{}{}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-D}3}Gesamtaufbau}{2}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Verkabelung der Sensoren mit dem Raspberry Pi}}{2}{}\protected@file@percent }
-\newlabel{aufbau}{{5}{2}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {V}Einrichtung Raspberry Pi}{2}{}\protected@file@percent }
-\newlabel{pi}{{V}{2}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-A}}Konfiguration}{2}{}\protected@file@percent }
-\bibcite{raspy}{1}
-\bibcite{bme}{2}
-\bibcite{bme_anschluss}{3}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-B}}Software und Bibliotheken}{3}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-C}}Datenübertragung}{3}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {VI}Webanwendung}{3}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-A}}Architektur und Design}{3}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-B}}Empfangen der Daten}{3}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-C}}Anbindung einer MYSQL Datenbank}{3}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-D}}Auslesen und Anzeigen der Sensordaten}{3}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-E}}Benutzeroberfläche}{3}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-F}}Telegram Anbindung}{3}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-G}}Ansteuerung der Steckdose}{3}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VI-G}1}Dyndns}{3}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VI-G}2}Portfreigabe}{3}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {VII}Test des gesamten Systemaufbaus}{3}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {VIII}Zusammenfassung und Ausblick}{3}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{References}{3}{}\protected@file@percent }
-\gdef \@abspage@last{3}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Erstentwurf eines möglichen Userinterfaces für die Webanwendung von smartStall nach den ursprünglichen Überlegungen}}{2}{}\protected@file@percent }
+\newlabel{firstUI}{{1}{2}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-B}}Gespräch mit Landwirten}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-C}}Resultat }{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Hardware Komponenten}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-A}}Raspberry Pi 3B}{2}{}\protected@file@percent }
+\citation{bme}
+\citation{bme_anschluss}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-B}}Bosch Sensortec BME680 Sensor}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-C}}MQ137 NH3-Gassensormodul}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-D}}Verbinden der Komponenten}{3}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Raspberry Pi 3B Pin Belegung}}{3}{}\protected@file@percent }
+\newlabel{pi_pins}{{2}{3}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-D}1}Anschließen des BME680 Sensors}{3}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces BME680 Pins}}{3}{}\protected@file@percent }
+\newlabel{bme_pins}{{3}{3}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Pin Verbindungen von Raspberry Pi und BME680}}{3}{}\protected@file@percent }
+\newlabel{verkabelung_bme}{{4}{3}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-D}2}Anschließen des MQ137 Sensors}{3}{}\protected@file@percent }
+\citation{raspy}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces MQ137 Gassensormodul}}{4}{}\protected@file@percent }
+\newlabel{mq137_pins}{{5}{4}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-D}3}Gesamtaufbau}{4}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Verkabelung der Sensoren mit dem Raspberry Pi}}{4}{}\protected@file@percent }
+\newlabel{aufbau}{{6}{4}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Einrichtung Raspberry Pi}{4}{}\protected@file@percent }
+\newlabel{pi}{{V}{4}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-A}}Konfiguration}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-B}}Software und Bibliotheken}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-C}}Datenübertragung}{4}{}\protected@file@percent }
+\citation{bootstrap}
+\citation{grafana}
+\citation{chart.js}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Logeintrag für erfolgreich gesendete Sensordaten}}{5}{}\protected@file@percent }
+\newlabel{send_data_success}{{7}{5}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {VI}Webanwendung}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-A}}Architektur und Design}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-B}}Empfangen der Daten}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-C}}Anbindung einer MYSQL Datenbank}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-D}}Auslesen und Anzeigen der Sensordaten}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-E}}Benutzeroberfläche}{6}{}\protected@file@percent }
+\newlabel{ui}{{\mbox  {VI-E}}{6}{}{}{}}
+\citation{telegram}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Userinterface auf dem Smartphone}}{7}{}\protected@file@percent }
+\newlabel{uiHandy}{{8}{7}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Speichern der Webanwendung auf dem Startbildschirm des Smartphones, wodurch diese als App bedienbar ist}}{7}{}\protected@file@percent }
+\newlabel{stApp}{{9}{7}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-F}}Telegram Anbindung}{7}{}\protected@file@percent }
+\citation{delock}
+\citation{dyndns}
+\citation{portfreigabe}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-G}}Ansteuerung der Steckdose}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VI-G}1}Dyndns}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VI-G}2}Portfreigabe}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {VII}Test des gesamten Systemaufbaus}{8}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Logfile zum Testen, ob Daten erfolgreich und korrekt in die Datenbank geschrieben wurden}}{9}{}\protected@file@percent }
+\newlabel{testdatasensor}{{10}{9}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Visualisierung des Temperaturanstiegs in der Webanwendung}}{9}{}\protected@file@percent }
+\newlabel{webanwendungtest}{{11}{9}{}{}{}}
+\bibcite{dyndns}{1}
+\bibcite{portfreigabe}{2}
+\bibcite{chart.js}{3}
+\bibcite{delock}{4}
+\bibcite{grafana}{5}
+\bibcite{bootstrap}{6}
+\bibcite{bme}{7}
+\bibcite{bme_anschluss}{8}
+\bibcite{raspy}{9}
+\bibcite{telegram}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {VIII}Zusammenfassung und Ausblick}{10}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{References}{10}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{Appendix\nobreakspace  A: HTML-Code für Digrammabschnitt}{11}{}\protected@file@percent }
+\newlabel{sec:htmlCodeDiagrammAnhang}{{A}{11}{}{}{}}
+\@writefile{toc}{\contentsline {section}{Appendix\nobreakspace  B: Userinterface PC}{12}{}\protected@file@percent }
+\newlabel{sec:uiPCAnhang}{{B}{12}{}{}{}}
+\@writefile{toc}{\contentsline {section}{Appendix\nobreakspace  C: AJAX-Aufruf, um Sensordaten asynchron zu laden}{13}{}\protected@file@percent }
+\newlabel{sec:ajaxAnhang}{{C}{13}{}{}{}}
+\@writefile{toc}{\contentsline {section}{Appendix\nobreakspace  D: Java-Scriptcode zum Aufbau eines Diagramms}{14}{}\protected@file@percent }
+\newlabel{sec:jsdiagrammanhang}{{D}{14}{}{}{}}
+\gdef \@abspage@last{14}

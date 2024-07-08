@@ -167,6 +167,7 @@ Nach der Einrichtung des Raspberry Pi musste zunächst das I2C (Inter-Integrated
 \end{itemize}
 
 \subsection{Datenübertragung}
+\label{chapter:datenuebertragung}
 Die Datenübertragung vom Raspberry Pi an die Webanwendung findet über ein Python-Skript statt. Python bietet sich hierbei als Programmiersprache aufgrund der knappen und prägnanten Syntax an und ist außerdem auf dem Betriebssystem des Raspberry Pi vorinstalliert, sodass kein zusätzlicher Aufwand nötig ist, um das Skript zum laufen zu bringen. Ein weiterer Vorteil von Python ist die Plattformunabhängigkeit, wodurch die Datenübertragung ebenfalls auf anderen Betriebssystemen wie Windows, Linux und MacOS problemlos ohne Änderungen ausgeführt werden könnte. \\
 Das Skript dient dazu, die von den Sensoren gemessenen Daten zu erfassen, entsprechend zu formatieren und an die Webanwendung zu senden. Es beginnt mit der Initialisierung und Erkennung der Sensoren. Das Skript versucht, den BME680 Sensor unter der primären I2C-Adresse zu initialisieren. Wird der Sensor erkannt, werden verschiedene Parameter wie Oversampling und Filtergröße konfiguriert, um genaue Messungen zu gewährleisten. Zusätzlich wird der MQ137-Sensor konfiguriert. Der digitale Ausgangspin dieses Sensors wird angesteuert, und es wird überprüft, ob der Sensor betriebsbereit ist. \\
 Im nächsten Schritt erfasst das Skript die Sensordaten und sendet sie per HTTP-Anfrage an die Webanwendung. Hierbei werden die aktuellen Sensorwerte ausgelesen und in ein JSON-Objekt verpackt. Dieses Objekt wird dann über eine vordefinierte Route mit der entsprechenden URL an die Webanwendung gesendet. Das Skript überprüft anschließend, ob die Übertragung erfolgreich war und gibt entsprechend eine Erfolgsmeldung oder eine Fehlermeldung zurück, falls der Raspberry Pi nicht mit dem Internet verbunden, oder die Webanwendung nicht erreichbar ist. Diese Meldungen werden zusammen mit den Sensordaten in einer Log-Datei gespeichert. Ein beispielhafter Log-Eintrag für eine erfolgreiche Datenübertragung ist in Abbildung \ref{send_data_success} zu sehen. 
@@ -182,9 +183,39 @@ Um weitere Ressourcen zu schonen, befindet sich keine Schleife im Skript, welche
 Crontab ist ein Dienst auf Unix-basierten Betriebssystemen, der es ermöglicht, Aufgaben zu einem bestimmten Zeitplan auszuführen. Es handelt sich um eine Zeitplanungsdatei, die als Crontab-Datei bezeichnet wird und in der definiert wird, wann und wie oft bestimmte Befehle oder Skripte automatisch ausgeführt werden sollen. Die Verwendung von Crontab zur regelmäßigen Ausführung eines Python-Skripts alle paar Minuten bietet mehrere Vorteile, insbesondere in Bezug auf den effizienten Umgang mit Systemressourcen, die einfache Verwaltung und das Debugging sowie die Systemwartung. Ein dauerhaft laufendes Skript verbraucht kontinuierlich Speicher, selbst wenn es inaktiv ist. Crontab startet das Skript nur bei Bedarf, wodurch der Speicherverbrauch erheblich reduziert wird und die Systemressourcen effizienter genutzt werden. Darüber hinaus erleichtert Crontab die Verwaltung und das Debugging. Jedes Mal, wenn das Skript neu startet, beginnt es in einem sauberen Zustand, was die Fehlersuche vereinfacht und die Stabilität erhöht. Fehler oder inkonsistente Zustände, die sich in einem dauerhaft laufenden Skript ansammeln könnten, werden durch den Neustart behoben. Ein weiterer Vorteil ist die automatische Handhabung von Systemwartungen. Während dauerhaft laufende Skripte nach einem Neustart manuell neu gestartet werden müssen, starten Crontab-Jobs automatisch, was die Wiederherstellung des Betriebs nach Wartung, Updates oder unerwarteten Neustarts erleichtert.
 
 \section{Webanwendung}
-\subsection{Architektur und Design}
-\subsection{Empfangen der Daten}
+\subsection{Architektur}
+Die Webanwendung wurde mit dem ASP.NET Core Framework für C-Sharp, unter Verwendung der .NET-Plattform, entwickelt. ASP.NET Core ist ein modernes, plattformübergreifendes Framework für die Entwicklung von Webanwendungen. Es bietet eine modularisierte Architektur, die Entwicklern ermöglicht, nur benötigte Komponenten zu verwenden, was die Performance verbessert und die Anpassungsfähigkeit erhöht. Durch seine Plattformunabhängigkeit läuft ASP.NET Core auf Windows, macOS und Linux, was Flexibilität bei der Bereitstellung ermöglicht. Das Framework ist stark auf Performance optimiert und unterstützt moderne Webentwicklungsmuster. \\
+Ein Beispiel hierfür ist MVC (Model-View-Controller), welches für die Webanwendung verwendet wurde. Hierbei handelt es sich um ein moderneres Designmuster, das die Trennung von Datenmodell, Präsentationsschicht und Steuerungslogik fördert, was die Struktur und Übersichtlichkeit der Webanwendung verbessert.
+\subsection{Hosting}
+Die Webanwendung wird auf einem Oracle Cloud Webserver gehostet, der mit dem Linux-Betriebssystem läuft. Diese Entscheidung bietet mehrere Vorteile für das Projekt. Einerseits gewährleistet der Oracle Cloud Webserver eine hohe Zuverlässigkeit und Verfügbarkeit der Anwendung durch seine robuste Infrastruktur und Service Level Agreements. Außerdem besteht die Möglichkeit, Ressourcen nach Bedarf zu skalieren, dass die Anwendung problemlos mit steigenden Benutzeranforderungen wachsen kann. Diese Flexibilität unterstützt auch eine kosteneffiziente Nutzung, da Ressourcen nur dann erhöht werden, wenn sie auch tatsächlich benötigt werden. \\
+Für die Durchführung des Projekts wurde die sogenannte \textit{Oracle Cloud Free Tier} genutzt, hierbei handelt es sich um einen kostenlosen Tarif mit entsprechend eingeschränkter Rechenleistung. Da sich die zur verfügung stehenden Ressourcen allerdings beliebig skalieren lassen, ist es jederzeit ohne Mehraufwand möglich zusätzliche Rechenleistung anzumieten, welche gegebenenfalls in der Zukunft bei Weiterentwicklung der Anwendung für zusätzliche Funktionen benötigt wird. Das Hosting auf einem Oracle Cloud Webserver bietet somit eine solide Grundlage für eine sichere, skalierbare und kosteneffiziente Bereitstellung der Webanwendung. \\
+
+\subsection{Deployment}
+Das Deployment einer ASP.NET Core Webanwendung auf einem Linux Webserver umfasst mehrere Schritte, um sicherzustellen, dass die Anwendung ordnungsgemäß bereitgestellt und ausgeführt wird. Dieses Kapitel erläutert den den Prozess vom Entwicklungs- bis zum Produktionsumfeld
+Schritte für das Deployment:
+\begin{itemize}
+	\item Vorbereitung der Entwicklungsumgebung: \\
+	Zunächst wird die ASP.NET Core Webanwendung in der Entwicklungsumgebung entwickelt und getestet. Dies beinhaltet die Implementierung von Funktionen, das Testen der Anwendung und das Sicherstellen, dass sie fehlerfrei läuft.
+	\item Kompilieren der Anwendung: \\
+	Die ASP.NET Core Webanwendung muss in der Release Konfiguration vollständig kompiliert werden. Hierbei wird die Build-Funktionen von Visual Studio, der für das Projekt verwendeten Entwicklungsumgebung, genutzt.
+	\item Erstellung eines Deployment-Pakets: \\
+	Die Anwendung wird als Deployment-Paket veröffentlicht, das alle erforderlichen Dateien und Abhängigkeiten für die Ausführung auf einem Linux Webserver enthält.
+	\item Erstellung eines Deployment-Pakets: \\
+	Die Anwendung wird als Deployment-Paket veröffentlicht, das alle erforderlichen Dateien und Abhängigkeiten für die Ausführung auf einem Linux Webserver enthält. Das Paket wird im Projektordner mit einem .NET-SDK-Befehl erstellt. Dieser sieht folgendermaßen aus:\\
+	\textit{dotnet publish -c Release -r linux-x64 --self-contained} \\
+	Der Parameter \textit{--self-contained} wird verwendet um sicherzustellen, dass alle benötigten .NET Core Laufzeitdateien enthalten sind, mit dem Parameter \textit{-r linux-x64} wird die Zielplatform, in diesem Fall Linux 64-Bit spezifiziert. Durch die Ausführung des Befehls wird also ein Verzeichnis mit der kompilierten Anwendung und allen notwendigen Dateien für die Ausführung auf Linux erstellt.
+	\item Einrichtung des Linux-Servers: \\
+	Auf dem Ziel-Linux-Server werden die notwendigen Abhängigkeiten installiert, einschließlich des .NET Core Laufzeitumgebung und des gewählten Webservers, in diesem Fall Apache. Ein Apache Webserver ist eine Open-Source-Software, die für das Hosting von Webseiten und Webanwendungen am weitesten verbreitet ist. 
+	\item Übertragung und Entpacken des Deployment-Pakets: \\
+	Das erstellte Deployment-Paket wird auf den Linux-Server übertragen, entpackt und in das entsprechende Zielverzeichnis verschoben.
+	\item Konfiguration des Webservers: \\
+	Der Apache Webserver wird konfiguriert, um Anfragen an die ASP.NET Core Anwendung weiterzuleiten. Dies umfasst das Festlegen von Hostnamen, Portnummern und anderen relevanten Einstellungen in der Webserver-Konfigurationsdatei. Die Webanwendung kann somit über die IP-Adresse \textit{http://141.147.6.122/} über Port \textit{8081} erreich werden.
+	\item Starten der Anwendung: \\
+	Das Deployment Paket beinhaltet eine ausführbare \textit{.dll} Datei, welche von einer zusätzlich konfigurierten Linux Service-Datei automatisch beim Start des Webservers ausgeführt und somit die Webanwendung gestartet wird.
+\end{itemize}
+\subsection{Software Design}
 \subsection{Anbindung einer MYSQL Datenbank}
+\subsection{API-Schnittstelle zum Empfangen der Daten}
 \subsection{Auslesen und Anzeigen der Sensordaten}
 Für die Anzeige der Sensordaten in der Webanwendung wurden bestimmte Anforderungen definiert. Zum einen sollten die Daten in einem Liniendiagramm dargestellt werden, und zum anderen sollte die Webanwendung sowohl auf PCs und Laptops als auch auf mobilen Geräten reibungslos funktionieren. Dies erforderte die Nutzung eines responsiven Frameworks wie Bootstrap.
 Bootstrap wurde gewählt, da es eine breite Palette an vorgefertigten UI-Komponenten und ein responsives Grid-System bietet. Dies ermöglicht eine einfache Integration und schnelle Entwicklung von modernen und benutzerfreundlichen Webseiten, unabhängig vom verwendeten Gerät \cite{bootstrap}.
@@ -299,16 +330,8 @@ Für den Test der lokalen Webanwendung musste zunächst ein Python-Skript erstel
 
 Die Webanwendung wurde lokal getestet. Dabei wurden beide Schalter für Benachrichtigung und Belüftung eingeschaltet und überprüft, ob diese gemäß der eingebauten Logik arbeiten und die Diagramme mit den entsprechenden Werten aktualisiert werden. Anschließend wurde der Schalter für die Belüftung ausgeschaltet und überprüft, ob eine Nachricht gesendet wird, die darüber informiert, dass die Belüftung ausgeschaltet ist und manuell gesteuert werden muss. Der lokale Test war erfolgreich.
 
-Der Test für die produktive Webanwendung verlief ähnlich. Zunächst wurde geprüft, ob der Raspberry Pi die Sensordaten mit dem korrekten Zeitstempel in die Datenbank schreibt. Dazu wurde eine Logdatei erstellt, mit der überprüft werden kann, welche Daten wann in die Datenbank geschrieben wurden, wie in Abbildung \ref{testdatasensor} zu sehen ist.
-
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=90mm]{fig/datasensorlog.png}
-	\caption{Logfile zum Testen, ob Daten erfolgreich und korrekt in die Datenbank geschrieben wurden}
-	\label{testdatasensor}
-\end{figure}
-
+Der Test für die produktive Webanwendung verlief ähnlich. Zunächst wurde geprüft, ob der Raspberry Pi die Sensordaten mit dem korrekten Zeitstempel an die Webanwendung schickt. Hierfür wurde die Log-Datei verwendet, welche bereits in Kapitel \ref{chapter:datenuebertragung}
+beschrieben wurde. \\
 Anschließend wurde überprüft, ob die Daten korrekt in der Webanwendung visualisiert werden. Wie im lokalen Test wurden die Schalter für Benachrichtigung und Belüftung eingeschaltet. Die Sensoren wurden mit einem Föhn beheizt. Ein deutlicher Anstieg der Temperatur konnte über die Webanwendung erfasst werden, wie in Abbildung \ref{webanwendungtest} zu sehen ist. 
 
 \begin{figure}[H]

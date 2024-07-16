@@ -330,63 +330,49 @@
 
         for (var i = 0; i < dataValues.length; i++) {
             var dataValue = parseFloat(dataValues[i].replace(',', '.'));
-            var currentTimestamp = new Date(labels[i]);
-            currentTimestamp.setHours(currentTimestamp.getHours() +1);
-            dataPoints.push(createDataPoint(currentTimestamp.toISOString(), dataValue))
+            dataPoints.push(createDataPoint(labels[i], dataValue));
         }
 
         return dataPoints;
     }
 
     function createDataPoint(xValue, yValue) {
-
-        var originalTimestamp = xValue;
-        var dateObject = new Date(originalTimestamp);
-        dateObject.setHours(dateObject.getHours() + 1);
-
-        // Die toISOString()-Methode gibt ein ISO-8601-konformes Datum zurück
-        // Sie erhalten das gewünschte Format durch Abschneiden der Zeichen am Ende
-        var zeitstempel = dateObject.toISOString().slice(0, -5);
-
-        if (zeitstempel.includes("00:00:00")) {
-            dateObject.setDate(dateObject.getDate() - 1);
-            zeitstempel = dateObject.toISOString().slice(0, -5);
-        }
-
+        var zeitstempel = xValue.split(/[+]/)[0];
         return { x: zeitstempel, y: parseFloat(yValue) };
     }
 
     function minDayFunctionDay(xvalue) {
-        var originalTimestamp = xvalue;
-        var dateObject = new Date(originalTimestamp);
-        //dateObject.setDate(dateObject.getDate() + 1);
-        var zeitstempel = dateObject.toISOString().slice(0, -13) + "00:00:00";
+        var zeitstempel = xvalue.slice(0, 11) + "00:00:00";
         return zeitstempel;
     }
 
     function minDayFunctionWeek(xvalue) {
-        var originalTimestamp = xvalue;
-        var dateObject = new Date(originalTimestamp);
-        dateObject.setDate(dateObject.getDate() + 1);
-        var zeitstempel = dateObject.toISOString().slice(0, -13) + "00:00:00";
-
+        var zeitstempel = xvalue.slice(0, 11) + "00:00:00";
         return zeitstempel;
     }
 
     function maxDayFunctionDay(xvalue) {
-        var originalTimestamp = xvalue;
-        var dateObject = new Date(originalTimestamp);
-        //dateObject.setDate(dateObject.getDate() + 1);
-        var zeitstempel = dateObject.toISOString().slice(0, -13) + "23:59:59";
+        var zeitstempel = xvalue.slice(0, 11) + "23:59:59";
         return zeitstempel;
     }
 
     function maxDayFunctionWeek(xvalue) {
-        var originalTimestamp = xvalue;
-        var dateObject = new Date(originalTimestamp);
-        dateObject.setHours(dateObject.getHours() + 1);
-        var zeitstempel = dateObject.toISOString().slice(0, -13) + "23:59:59";
+        var zeitstempel = xvalue.slice(0, 11) + "23:59:59";
         return zeitstempel;
+    }
+
+    function formatDateToISOString(date) {
+        let pad = function (num) {
+            return (num < 10 ? '0' : '') + num;
+        };
+
+        return date.getFullYear() +
+            '-' + pad(date.getMonth() + 1) +
+            '-' + pad(date.getDate()) +
+            'T' + pad(date.getHours()) +
+            ':' + pad(date.getMinutes()) +
+            ':' + pad(date.getSeconds()) +
+            '.' + (date.getMilliseconds() / 1000).toFixed(3).slice(2, 5) + 'Z';
     }
 
     function handleButtonAmmoniakWocheClick() {

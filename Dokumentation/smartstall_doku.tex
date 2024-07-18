@@ -35,11 +35,15 @@ florianwermbter@gmail.com}
 \maketitle
 
 \begin{abstract}
-Hier steht das Abstract.
+Das Projekt Smartstall wurde im Rahmen des Moduls "Hardware cyber-physischer Systeme" des Master-Studiengangs Informatik entwickelt. Ziel des Projekts ist die Überwachung der Luftqualität in einem Stall zur Sicherstellung des Tierwohls und zur kosteneffizienten Steuerung der Belüftung. Hierfür werden Luftqualitätsdaten mittels eines MQ137 NH3-Gassensormoduls und eines Bosch Sensortec BME680 Sensors von einem Raspberry Pi erfasst und in eine Datenbank geschrieben. Diese Daten, die Ammoniakgehalt, Luftfeuchtigkeit und Temperatur umfassen, werden in einer Webanwendung visualisiert.
+
+Die Visualisierung erfolgt durch Liniendiagramme, die Grenzwerte anzeigen, ab denen die Luftqualität als schädlich eingestuft wird. Überschreiten die gemessenen Werte diese Grenzwerte, hat der Benutzer die Möglichkeit, über die Webanwendung zwei Funktionen zu aktivieren. Erstens wird eine Push-Benachrichtigung an eine Telegram-Gruppe gesendet, die den spezifischen Schadstoffgehalt mitteilt. Zweitens kann über eine WLAN-Steckdose die Belüftung ein- und ausgeschaltet werden.
+
+Zur Umsetzung des Projekts wurden die Programmiersprachen C\#, Python, JavaScript sowie HTML und CSS verwendet. Des Weiteren kamen die Bibliothek Chart.js und die Frameworks ASP.NET und Bootstrap zum Einsatz. Das Projekt wurde sowohl lokal als auch produktiv erfolgreich getestet.
 \end{abstract}
 
 \begin{IEEEkeywords}
-component, formatting, style, styling, insert
+Luftqualität, Stallüberwachung, cyber-physische Systeme, MQ137 NH3-Gassensor, Bosch Sensortec BME680, Raspberry Pi, Datenvisualisierung, Chart.js, ASP.NET, Bootstrap, C\#, Python, JavaScript, HTML, CSS, kosteneffiziente Belüftung, Tierwohl
 \end{IEEEkeywords}
 
 \section{Hintergrund und Ziel des Projekts}
@@ -64,7 +68,7 @@ Die erfassten Luftqualitätsdaten sollen in Diagrammen für einen Tag und eine W
 
 Der Landwirt soll eine Push-Benachrichtigung erhalten, wenn ein Schwellwert überschritten wird, und die Belüftung soll automatisch eingeschaltet werden. Sobald alle Werte unter den Schwellwerten liegen, soll die Belüftung wieder ausgeschaltet werden.
 
-Es ist von großer Bedeutung, dass die Werte für Ammoniak, Luftfeuchtigkeit und Temperatur in einem Stall nicht zu hoch sind. Hohe Ammoniakkonzentrationen können die Atemwege der Tiere und Menschen reizen und zu ernsthaften gesundheitlichen Problemen führen. Eine zu hohe Luftfeuchtigkeit kann das Wachstum von Schimmel und anderen schädlichen Mikroorganismen fördern, was wiederum die Gesundheit der Tiere beeinträchtigt. Extreme Temperaturen, ob zu hoch oder zu niedrig, können den Komfort und das Wohlbefinden der Tiere negativ beeinflussen, was zu Stress und einer verminderten Produktivität führen kann. Daher ist die Überwachung und Regelung dieser Parameter essenziell für die Gesundheit und das Wohlbefinden der Tiere sowie für eine effiziente landwirtschaftliche Produktion. 
+Es ist von großer Bedeutung, dass die Werte für Ammoniak, Luftfeuchtigkeit und Temperatur in einem Stall nicht zu hoch sind. Hohe Ammoniakkonzentrationen können die Atemwege der Tiere und Menschen reizen und zu ernsthaften gesundheitlichen Problemen führen \cite{ammoniak}. Eine zu hohe Luftfeuchtigkeit kann das Wachstum von Schimmel und anderen schädlichen Mikroorganismen fördern, was wiederum die Gesundheit der Tiere beeinträchtigt \cite{luftfeuchtigkeit}. Extreme Temperaturen, ob zu hoch oder zu niedrig, können den Komfort und das Wohlbefinden der Tiere negativ beeinflussen, was zu Stress und einer verminderten Produktivität führen kann \cite{temperatur}. Daher ist die Überwachung und Regelung dieser Parameter essenziell für die Gesundheit und das Wohlbefinden der Tiere sowie für eine effiziente landwirtschaftliche Produktion. 
 
 Nach den ersten Überlegungen zu dem Projekt SmartStall wurde folgende Skizze zu einem möglichen Userinterface entwickelt:
 \begin{figure}[H]
@@ -197,7 +201,7 @@ Crontab ist ein Dienst auf Unix-basierten Betriebssystemen, der es ermöglicht, 
 
 \section{Webanwendung}
 \subsection{Architektur}
-Die Webanwendung wurde mit dem ASP.NET Core Framework für C-Sharp, unter Verwendung der .NET-Plattform, entwickelt. ASP.NET Core ist ein modernes, plattformübergreifendes Framework für die Entwicklung von Webanwendungen. Es bietet eine modularisierte Architektur, die Entwicklern ermöglicht, nur benötigte Komponenten zu verwenden, was die Performance verbessert und die Anpassungsfähigkeit erhöht. Durch seine Plattformunabhängigkeit läuft ASP.NET Core auf Windows, macOS und Linux, was Flexibilität bei der Bereitstellung ermöglicht. Das Framework ist stark auf Performance optimiert und unterstützt moderne Webentwicklungsmuster. \\
+Die Webanwendung wurde mit dem ASP.NET Core Framework für C-Sharp, unter Verwendung der .NET-Plattform, entwickelt. ASP.NET Core ist ein modernes, plattformübergreifendes Framework für die Entwicklung von Webanwendungen. Es bietet eine modularisierte Architektur, die Entwicklern ermöglicht, nur benötigte Komponenten zu verwenden, was die Performance verbessert und die Anpassungsfähigkeit erhöht. Durch seine Plattformunabhängigkeit läuft ASP.NET Core auf Windows, macOS und Linux, was Flexibilität bei der Bereitstellung ermöglicht. Das Framework ist stark auf Performance optimiert und unterstützt moderne Webentwicklungsmuster \cite{dotNET} \cite{csharp}. \\
 Ein Beispiel hierfür ist MVC (Model-View-Controller), welches für die Webanwendung verwendet wurde. Hierbei handelt es sich um ein moderneres Designmuster, das die Trennung von Datenmodell, Präsentationsschicht und Steuerungslogik fördert, was die Struktur und Übersichtlichkeit der Webanwendung verbessert.
 \subsection{Hosting}
 Die Webanwendung wird auf einem Oracle Cloud Webserver gehostet, der mit dem Linux-Betriebssystem läuft. Diese Entscheidung bietet mehrere Vorteile für das Projekt. Einerseits gewährleistet der Oracle Cloud Webserver eine hohe Zuverlässigkeit und Verfügbarkeit der Anwendung durch seine robuste Infrastruktur und Service Level Agreements. Außerdem besteht die Möglichkeit, Ressourcen nach Bedarf zu skalieren, dass die Anwendung problemlos mit steigenden Benutzeranforderungen wachsen kann. Diese Flexibilität unterstützt auch eine kosteneffiziente Nutzung, da Ressourcen nur dann erhöht werden, wenn sie auch tatsächlich benötigt werden. \\
@@ -227,7 +231,7 @@ Schritte für das Deployment:
 	Das Deployment Paket beinhaltet eine ausführbare \textit{.dll} Datei, welche von einer zusätzlich konfigurierten Linux Service-Datei automatisch beim Start des Webservers ausgeführt und somit die Webanwendung gestartet wird.
 \end{itemize}
 \subsection{Software Design}
-Das MVC-Framework in ASP.NET C\# ist eine Architektur, die die Strukturierung von Webanwendungen erleichtert, indem sie die Anwendung in drei Hauptkomponenten unterteilt: Model, View und Controller. Die Model-Komponente repräsentiert die Geschäftslogik und die Anwendungsdaten. Sie ist verantwortlich für die Verwaltung des Zustands der Anwendung und stellt Methoden zur Verfügung, um Daten zu speichern, abzurufen und zu manipulieren. Die View-Komponente ist für die Darstellung der Daten verantwortlich, die vom Model bereitgestellt werden. Sie stellt die Benutzeroberfläche dar und enthält HTML, CSS und JavaScript, um eine ansprechende und interaktive Benutzeroberfläche zu erstellen. In diesem Projekt bilden die Login- und auch die Hauptseite die View. Die Controller-Komponente verarbeitet Benutzereingaben, interagiert mit dem Model und wählt eine View zur Darstellung der Ergebnisse aus. Der Controller fungiert als Vermittler zwischen Model und View, indem er die Anwendungslogik implementiert und die entsprechenden Views rendert. In den Controllern dieses Projekts sind beipielsweise zwei Services implementiert, die für die Verarbeitung der gesendeten Daten zuständig sind. Der Service \textit{\_readService} liest die Daten aus der Datenbank aus während der \textit{\_writeService}, der im ReceiveDataController die Sensordaten in die Datenbank schreibt.
+Das MVC-Framework in ASP.NET C\# ist eine Architektur, die die Strukturierung von Webanwendungen erleichtert, indem sie die Anwendung in drei Hauptkomponenten unterteilt: Model, View und Controller. Die Model-Komponente repräsentiert die Geschäftslogik und die Anwendungsdaten. Sie ist verantwortlich für die Verwaltung des Zustands der Anwendung und stellt Methoden zur Verfügung, um Daten zu speichern, abzurufen und zu manipulieren. Die View-Komponente ist für die Darstellung der Daten verantwortlich, die vom Model bereitgestellt werden. Sie stellt die Benutzeroberfläche dar und enthält HTML, CSS und JavaScript, um eine ansprechende und interaktive Benutzeroberfläche zu erstellen. In diesem Projekt bilden die Login- und auch die Hauptseite die View. Die Controller-Komponente verarbeitet Benutzereingaben, interagiert mit dem Model und wählt eine View zur Darstellung der Ergebnisse aus. Der Controller fungiert als Vermittler zwischen Model und View, indem er die Anwendungslogik implementiert und die entsprechenden Views rendert. In den Controllern dieses Projekts sind beipielsweise zwei Services implementiert, die für die Verarbeitung der gesendeten Daten zuständig sind. Der Service \textit{\_readService} liest die Daten aus der Datenbank aus während der \textit{\_writeService}, der im ReceiveDataController die Sensordaten in die Datenbank schreibt \cite{mvc}.
 \subsection{Anbindung der MYSQL Datenbank}
 Die Anbindung einer MySQL-Datenbank in der ASP.NET Core Webanwendung erfolgt über das Entity Framework Core von Microsoft, welches zunächst in der Entwicklungsumgebung installiert werden muss. Anschließend werden Verbindungsdaten wie Hostname, Benutzername, Passwort und Datenbankname der gehosteten Datenbank benötigt. Die Verbindung wird als sogenannter \textit{ConnectionString} in einer separaten Konfigurationsdatei der Webanwendung definiert. Dieser sieht wie folgt aus: \\
 \begin{verbatim}
@@ -306,14 +310,14 @@ adapter-date-fns.bundle.min.js"></script>
 Diese Entscheidungen zusammen ermöglichen eine effektive und effiziente Darstellung der Sensordaten in der Webanwendung, optimiert für verschiedene Geräte und Benutzerumgebungen.
 Nachdem die benötigten Bibliotheken eingebunden wurden, können die Diagramme in der Webanwendung aufgebaut werden. Der  HTML-Code in \ref{sec:htmlCodeDiagrammAnhang} definiert die Struktur eines Diagramms inklusive dem aktuellen Wert anhand der Temperatur.
 
-Das eigentliche Diagramm wird durch das \texttt{<canvas>}-Element mit der ID \texttt{lineChartTemperatur} dargestellt. Mir dieser ID kann genau dieses Diagramm bearbeitet werden.
+Das eigentliche Diagramm wird durch das \textit{<canvas>}-Element mit der ID \textit{}{lineChartTemperatur} dargestellt. Mir dieser ID kann genau dieses Diagramm bearbeitet werden.
 Um die Sensordaten für beispielsweise die Temperatur abzurufen, wird AJAX verwendet. AJAX ermöglicht es, Daten asynchron im Hintergrund zu laden, ohne die gesamte Webseite neu zu laden. Der JavaScript-Code in Anhang \ref{sec:ajaxAnhang} zeigt einen Beispielaufruf.
-Hierbei ist \texttt{GetTemperatur} die URL, unter der die Sensordaten abgerufen werden. Hinter dieser URL steckt eine Funktion, die im C\#-Code in dem \textit{HomeController} implementiert ist. Diese Funktion bzw. der Service \textit{\_readService} ist dafür zuständig, alle Daten aus der Datenbank für einen Zeitraum von einer Woche und einem Tag abzurufen, sie in ein Objekt zu transformieren und dieses an die aufrufende Stelle zurückzusenden. Die empfangenen Daten werden anschließend im Frontend in ein JavaScript-Dictionary (\texttt{temperaturWerteTagAktuellDictionary}) umgewandelt, um sie später im Diagramm anzeigen zu können.
+Hierbei ist \textit{GetTemperatur} die URL, unter der die Sensordaten abgerufen werden. Hinter dieser URL steckt eine Funktion, die im C\#-Code in dem \textit{HomeController} implementiert ist. Diese Funktion bzw. der Service \textit{\_readService} ist dafür zuständig, alle Daten aus der Datenbank für einen Zeitraum von einer Woche und einem Tag abzurufen, sie in ein Objekt zu transformieren und dieses an die aufrufende Stelle zurückzusenden. Die empfangenen Daten werden anschließend im Frontend in ein JavaScript-Dictionary (\textit{temperaturWerteTagAktuellDictionary}) umgewandelt, um sie später im Diagramm anzeigen zu können.
 Die Verwendung von AJAX ist besonders nützlich, da sie eine flüssige Benutzererfahrung ermöglicht, indem Daten im Hintergrund geladen werden, während die Benutzeroberfläche weiterhin interaktiv bleibt. Dies ist wichtig für die dynamische Aktualisierung und Visualisierung von Echtzeitdaten.
-In der Funktion \texttt{createTemperaturDiagramTag} wird das Diagramm erstellt, wobei die Sensordaten entsprechend bearbeitet werden müssen. Der folgenden Codeabschnitte ist hierbei von Bedeutung:
+In der Funktion \textit{createTemperaturDiagramTag} wird das Diagramm erstellt, wobei die Sensordaten entsprechend bearbeitet werden müssen. Der folgenden Codeabschnitte ist hierbei von Bedeutung:
 \begin{verbatim}var dataTemperaturValues = 
 parseDictionary(labels, dataValues); \end{verbatim}
-\texttt{dataTemperaturValues} enthält die Datenpaare, die später im Diagramm angezeigt werden. Um sicherzustellen, dass diese korrekt dargestellt werden, müssen die Daten zunächst in das richtige Format gebracht werden. Die Funktion \texttt{parseDictionary} wandelt beispielsweise einzelne Temperaturwerte von 23,45 in 23.45 um, da Chart.js nicht mit Kommazahlen umgehen kann. Ebenso müssen die Labels, also die Zeitstempel, angepasst werden.
+\textit{dataTemperaturValues} enthält die Datenpaare, die später im Diagramm angezeigt werden. Um sicherzustellen, dass diese korrekt dargestellt werden, müssen die Daten zunächst in das richtige Format gebracht werden. Die Funktion \textit{parseDictionary} wandelt beispielsweise einzelne Temperaturwerte von 23,45 in 23.45 um, da Chart.js nicht mit Kommazahlen umgehen kann. Ebenso müssen die Labels, also die Zeitstempel, angepasst werden.
 
 Sobald die Daten korrekt bearbeitet wurden, kann das Diagramm aufgebaut werden. Der Code wurde exemplarisch für das Diagramm in Anhang \ref{sec:jsdiagrammanhang} hinterlegt.
 
@@ -365,18 +369,18 @@ using(HttpClient client = new HttpClient())
   await client.PostAsync(apiUrl, content);
 }
 \end{verbatim}
-In diesem Code werden zunächst die botToken und die chatId definiert. Das botToken ist der eindeutige Schlüssel, der den Bot bei Telegram authentifiziert, während die chatId die Identifikation des Chat-Kanals darstellt, in den die Nachricht gesendet wird. Die Nachricht selbst wird in der Variable \texttt{nachricht} gespeichert.
-Die URL der Telegram-API, die für das Senden von Nachrichten verwendet wird, wird in der Variable \texttt{apiUrl} gespeichert. Mit einem \texttt{HttpClient} wird eine HTTP-Post-Anfrage an diese URL gesendet. Dabei wird die Nachricht in einem Formular mit dem entsprechenden Chat-ID und dem Textinhalt als application/x-www-form-urlencoded kodiert und im Body der Anfrage übermittelt. Der Server antwortet daraufhin mit einem HttpResponseMessage, die den Erfolg oder Misserfolg der Anfrage dokumentiert.
+In diesem Code werden zunächst die botToken und die chatId definiert. Das botToken ist der eindeutige Schlüssel, der den Bot bei Telegram authentifiziert, während die chatId die Identifikation des Chat-Kanals darstellt, in den die Nachricht gesendet wird. Die Nachricht selbst wird in der Variable \textit{nachricht} gespeichert.
+Die URL der Telegram-API, die für das Senden von Nachrichten verwendet wird, wird in der Variable \textit{apiUrl} gespeichert. Mit einem \textit{HttpClient} wird eine HTTP-Post-Anfrage an diese URL gesendet. Dabei wird die Nachricht in einem Formular mit dem entsprechenden Chat-ID und dem Textinhalt als application/x-www-form-urlencoded kodiert und im Body der Anfrage übermittelt. Der Server antwortet daraufhin mit einem HttpResponseMessage, die den Erfolg oder Misserfolg der Anfrage dokumentiert.
 
 
 \subsection{Ansteuerung der Steckdose}
 Um die Belüftung zu steuern, ist es notwendig, eine WLAN-Steckdose zu integrieren, die mittels einer POST-Anfrage ein- oder ausgeschaltet werden kann. Zunächst muss die Steckdose mit dem WLAN verbunden werden. Dies erfolgt, indem die Steckdose an eine Stromquelle angeschlossen wird. Daraufhin erzeugt sie ein eigenes WLAN, mit dem sich mittels PC, Laptop oder Smartphone verbunden werden muss. Sobald die Verbindung hergestellt ist, öffnet sich eine Benutzeroberfläche, in der der Name des WLANs des Landwirtes und das zugehörige Passwort eingegeben werden. Nach einem Neustart verbindet sich die WLAN-Steckdose mit dem angegebenen Netzwerk.
-Ist die Steckdose erfolgreich eingerichtet, kann sie entweder über das User Interface oder einen POST-Befehl im lokalen Netzwerk gesteuert werden. Beispielsweise kann folgende URL verwendet werden, um die Steckdose einzuschalten: \texttt{http://localhost/cm?cmnd=Power\%20On}. Diese URL funktioniert jedoch nur innerhalb des eigenen Netzwerks \cite{delock}.
+Ist die Steckdose erfolgreich eingerichtet, kann sie entweder über das User Interface oder einen POST-Befehl im lokalen Netzwerk gesteuert werden. Beispielsweise kann folgende URL verwendet werden, um die Steckdose einzuschalten: \textit{http://localhost/cm?cmnd=Power\%20On}. Diese URL funktioniert jedoch nur innerhalb des eigenen Netzwerks \cite{delock}.
 
 \subsubsection{Dyndns}
 Um die Steckdose auch außerhalb des eigenen Netzwerks steuern zu können, sind zusätzliche Schritte erforderlich, wie die Einrichtung von DynDNS und die Konfiguration der Portfreigabe. DynDNS (Dynamic Domain Name System) ermöglicht den Zugriff auf das Heimnetzwerk über das Internet, indem eine dynamische IP-Adresse in eine statische Domain umgewandelt wird. Dies erfolgt durch Registrierung bei einem DynDNS-Anbieter (in diesem Projekt der Anbieter dyndnsfree) und die Konfiguration des Dienstes auf dem Router, um eine Domain zu erstellen, die auf die dynamische IP-Adresse verweist \cite{dyndns}.
 \subsubsection{Portfreigabe}
-Für die Portfreigabe muss man sich in die Benutzeroberfläche des Routers einloggen und die Einstellungen für die Portweiterleitung suchen. Hier wird eine Regel hinzugefügt, die den Port (in diesem Projekt der Port 80), über den die WLAN-Steckdose kommuniziert, an deren lokale IP-Adresse weiterleitet \cite{portfreigabe}. Durch diese Konfiguration wird die Steckdose über das Internet erreichbar und kann entsprechend gesteuert werden. Die URL zur Steuerung sieht folgerndermaßen aus: \texttt{http://wlansteckdose.dnsuser.de/
+Für die Portfreigabe muss man sich in die Benutzeroberfläche des Routers einloggen und die Einstellungen für die Portweiterleitung suchen. Hier wird eine Regel hinzugefügt, die den Port (in diesem Projekt der Port 80), über den die WLAN-Steckdose kommuniziert, an deren lokale IP-Adresse weiterleitet \cite{portfreigabe}. Durch diese Konfiguration wird die Steckdose über das Internet erreichbar und kann entsprechend gesteuert werden. Die URL zur Steuerung sieht folgerndermaßen aus: \textit{http://wlansteckdose.dnsuser.de/
 cm?cmnd=Power\%20On}
 
 \section{Test des gesamten Systemaufbaus}
@@ -419,11 +423,15 @@ Zwei weitere Punkte betreffen den Ausbau der Funktionen, die dem Landwirt in der
 Insgesamt bietet SmartStall viel Potenzial für den weiteren Ausbau des Projekts und ermöglicht es Landwirten, die Belüftung ihres Stalls mit IoT-Technologie zu überwachen und zu steuern.
 
 \begin{thebibliography}{00}
+
 \bibitem{dyndns}
-AVM Foundation, "Dynamic DNS in FRITZ!Box einrichten",Online. Verfügbar unter: https://avm.de/service/wissensdatenbank/dok/FRITZ-Box-7590/30\_Dynamic-DNS-in-FRITZ-Box-einrichten/. [Zugriffsdatum: 05. Juli 2024].
+AVM Foundation, "Dynamic DNS in FRITZ!Box einrichten", Online. Verfügbar unter: https://avm.de/service/wissensdatenbank/dok/FRITZ-Box-7590/30\_Dynamic-DNS-in-FRITZ-Box-einrichten/. [Zugriffsdatum: 05. Juli 2024].
 
 \bibitem{portfreigabe}
 AVM Foundation, "Portfreigabe in FRITZ!Box einrichten", Online. Verfügbar unter: https://avm.de/service/wissensdatenbank/dok/FRITZ-Box-7490/34\_Portfreigaben-in-FRITZ-Box-einrichten/. [Zugriffsdatum: 05. Juli 2024].
+
+\bibitem{ammoniak}
+Bayerischer Rundfunk, "Ammoniak - giftiger Grundstoff für Sprengstoff und Dünger", Online. Verfügbar unter: https://www.br.de/nachrichten/wissen/ammoniak-gas-reizendes-kaeltemittel-fuer-augen-und-atemwege,RLvCroD. [Zugriffsdatum: 18. Juli 2024].
 
 \bibitem{chart.js}
 Chart.js, "Line Chart", Online. Verfügbar unter: https://www.chartjs.org/docs/latest/charts/line.html. [Zugriffsdatum: 05. Juli 2024].
@@ -431,8 +439,14 @@ Chart.js, "Line Chart", Online. Verfügbar unter: https://www.chartjs.org/docs/l
 \bibitem{delock}
 Delock, "Wlan Power Socket Switch", Online. Verfügbar unter: https://www.delock.de/files/71415.download. [Zugriffsdatum: 05. Juli 2024].
 
+\bibitem{temperatur}
+DLG e. V., "Hitzestress im Stall? Erkennen und Maßnahmen", Online. Verfügbar unter: https://www.fokus-tierwohl.de/de/rind/fachinformationen-milchvieh/hitzestress-bei-milchkuehen. [Zugriffsdatum: 18. Juli 2024].
+
 \bibitem{grafana}
 Grafana Labs, "Grafana documentation", Online. Verfügbar unter: https://grafana.com/docs/grafana/latest/. [Zugriffsdatum: 05. Juli 2024].
+
+\bibitem{mvc}
+Heise Medien GmbH \& Co. KG, "Patterns in der Softwarearchitektur: Model-View-Controller ", Online. Verfügbar unter: https://www.heise.de/blog/Patterns-in-der-Softwarearchitektur-Model-View-Controller-8956787.html. [Zugriffsdatum: 18. Juli 2024].
 
 \bibitem{bootstrap}
 JavaScript Bootstrap, "Get started with Bootstrap", Online. Verfügbar unter: https://getbootstrap.com/docs/5.3/getting-started/introduction/. [Zugriffsdatum: 05. Juli 2024].
@@ -443,13 +457,22 @@ Joy-It, "BME680", Online. Verfügbar unter: https://joy-it.net/de/products/SEN-B
 \bibitem{bme_anschluss}
 Laub-Home Wiki, "Raspberry Pi BME680 Gas Sensor", Online. Verfügbar unter: https://www.laub-home.de/wiki/Raspberry\_Pi\_BME680\_Gas\_Sensor. [Zugriffsdatum: 12. Juli 2023].
 
+\bibitem{dotNET}
+Microsoft Corporation, ".NET-Dokumentation", Online. Verfügbar unter: https://learn.microsoft.com/de-de/dotnet/. [Zugriffsdatum: 18. Juli 2024].
+
+\bibitem{csharp}
+Microsoft Corporation, "C\#-Dokumentation", Online. Verfügbar unter: https://learn.microsoft.com/de-de/dotnet/csharp/tour-of-csharp/. [Zugriffsdatum: 18. Juli 2024].
+
 \bibitem{raspy}
 Raspberry Pi Foundation, "Raspberry Pi", Online. Verfügbar unter: https://www.raspberrypi.com. [Zugriffsdatum: 10. Juli 2023].
 
+\bibitem{luftfeuchtigkeit}
+Stuttgarter Zeitung Verlagsgesellschaft mbH, "Ab welcher Luftfeuchtigkeit entsteht Schimmel?", Online. Verfügbar unter: https://www.stuttgarter-zeitung.de/inhalt.ab-welcher-luftfeuchtigkeit-schimmel-mhsd.54e71b67-c3b7-4820-a80a-abcb4061c18b.html. [Zugriffsdatum: 18. Juli 2024].
+
 \bibitem{telegram}
 Telegram Foundation, "Telegram APIs", Online. Verfügbar unter: https://core.telegram.org/. [Zugriffsdatum: 05. Juli 2024].
-\end{thebibliography}
 
+\end{thebibliography}
 \clearpage
 \begin{appendices}
 \section{HTML-Code für Digrammabschnitt}

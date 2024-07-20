@@ -18,9 +18,9 @@ if sensor.get_sensor_data():
 else:
     print("BME680-Sensor nicht erkannt.")
 
-sensor.set_humidity_oversample(bme680.OS_2X)
-sensor.set_pressure_oversample(bme680.OS_4X)
-sensor.set_temperature_oversample(bme680.OS_8X)
+sensor.set_humidity_oversample(bme680.OS_4X)
+sensor.set_pressure_oversample(bme680.OS_2X)
+sensor.set_temperature_oversample(bme680.OS_16X)
 sensor.set_filter(bme680.FILTER_SIZE_3)
 sensor.set_gas_status(bme680.ENABLE_GAS_MEAS)
 
@@ -41,20 +41,22 @@ try:
     ammoniak = round(random.uniform(19.0, 21.0), 3)
     aktuelle_uhrzeit = datetime.datetime.now().time()
     uhrzeit_string = aktuelle_uhrzeit.strftime('%H:%M:%S')
+    TEMPERATURE_CORRECTION_FACTOR = -2.0 # Korrekturfaktor für die Temperatur (in Grad Celsius)
+    korrigierte_temperatur = sensor.data.temperature + TEMPERATURE_CORRECTION_FACTOR
     if sensor.get_sensor_data():
         data = {
-            'temperatur': sensor.data.temperature,
+            'temperatur': korrigierte_temperatur,
             'luftdruck': sensor.data.pressure,
             'luftfeuchtigkeit': sensor.data.humidity,
             'gasresistenz': sensor.data.gas_resistance,
             'ammoniak': ammoniak,
         }
         header = {'Content-Type': 'application/json'}
-        response = requests.post(url, json=data, headers=header, verify=False)
+        response = requests.post(url, json=data, headers=header, verify=False, timeout = 10)
         print(f"Erfasste Sensorwerte um {uhrzeit_string}")
         print(f"Ammoniak:\t\t{ammoniak}")
         print(f"Luftfeuchtigkeit:\t{sensor.data.humidity}")
-        print(f"Temperatur:\t\t{sensor.data.temperature}")
+        print(f"Temperatur:\t\t{korrigierte_temperatur}")
         print()
         if response.status_code == 200:
             print("Sensordaten erfolgreich an Webanwendung gesendet")

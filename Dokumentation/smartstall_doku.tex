@@ -220,7 +220,8 @@ Schritte für das Deployment:
 	Das Deployment Paket beinhaltet eine ausführbare \textit{.dll} Datei, welche von einer zusätzlich konfigurierten Linux Service-Datei automatisch beim Start des Webservers ausgeführt und somit die Webanwendung gestartet wird.
 \end{itemize}
 \subsection{Software Design}
-Das MVC-Framework in ASP.NET C\# ist eine Architektur, die die Strukturierung von Webanwendungen erleichtert, indem sie die Anwendung in drei Hauptkomponenten unterteilt: Model, View und Controller. Die Model-Komponente repräsentiert die Geschäftslogik und die Anwendungsdaten. Sie ist verantwortlich für die Verwaltung des Zustands der Anwendung und stellt Methoden zur Verfügung, um Daten zu speichern, abzurufen und zu manipulieren. Die View-Komponente ist für die Darstellung der Daten verantwortlich, die vom Model bereitgestellt werden. Sie stellt die Benutzeroberfläche dar und enthält HTML, CSS und JavaScript, um eine ansprechende und interaktive Benutzeroberfläche zu erstellen. In diesem Projekt bilden die Login- und auch die Hauptseite die View. Die Controller-Komponente verarbeitet Benutzereingaben, interagiert mit dem Model und wählt eine View zur Darstellung der Ergebnisse aus. Der Controller fungiert als Vermittler zwischen Model und View, indem er die Anwendungslogik implementiert und die entsprechenden Views rendert. In den Controllern dieses Projekts sind beipielsweise zwei Services implementiert, die für die Verarbeitung der gesendeten Daten zuständig sind. Der Service \textit{\_readService} liest die Daten aus der Datenbank aus während der \textit{\_writeService}, der im ReceiveDataController die Sensordaten in die Datenbank schreibt \cite{mvc}.
+Der Model-View-Controller ist eines der etablierten Architekturmuster für flexible Mensch-Maschine-Schnittstellen und teil des verwendeten ASP.NET C\# Frameworks. Architekturmuster bzw. Patterns sind in der modernen Softwareentwicklung und -architektur von großer Bedeutung, da sie eine klar definierte Terminologie und eine saubere Dokumentation bieten. Das MVC-Muster ist besonders geeignet für interaktive Anwendungen, die eine flexible Schnittstelle zwischen Mensch und Maschine erfordern.
+MVC unterteilt die Programmlogik einer Benutzeroberfläche in drei Hauptkomponenten: Model, View und Controller. Das Model verwaltet die Daten und Geschäftsregeln der Anwendung \cite{mvc}. Die View stellt diese Daten dar, und der Controller ermöglicht die Interaktion mit dem Benutzer. In diesem Projekt sind vor allem die View und der Controller von besonderer Bedeutung. Die View besteht aus der Login-Seite und der Hauptseite. Benutzer melden sich mit Passwort und Benutzernamen an, bevor sie zur Hauptseite gelangen, wo die Diagramme visualisiert werden. Im Controller sind zwei Funktionen besonders wichtig: der \textit{\_readService}, der Sensordaten für eine Woche bzw. für einen Tag aus der Datenbank ausliest, und der \textit{\_writeService}, der die Sensordaten vom Raspberry Pi in die Datenbank schreibt. Die Kommunikation zwischen View und Controller erfolgt über AJAX-Aufrufe, wodurch die Sensordaten, wie in Kapitel \ref{sec:sensordaten-auslesen} beschrieben, abgerufen werden.
 \subsection{MYSQL Datenbank}
 \subsubsection{Anbindung}
 Die Anbindung einer MySQL-Datenbank in der ASP.NET Core Webanwendung erfolgt über das Entity Framework Core von Microsoft, welches zunächst in der Entwicklungsumgebung installiert werden muss. Anschließend werden Verbindungsdaten wie Hostname, Benutzername, Passwort und Datenbankname der gehosteten Datenbank benötigt. Die Verbindung wird als sogenannter \textit{ConnectionString} in einer separaten Konfigurationsdatei der Webanwendung definiert. Dieser sieht wie folgt aus: \\
@@ -267,6 +268,7 @@ Der Controller ruft anschließend einen Service auf, welcher eine Funktion enth�
 
 
 \subsection{Auslesen und Anzeigen der Sensordaten}
+\label{sec:sensordaten-auslesen}
 Für die Anzeige der Sensordaten in der Webanwendung wurden bestimmte Anforderungen definiert. Zum einen sollten die Daten in einem Liniendiagramm dargestellt werden, und zum anderen sollte die Webanwendung sowohl auf PCs und Laptops als auch auf mobilen Geräten reibungslos funktionieren. Dies erforderte die Nutzung eines responsiven Frameworks wie Bootstrap. \\
 Bootstrap wurde gewählt, da es eine breite Palette an vorgefertigten UI-Komponenten und ein responsives Grid-System bietet. Dies ermöglicht eine einfache Integration und schnelle Entwicklung von modernen und benutzerfreundlichen Webseiten, unabhängig vom verwendeten Gerät \cite{bootstrap}.
 Um Bootstrap effektiv zu nutzen, wurden folgende JavaScript-Bibliotheken integriert: \\
@@ -300,7 +302,7 @@ adapter-date-fns.bundle.min.js"></script>
 Diese Entscheidungen zusammen ermöglichen eine effektive und effiziente Darstellung der Sensordaten in der Webanwendung, optimiert für verschiedene Geräte und Benutzerumgebungen.
 Nachdem die benötigten Bibliotheken eingebunden wurden, können die Diagramme in der Webanwendung aufgebaut werden. Der  HTML-Code in \ref{sec:htmlCodeDiagrammAnhang} definiert die Struktur eines Diagramms inklusive dem aktuellen Wert anhand der Temperatur.
 
-Das eigentliche Diagramm wird durch das \textit{<canvas>}-Element mit der ID \textit{}{lineChartTemperatur} dargestellt. Mir dieser ID kann genau dieses Diagramm bearbeitet werden.
+Das eigentliche Diagramm wird durch das \textit{\textless canvas\textgreater{}}-Element mit der ID \textit{}{lineChartTemperatur} dargestellt. Mir dieser ID kann genau dieses Diagramm bearbeitet werden.
 Um die Sensordaten für beispielsweise die Temperatur abzurufen, wird AJAX verwendet. AJAX ermöglicht es, Daten asynchron im Hintergrund zu laden, ohne die gesamte Webseite neu zu laden. Der JavaScript-Code in Anhang \ref{sec:ajaxAnhang} zeigt einen Beispielaufruf. \\
 Hierbei ist \textit{GetTemperatur} die URL, unter der die Sensordaten abgerufen werden. Hinter dieser URL steckt eine Funktion, die im C\#-Code in dem \textit{HomeController} implementiert ist. Diese Funktion bzw. der Service \textit{\_readService} ist dafür zuständig, alle Daten aus der Datenbank für einen Zeitraum von einer Woche und einem Tag abzurufen, sie in ein Objekt zu transformieren und dieses an die aufrufende Stelle zurückzusenden. Die empfangenen Daten werden anschließend im Frontend in ein JavaScript-Dictionary (\textit{temperaturWerteTagAktuellDictionary}) umgewandelt, um sie später im Diagramm anzeigen zu können. \\
 Die Verwendung von AJAX ist besonders nützlich, da sie eine flüssige Benutzererfahrung ermöglicht, indem Daten im Hintergrund geladen werden, während die Benutzeroberfläche weiterhin interaktiv bleibt. Dies ist wichtig für die dynamische Aktualisierung und Visualisierung von Echtzeitdaten.
@@ -335,7 +337,14 @@ Der folgende Code wird verwendet, um eine Telegram-Nachricht zu verschicken:
 	}
 \end{verbatim}
 In diesem Code werden zunächst die botToken und die chatId definiert. Das botToken ist der eindeutige Schlüssel, der den Bot bei Telegram authentifiziert, während die chatId die Identifikation des Chat-Kanals darstellt, in den die Nachricht gesendet wird. Die Nachricht selbst wird in der Variable \textit{nachricht} gespeichert. \\
-Die URL der Telegram-API, die für das Senden von Nachrichten verwendet wird, wird in der Variable \textit{apiUrl} gespeichert. Mit einem \textit{HttpClient} wird eine HTTP-Post-Anfrage an diese URL gesendet. Dabei wird die Nachricht in einem Formular mit dem entsprechenden Chat-ID und dem Textinhalt als application/x-www-form-urlencoded kodiert und im Body der Anfrage übermittelt. Der Server antwortet daraufhin mit einem HttpResponseMessage, die den Erfolg oder Misserfolg der Anfrage dokumentiert.
+Die URL der Telegram-API, die für das Senden von Nachrichten verwendet wird, wird in der Variable \textit{apiUrl} gespeichert. Mit einem \textit{HttpClient} wird eine HTTP-Post-Anfrage an diese URL gesendet. Dabei wird die Nachricht in einem Formular mit dem entsprechenden Chat-ID und dem Textinhalt als application/x-www-form-urlencoded kodiert und im Body der Anfrage übermittelt. Der Server antwortet daraufhin mit einem HttpResponseMessage, die den Erfolg oder Misserfolg der Anfrage dokumentiert. In der folgenden Abbildung \ref{telegram} können Beipielnachrichten aus Telegram entnommen werden. Ein Vorteil von Telegram ist außerdem, dass die Nachrichten mit Zeitstempeln versehen sind mit denen die Aktualität der Nachrichten geprüft werden können.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=60mm]{fig/uiTelegram.jpg}
+	\caption{Beispielnachrichten der Telegramgruppe}
+	\label{telegram}
+\end{figure}
 
 \subsection{Benutzeroberfläche}
 \label{ui}
@@ -372,16 +381,9 @@ Im Folgenden werden zwei Tests unterschieden: ein Test, bei dem die Webanwendung
 Die Webanwendung wurde lokal getestet. Dabei wurden beide Schalter für Benachrichtigung und Belüftung eingeschaltet und überprüft, ob diese gemäß der eingebauten Logik arbeiten und die Diagramme mit den entsprechenden Werten aktualisiert werden. Anschließend wurde der Schalter für die Belüftung ausgeschaltet und überprüft, ob eine Nachricht gesendet wird, die darüber informiert, dass die Belüftung ausgeschaltet ist und manuell gesteuert werden muss. Der lokale Test war erfolgreich. \\
 Der Test für die produktive Webanwendung verlief ähnlich. Zunächst wurde geprüft, ob der Raspberry Pi die Sensordaten mit dem korrekten Zeitstempel an die Webanwendung schickt. Hierfür wurde die Log-Datei verwendet, welche bereits in Kapitel \ref{chapter:datenuebertragung}
 beschrieben wurde. \\
-Anschließend wurde überprüft, ob die Daten korrekt in der Webanwendung visualisiert werden. Wie im lokalen Test wurden die Schalter für Benachrichtigung und Belüftung eingeschaltet. Die Sensoren wurden mit einem Föhn beheizt. Ein deutlicher Anstieg der Temperatur konnte über die Webanwendung erfasst werden, wie in Abbildung \ref{webanwendungtest} zu sehen ist. 
+Anschließend wurde überprüft, ob die Daten korrekt in der Webanwendung visualisiert werden. Wie im lokalen Test wurden die Schalter für Benachrichtigung und Belüftung eingeschaltet. Der RaspberryPi wurde von einem Dachgeschosszimmer in den Keller umgestellt. Dementsprechend fiel die Temperatur und stieg die Luftfeuchtigkeit, wie in Anhang \ref{sec:testDiagramm} zu sehen ist.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=80mm]{fig/anstiegTemperatur.jpg}
-	\caption{Visualisierung des Temperaturanstiegs in der Webanwendung}
-	\label{webanwendungtest}
-\end{figure}
-
-Die Temperaturwerte lagen dementsprechend über der festgelegten Grenze von 25. Die Benachrichtigung wurde korrekt gesendet und die WLAN-Steckdose eingeschaltet. Anschließend wurde der Schalter für die Belüftung ausgeschaltet und überprüft, ob eine Nachricht gesendet wird, die darüber informiert, dass die Belüftung ausgeschaltet ist und manuell gesteuert werden muss. Nachdem die Temperaturwerte sanken und alle Werte unter der Grenze lagen, schaltete sich die WLAN-Steckdose automatisch aus. Der produktive Test war ebenfalls erfolgreich.
+Die Temperaturwerte lagen vor der Verlagerung über der festgelegten Grenze von 25. Die Benachrichtigung wurde korrekt gesendet und die WLAN-Steckdose eingeschaltet. Anschließend wurde der Schalter für die Belüftung ausgeschaltet und überprüft, ob eine Nachricht gesendet wird, die darüber informiert, dass die Belüftung ausgeschaltet ist und manuell gesteuert werden muss. Nach der Verlagerung in den Keller sanken und alle Werte unter die Grenzen. Dementsprechend schaltete sich die WLAN-Steckdose automatisch aus. Der produktive Test war ebenfalls erfolgreich.
 
 \section{Zusammenfassung und Ausblick}
 Das Projekt Smartstall wurde im Rahmen des Moduls "Hardware-cypher-physischer Systeme" des Masterstudiengangs Informatik entwickelt. Es behandelt die Schnittstellen und Datenübertragung von Endgeräten sowie deren Anbindung an die Cloud nach dem Internet of Things Konzept. Das Projekts erfasst verschiedene Sensordaten zur Überwachung der Luftqualität in einem Stall. Die erfassten Daten werden über einen Raspberry Pi an eine eigens entwickelte Webanwendung gesendet, sodass der Anwender die Möglichkeit hat, die Daten über eine benutzerfreundliche Oberfläche anzuzeigen und zu analysieren. \\
@@ -461,7 +463,7 @@ https://www.laub-home.de/wiki/Raspberry\_Pi\_BME680\_Gas\_Sensor [Zugriffsdatum:
 \label{sec:uiPCAnhang}
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.99\textwidth]{fig/uiPC.jpg}
+    \includegraphics[width=0.8\textwidth]{fig/uiPC.jpg}
 \end{figure}
 
 \clearpage
@@ -478,6 +480,14 @@ https://www.laub-home.de/wiki/Raspberry\_Pi\_BME680\_Gas\_Sensor [Zugriffsdatum:
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.60\textwidth]{fig/diagrammCode.JPG}
+\end{figure}
+
+\clearpage
+\section{Produktiver Test}
+\label{sec:testDiagramm}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{fig/test.JPG}
 \end{figure}
 
 \end{appendices}

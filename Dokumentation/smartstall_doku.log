@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.3.31) (preloaded format=pdflatex 2024.4.15)  20 JUL 2024 20:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.3.31) (preloaded format=pdflatex 2024.4.15)  20 JUL 2024 20:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -895,14 +895,20 @@ Underfull \hbox (badness 1852) in paragraph at lines 444--445
 unter:
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 447--448
+[]\OT1/ptm/m/n/8 https://www.laub-home.de/wiki/Raspberry[]Pi[]BME680[]Gas[]Sens
+or
+ []
+
 [12]
 <fig/htmlcode.JPG, id=57, 670.75594pt x 325.96782pt>
 File: fig/htmlcode.JPG Graphic file (type jpg)
 <use fig/htmlcode.JPG>
-Package pdftex.def Info: fig/htmlcode.JPG  used on input line 453.
+Package pdftex.def Info: fig/htmlcode.JPG  used on input line 456.
 (pdftex.def)             Requested size: 510.84283pt x 248.25539pt.
 
-Overfull \hbox (258.84283pt too wide) in paragraph at lines 453--454
+Overfull \hbox (258.84283pt too wide) in paragraph at lines 456--457
  [][] 
  []
 
@@ -913,10 +919,10 @@ Overfull \hbox (258.84283pt too wide) in paragraph at lines 453--454
 <fig/uiPC.jpg, id=62, 1096.84781pt x 1215.03937pt>
 File: fig/uiPC.jpg Graphic file (type jpg)
 <use fig/uiPC.jpg>
-Package pdftex.def Info: fig/uiPC.jpg  used on input line 461.
+Package pdftex.def Info: fig/uiPC.jpg  used on input line 464.
 (pdftex.def)             Requested size: 510.84283pt x 565.8774pt.
 
-Overfull \hbox (258.84283pt too wide) in paragraph at lines 461--462
+Overfull \hbox (258.84283pt too wide) in paragraph at lines 464--465
  [][] 
  []
 
@@ -927,10 +933,10 @@ Overfull \hbox (258.84283pt too wide) in paragraph at lines 461--462
 <fig/ajax.JPG, id=66, 673.76718pt x 331.2375pt>
 File: fig/ajax.JPG Graphic file (type jpg)
 <use fig/ajax.JPG>
-Package pdftex.def Info: fig/ajax.JPG  used on input line 469.
+Package pdftex.def Info: fig/ajax.JPG  used on input line 472.
 (pdftex.def)             Requested size: 510.84283pt x 251.14165pt.
 
-Overfull \hbox (258.84283pt too wide) in paragraph at lines 469--470
+Overfull \hbox (258.84283pt too wide) in paragraph at lines 472--473
  [][] 
  []
 
@@ -941,10 +947,10 @@ Overfull \hbox (258.84283pt too wide) in paragraph at lines 469--470
 <fig/diagrammCode.JPG, id=70, 398.99063pt x 746.79pt>
 File: fig/diagrammCode.JPG Graphic file (type jpg)
 <use fig/diagrammCode.JPG>
-Package pdftex.def Info: fig/diagrammCode.JPG  used on input line 477.
+Package pdftex.def Info: fig/diagrammCode.JPG  used on input line 480.
 (pdftex.def)             Requested size: 309.60315pt x 579.50833pt.
 
-Overfull \hbox (57.60315pt too wide) in paragraph at lines 477--478
+Overfull \hbox (57.60315pt too wide) in paragraph at lines 480--481
  [][] 
  []
 
@@ -969,10 +975,10 @@ L3 programming layer <2024-03-14>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 4634 strings out of 474423
- 73815 string characters out of 5741718
+ 4635 strings out of 474423
+ 73831 string characters out of 5741718
  1945496 words of memory out of 5000000
- 26937 multiletter control sequences out of 15000+600000
+ 26938 multiletter control sequences out of 15000+600000
  598277 words of font info for 121 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,11n,65p,1434b,343s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -983,7 +989,7 @@ cmsy7.pfb><C:/Users/hanne/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier
 /utmbi8a.pfb><C:/Users/hanne/AppData/Local/Programs/MiKTeX/fonts/type1/urw/time
 s/utmr8a.pfb><C:/Users/hanne/AppData/Local/Programs/MiKTeX/fonts/type1/urw/time
 s/utmri8a.pfb>
-Output written on smartstall_doku.pdf (16 pages, 2877522 bytes).
+Output written on smartstall_doku.pdf (16 pages, 2877629 bytes).
 PDF statistics:
  101 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

@@ -53,10 +53,10 @@ Ziel dieses Projekts ist die Erfassung unterschiedlicher Sensordaten zur Überwa
 Des Weiteren soll die Belüftung von der Webanwendung bei Bedarf ein- und ausgeschaltet werden können, um die Schwellwerte auch ohne aktives Eingreifen des Anwenders wieder unterschreiten zu können. Dies soll durch die Ansteuerung einer WLAN-Steckdose umgesetzt werden. Durch regelmäßige und kontinuierliche Datenerfassung wird dafür gesorgt, dass die Belüftung nur so lange wie nötig aktiviert ist, womit die Aspekte Effizienz und Nachhaltigkeit berücksichtigt und in das Projekt integriert werden. 
 
 \section{Überblick}
-In dieser Dokumentation wird zunächst die Anforderungsanalyse behandelt. Diese umfasst die ursprünglichen Überlegungen, die zu Beginn des Projekts gemacht wurden. Anschließend wurde das Konzept zwei Landwirten vorgestellt, deren Feedback in das endgültige Projekt einfloss. \\
-Kapitel 2 erläutert die Hardware des Projekts und erklärt, wie der Raspberry Pi mit den Sensoren verkabelt wurde. Im weiteren Verlauf wird die Einrichtung des Raspberry Pi detailliert beschrieben. \\
-Das Hauptkapitel 6 befasst sich mit der Webanwendung. Dabei werden die Architektur, das Hosting, das Deployment, das Software-Design, die Anbindung an die Datenbank, der Aufbau der Datenbanktabelle, die Schnittstellen zum Empfangen und Speichern der Sensordaten, das Auslesen und Anzeigen der Sensordaten, die Benutzeroberfläche, die Telegram-Anbindung und das Steuern der WLAN-Steckdose thematisiert. \\
-Das vorletzte Kapitel beschreibt die Durchführung eines lokalen und eines produktiven Tests für das Gesamtsystem. Die Dokumentation schließt mit einer Zusammenfassung und einem Ausblick.
+In dieser Dokumentation wird zunächst die Anforderungsanalyse behandelt. Diese umfasst die ursprünglichen Überlegungen, die zu Beginn des Projekts gemacht wurden. Es wird außerdem das Konzept von zwei Landwirten vorgestellt, deren Feedback in die Umsetzung des Projekts einfloss. \\
+Anschließend werden die einzelnen Hardware-Komponenten vorgestellt, welche für dieses Projekt verwendet werden un deren Aufbau und Zusammenspiel wird erläutert. Der Fokus liegt insbeosndere auf der Einrichtung und Konfiguration des Raspberry Pis und die Verkabelung der Sensoren über deren Pins. \\
+Des weiteren wird die entwickelte Webanwendung vorgestellt. Dabei werden die Architektur, das Hosting, das Deployment, das Software-Design, dieaten, die Benutzeroberfläche, die Telegram-Anbindung und das Steuern der WLAN-Steckdose thematisiert. \\
+Daraufhin folgt die Durchführung eines Tests des Gesamtsystems, bei dem noch einmal der direkte Ablauf von der Messwertaufnahme mit Hilfe der Sensoren, bis hin zur Visualisierung der Daten in der Webanwendung erläutert wird. Abschließend folgt eine Zusammenfassung des Projekts und der Ausblick. 
 
 \section{Anforderungserhebung}
 \subsection{Ursprüngliche Überlegungen}
@@ -423,10 +423,10 @@ Heise Medien GmbH \& Co. KG, "Patterns in der Softwarearchitektur: Model-View-Co
 JavaScript Bootstrap, "Get started with Bootstrap", Online. Verfügbar unter: https://getbootstrap.com/docs/5.3/getting-started/introduction/. [Zugriffsdatum: 05. Juli 2024].
 
 \bibitem{bme}
-Joy-It, "BME680", Online. Verfügbar unter: https://joy-it.net/de/products/SEN-BME680. [Zugriffsdatum: 10. Juli 2023].
+Joy-It, "BME680", Online. Verfügbar unter: https://joy-it.net/de/products/SEN-BME680. [Zugriffsdatum: 20. Juli 2024].
 
 \bibitem{bme_anschluss}
-Laub-Home Wiki, "Raspberry Pi BME680 Gas Sensor", Online. Verfügbar unter: https://www.laub-home.de/wiki/Raspberry\_Pi\_BME680\_Gas\_Sensor. [Zugriffsdatum: 12. Juli 2023].
+Laub-Home Wiki, "Raspberry Pi BME680 Gas Sensor", Online. Verfügbar unter: https://www.laub-home.de/wiki/Raspberry\_Pi\_BME680\_Gas\_Sensor. [[Zugriffsdatum: 20. Juli 2024].
 
 \bibitem{dotNET}
 Microsoft Corporation, ".NET-Dokumentation", Online. Verfügbar unter: https://learn.microsoft.com/de-de/dotnet/. [Zugriffsdatum: 18. Juli 2024].
@@ -435,7 +435,7 @@ Microsoft Corporation, ".NET-Dokumentation", Online. Verfügbar unter: https://l
 Microsoft Corporation, "C\#-Dokumentation", Online. Verfügbar unter: https://learn.microsoft.com/de-de/dotnet/csharp/tour-of-csharp/. [Zugriffsdatum: 18. Juli 2024].
 
 \bibitem{raspy}
-Raspberry Pi Foundation, "Raspberry Pi", Online. Verfügbar unter: https://www.raspberrypi.com. [Zugriffsdatum: 10. Juli 2023].
+Raspberry Pi Foundation, "Raspberry Pi", Online. Verfügbar unter: https://www.raspberrypi.com. [Zugriffsdatum: 20. Juli 2024].
 
 \bibitem{luftfeuchtigkeit}
 Stuttgarter Zeitung Verlagsgesellschaft mbH, "Ab welcher Luftfeuchtigkeit entsteht Schimmel?", Online. Verfügbar unter: https://www.stuttgarter-zeitung.de/inhalt.ab-welcher-luftfeuchtigkeit-schimmel-mhsd.54e71b67-c3b7-4820-a80a-abcb4061c18b.html. [Zugriffsdatum: 18. Juli 2024].

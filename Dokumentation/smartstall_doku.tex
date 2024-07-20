@@ -8,8 +8,7 @@
 \usepackage{textcomp}
 \usepackage{xcolor}
 \usepackage{float}
-
-% A todo macro for marking ToDos
+\usepackage{fancyhdr}
 \usepackage{color}
 \newcommand{\todo}[1]{\textcolor{white}{\colorbox{blue}{ To do %
 			:}}\textcolor{blue}{\ \ #1
@@ -18,6 +17,11 @@
 
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\pagestyle{fancy}
+\fancyhf{} % Alle Kopf- und Fußzeilen zurücksetzen
+\fancyfoot[R]{\thepage} % Seitenzahl unten rechts
+
 \begin{document}
 
 \title{Projektdokumentation Smartstall\\
@@ -35,10 +39,7 @@ florianwermbter@gmail.com}
 \maketitle
 
 \begin{abstract}
-Das Projekt Smartstall wurde im Rahmen des Moduls "Hardware cyber-physischer Systeme" des Master-Studiengangs Informatik entwickelt. Ziel des Projekts ist die Überwachung der Luftqualität in einem Stall zur Sicherstellung des Tierwohls und zur kosteneffizienten Steuerung der Belüftung. Hierfür werden Luftqualitätsdaten mittels eines MQ137 NH3-Gassensormoduls und eines Bosch Sensortec BME680 Sensors von einem Raspberry Pi erfasst und in eine Datenbank geschrieben. Diese Daten, die Ammoniakgehalt, Luftfeuchtigkeit und Temperatur umfassen, werden in einer Webanwendung visualisiert.
-
-Die Visualisierung erfolgt durch Liniendiagramme, die Grenzwerte anzeigen, ab denen die Luftqualität als schädlich eingestuft wird. Überschreiten die gemessenen Werte diese Grenzwerte, hat der Benutzer die Möglichkeit, über die Webanwendung zwei Funktionen zu aktivieren. Erstens wird eine Push-Benachrichtigung an eine Telegram-Gruppe gesendet, die den spezifischen Schadstoffgehalt mitteilt. Zweitens kann über eine WLAN-Steckdose die Belüftung ein- und ausgeschaltet werden.
-
+Das Projekt Smartstall wurde im Rahmen des Moduls "Hardware cyber-physischer Systeme" des Master-Studiengangs Informatik entwickelt. Ziel des Projekts ist die Überwachung der Luftqualität in einem Stall zur Sicherstellung des Tierwohls und zur kosteneffizienten Steuerung der Belüftung. Hierfür werden Luftqualitätsdaten mittels eines MQ137 NH3-Gassensormoduls und eines Bosch Sensortec BME680 Sensors von einem Raspberry Pi erfasst und in eine Datenbank geschrieben. Diese Daten, die Ammoniakgehalt, Luftfeuchtigkeit und Temperatur umfassen, werden in einer Webanwendung visualisiert. Die Visualisierung erfolgt durch Liniendiagramme, die Grenzwerte anzeigen, ab denen die Luftqualität als schädlich eingestuft wird. Überschreiten die gemessenen Werte diese Grenzwerte, hat der Benutzer die Möglichkeit, über die Webanwendung zwei Funktionen zu aktivieren. Erstens wird eine Push-Benachrichtigung an eine Telegram-Gruppe gesendet, die den spezifischen Schadstoffgehalt mitteilt. Zweitens kann über eine WLAN-Steckdose die Belüftung ein- und ausgeschaltet werden. \\
 Zur Umsetzung des Projekts wurden die Programmiersprachen C\#, Python, JavaScript sowie HTML und CSS verwendet. Des Weiteren kamen die Bibliothek Chart.js und die Frameworks ASP.NET und Bootstrap zum Einsatz. Das Projekt wurde sowohl lokal als auch produktiv erfolgreich getestet.
 \end{abstract}
 
@@ -52,47 +53,36 @@ Ziel dieses Projekts ist die Erfassung unterschiedlicher Sensordaten zur Überwa
 Des Weiteren soll die Belüftung von der Webanwendung bei Bedarf ein- und ausgeschaltet werden können, um die Schwellwerte auch ohne aktives Eingreifen des Anwenders wieder unterschreiten zu können. Dies soll durch die Ansteuerung einer WLAN-Steckdose umgesetzt werden. Durch regelmäßige und kontinuierliche Datenerfassung wird dafür gesorgt, dass die Belüftung nur so lange wie nötig aktiviert ist, womit die Aspekte Effizienz und Nachhaltigkeit berücksichtigt und in das Projekt integriert werden. 
 
 \section{Überblick}
-In dieser Dokumentation wird zunächst die Anforderungsanalyse behandelt. Diese umfasst die ursprünglichen Überlegungen, die zu Beginn des Projekts gemacht wurden. Anschließend wurde das Konzept zwei Landwirten vorgestellt, deren Feedback in das endgültige Projekt einfloss.
-
-Kapitel 2 erläutert die Hardware des Projekts und erklärt, wie der Raspberry Pi mit den Sensoren verkabelt wurde. Im weiteren Verlauf wird die Einrichtung des Raspberry Pi detailliert beschrieben.
-
-Das Hauptkapitel 6 befasst sich mit der Webanwendung. Dabei werden die Architektur, das Hosting, das Deployment, das Software-Design, die Anbindung an die Datenbank, der Aufbau der Datenbanktabelle, die Schnittstellen zum Empfangen und Speichern der Sensordaten, das Auslesen und Anzeigen der Sensordaten, die Benutzeroberfläche, die Telegram-Anbindung und das Steuern der WLAN-Steckdose thematisiert.
-
+In dieser Dokumentation wird zunächst die Anforderungsanalyse behandelt. Diese umfasst die ursprünglichen Überlegungen, die zu Beginn des Projekts gemacht wurden. Anschließend wurde das Konzept zwei Landwirten vorgestellt, deren Feedback in das endgültige Projekt einfloss. \\
+Kapitel 2 erläutert die Hardware des Projekts und erklärt, wie der Raspberry Pi mit den Sensoren verkabelt wurde. Im weiteren Verlauf wird die Einrichtung des Raspberry Pi detailliert beschrieben. \\
+Das Hauptkapitel 6 befasst sich mit der Webanwendung. Dabei werden die Architektur, das Hosting, das Deployment, das Software-Design, die Anbindung an die Datenbank, der Aufbau der Datenbanktabelle, die Schnittstellen zum Empfangen und Speichern der Sensordaten, das Auslesen und Anzeigen der Sensordaten, die Benutzeroberfläche, die Telegram-Anbindung und das Steuern der WLAN-Steckdose thematisiert. \\
 Das vorletzte Kapitel beschreibt die Durchführung eines lokalen und eines produktiven Tests für das Gesamtsystem. Die Dokumentation schließt mit einer Zusammenfassung und einem Ausblick.
 
 \section{Anforderungserhebung}
 \subsection{Ursprüngliche Überlegungen}
-Das Ziel von SmartStall ist die Kontrolle der Luftqualität in einem Stall. Durch den Einsatz von Sensoren sollen Ammoniak, Temperatur und Luftfeuchtigkeit überwacht werden, um sicherzustellen, dass diese Werte nicht in schädliche Bereiche gelangen. Da die Umrüstung auf eine neue smarte Belüftung sehr kostspielig sein kann, soll SmartStall eine kostengünstige Alternative bieten.
-
-Die erfassten Luftqualitätsdaten sollen in Diagrammen für einen Tag und eine Woche in einer Webanwendung visualisiert werden. Diese Webanwendung soll mit einem Login, bei dem Benutzername und Passwort eingegeben werden muss, geschützt werden. In den Diagrammen sollen die Grenzen, ab denen die einzelnen Luftdaten schädlich werden, rot markiert sein. Neben den aktuellen Daten sollen auch die durchschnittlichen Werte für eine Woche und einen Tag angezeigt werden. Es gibt insgesamt drei Diagramme: eines für Ammoniak, eines für Temperatur und eines für Luftfeuchtigkeit.
-
-Der Landwirt soll eine Push-Benachrichtigung erhalten, wenn ein Schwellwert überschritten wird, und die Belüftung soll automatisch eingeschaltet werden. Sobald alle Werte unter den Schwellwerten liegen, soll die Belüftung wieder ausgeschaltet werden.
-
-Es ist von großer Bedeutung, dass die Werte für Ammoniak, Luftfeuchtigkeit und Temperatur in einem Stall nicht zu hoch sind. Hohe Ammoniakkonzentrationen können die Atemwege der Tiere und Menschen reizen und zu ernsthaften gesundheitlichen Problemen führen \cite{ammoniak}. Eine zu hohe Luftfeuchtigkeit kann das Wachstum von Schimmel und anderen schädlichen Mikroorganismen fördern, was wiederum die Gesundheit der Tiere beeinträchtigt \cite{luftfeuchtigkeit}. Extreme Temperaturen, ob zu hoch oder zu niedrig, können den Komfort und das Wohlbefinden der Tiere negativ beeinflussen, was zu Stress und einer verminderten Produktivität führen kann \cite{temperatur}. Daher ist die Überwachung und Regelung dieser Parameter essenziell für die Gesundheit und das Wohlbefinden der Tiere sowie für eine effiziente landwirtschaftliche Produktion. 
-
-Nach den ersten Überlegungen zu dem Projekt SmartStall wurde folgende Skizze zu einem möglichen Userinterface entwickelt:
+Das Ziel von SmartStall ist die Kontrolle der Luftqualität in einem Stall. Durch den Einsatz von Sensoren sollen Ammoniak, Temperatur und Luftfeuchtigkeit überwacht werden, um sicherzustellen, dass diese Werte nicht in schädliche Bereiche gelangen. Da die Umrüstung auf eine neue smarte Belüftung sehr kostspielig sein kann, soll SmartStall eine kostengünstige Alternative bieten. \\
+Die erfassten Luftqualitätsdaten sollen in Diagrammen für einen Tag und eine Woche in einer Webanwendung visualisiert werden. Diese Webanwendung soll mit einem Login, bei dem Benutzername und Passwort eingegeben werden muss, geschützt werden. In den Diagrammen sollen die Grenzen, ab denen die einzelnen Luftdaten schädlich werden, rot markiert sein. Neben den aktuellen Daten sollen auch die durchschnittlichen Werte für eine Woche und einen Tag angezeigt werden. Es gibt insgesamt drei Diagramme: eines für Ammoniak, eines für Temperatur und eines für Luftfeuchtigkeit. \\
+Nach den ersten Überlegungen zu dem Projekt SmartStall wurde folgende Skizze für eine mögliche Benutzeroberfläche entwickelt:
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=90mm]{fig/firstUI.JPG}
+	\includegraphics[width=80mm]{fig/firstUI.JPG}
 	\caption{Erstentwurf eines möglichen Userinterfaces für die Webanwendung von SmartStall nach den ursprünglichen Überlegungen}
 	\label{firstUI}
 \end{figure}
+Der Landwirt soll außerdem eine Push-Benachrichtigung auf dem Smartphone erhalten, wenn ein Schwellwert überschritten wird, und die Belüftung soll automatisch eingeschaltet werden. Sobald alle Werte unter den Schwellwerten liegen, soll die Belüftung wieder ausgeschaltet werden. \\
+Es ist von großer Bedeutung, dass die Werte für Ammoniak, Luftfeuchtigkeit und Temperatur in einem Stall nicht zu hoch sind. Hohe Ammoniakkonzentrationen können die Atemwege der Tiere und Menschen reizen und zu ernsthaften gesundheitlichen Problemen führen \cite{ammoniak}. Eine zu hohe Luftfeuchtigkeit kann das Wachstum von Schimmel und anderen schädlichen Mikroorganismen fördern, was wiederum die Gesundheit der Tiere beeinträchtigt \cite{luftfeuchtigkeit}. Extreme Temperaturen, ob zu hoch oder zu niedrig, können den Komfort und das Wohlbefinden der Tiere negativ beeinflussen, was zu Stress und einer verminderten Produktivität führen kann \cite{temperatur}. Daher ist die Überwachung und Regelung dieser Parameter essenziell für die Gesundheit und das Wohlbefinden der Tiere sowie für eine effiziente landwirtschaftliche Produktion. 
+
 \subsection{Gespräch mit Landwirten}
-Da SmartStall ein IT-Produkt für Landwirte mit Tierhaltungsbetriebe werden soll, wurde nach den ersten Überlegungen und der ersten Skizze ein Gespräch mit zwei verschiedenen Landwirten geführt. Der erste landwirtschaftliche Betrieb ist der Bauernhof Stenglein in Rothwind, der etwa 80 Kühe in einem Stall hält. Der zweite landwirtschaftliche Betrieb ist der Bauernhof der Familie Stark aus Eichberg, die in der Ferkelerzeugung tätig sind. Beide reagierten positiv auf die Idee von SmartStall und fanden die Grundidee gut, brachten jedoch einige Verbesserungsvorschläge und wichtige Anmerkungen ein:
-
-Die Landwirte waren der Meinung, dass es wenig Sinn macht, die durchschnittlichen Werte der einzelnen Luftqualitätsdaten anzuzeigen, da diese wenig aussagekräftig sind. Als Beispiel nannten sie die Temperatur: Im Sommer ist diese sehr hoch, im Winter eher niedrig. Ein Mittelwert daraus liefert keine nützlichen Informationen im Vergleich zum aktuellen Wert. Der Mittelwert wäre nur dann sinnvoll, wenn der Stall das ganze Jahr über konstante Bedingungen hätte, wie gleiche Außentemperatur und gleiche Dauer von geöffneten bzw. geschlossenen Türen und Fenstern, was in der Praxis jedoch nicht vorkommt. Da die Stalltüren ab spätem Frühling meist bis Herbst fast durchgängig geöffnet sind, herrschen unterschiedliche Bedingungen im Stall. Aus diesem Grund kann der durchschnittliche Wert der einzelnen Daten aus den Diagrammen entfernt werden, was zusätzlich die Lesbarkeit der Diagramme verbessert.
-
-Den Landwirten war es außerdem wichtig, dass sie die Steuerung der Belüftung und die Push-Benachrichtigungen kontrollieren können. Da es sich um ein erstmaliges Projekt handelt, das noch nicht im Einsatz war, möchten sie sich nicht vollständig auf das System verlassen und die Möglichkeit haben, wie gewohnt vorzugehen.
-
+Da SmartStall ein IT-Produkt für Landwirte mit Tierhaltungsbetriebe werden soll, wurde nach den ersten Überlegungen und der ersten Skizze ein Gespräch mit zwei verschiedenen Landwirten geführt. Der erste landwirtschaftliche Betrieb ist der Bauernhof Stenglein in Rothwind, der etwa 80 Kühe in einem Stall hält. Der zweite landwirtschaftliche Betrieb ist der Bauernhof der Familie Stark aus Eichberg, die in der Ferkelerzeugung tätig sind. Beide reagierten positiv auf die Idee von SmartStall und fanden die Grundidee gut, brachten jedoch einige Verbesserungsvorschläge und wichtige Anmerkungen ein: \\
+Die Landwirte waren der Meinung, dass es wenig Sinn macht, die durchschnittlichen Werte der einzelnen Luftqualitätsdaten anzuzeigen, da diese wenig aussagekräftig sind. Als Beispiel nannten sie die Temperatur: Im Sommer ist diese sehr hoch, im Winter eher niedrig. Ein Mittelwert daraus liefert keine nützlichen Informationen im Vergleich zum aktuellen Wert. Der Mittelwert wäre nur dann sinnvoll, wenn der Stall das ganze Jahr über konstante Bedingungen hätte, wie gleiche Außentemperatur und gleiche Dauer von geöffneten bzw. geschlossenen Türen und Fenstern, was in der Praxis jedoch nicht vorkommt. Da die Stalltüren ab spätem Frühling meist bis Herbst fast durchgängig geöffnet sind, herrschen unterschiedliche Bedingungen im Stall. Aus diesem Grund kann der durchschnittliche Wert der einzelnen Daten aus den Diagrammen entfernt werden, was zusätzlich die Lesbarkeit der Diagramme verbessert. \\
+Den Landwirten war es außerdem wichtig, dass sie die Steuerung der Belüftung und die Push-Benachrichtigungen kontrollieren können. Da es sich um ein erstmaliges Projekt handelt, das noch nicht im Einsatz war, möchten sie sich nicht vollständig auf das System verlassen und die Möglichkeit haben, wie gewohnt vorzugehen. \\
 Ein weiterer Verbesserungsvorschlag war das Hinzufügen des aktuellen Werts zu jedem Diagramm, dam auf einen Blick der aktuelle Zustand im Stall erkannt werden kann.
 Da der Bauernhof der Familie Stenglein recht groß ist und auch Angestellte im Stall arbeiten, die wennnig Berührungspunkte mit Technik haben und nicht gut Deutsch sprechen, war es ihnen wichtig, dass die Anwendung simpel gehalten wird, damit sie jeder bedienen und verstehen kann.
-\subsection{Resultat
-}Das Resultat des Projekts SmartStall ist wie folgt:
+\subsection{Resultat}
+Das Resultat des Projekts SmartStall ist wie folgt: \\
 Die Luftqualitätsdaten des Stalls werden über einen Raspberry Pi in eine Datenbank geschrieben. Diese Daten werden in einer passwortgeschützten Webanwendung visualisiert, die drei verschiedene Diagramme enthält: eines für Ammoniak, eines für Luftfeuchtigkeit und eines für Temperatur. Die Diagramme zeigen die aktuellen Werte des Tages bzw. der letzten sieben Tage an. Die durchschnittlichen Werte für Tag und Woche wurden entfernt, um die Lesbarkeit zu verbessern.
 Neben den Diagrammen wird der aktuelle Wert angezeigt, der in roter Schrift dargestellt ist, wenn der Wert die schädliche Grenze überschreitet, und in grüner Schrift, wenn er im unkritischen Bereich liegt. Es gibt außerdem zwei Schalter, mit denen die Automatisierung der Belüftung und das Benachrichtigen per Push-Nachricht bei Überschreitung des Grenzwerts aktiviert werden können.
-Die Push-Benachrichtigungen werden an eine Telegram-Gruppe gesendet, in die alle Mitarbeiter eines Bauernhofs aufgenommen werden können, sodass jeder informiert ist. Eine Benachrichtigung wird auch gesendet, wenn die Steuerung der Belüftung deaktiviert wird, woraufhin das System die Belüftung abschaltet. Dies verhindert, dass die Belüftung unnötig lange läuft, falls sie zum Zeitpunkt der Deaktivierung noch aktiv ist, und trägt dazu bei, den Energieverbrauch des Stalls zu reduzieren. In Abschnitt \ref{ui} wird genauer auf das finale Userinterface eingeangen.
-
-
+Die Push-Benachrichtigungen werden an eine Telegram-Gruppe gesendet, in die alle Mitarbeiter eines Bauernhofs aufgenommen werden können, sodass jeder informiert ist. Eine Benachrichtigung wird auch gesendet, wenn die Steuerung der Belüftung deaktiviert wird, woraufhin das System die Belüftung abschaltet. Dies verhindert, dass die Belüftung unnötig lange läuft, falls sie zum Zeitpunkt der Deaktivierung noch aktiv ist, und trägt dazu bei, den Energieverbrauch des Stalls zu reduzieren. In Abschnitt \ref{ui} wird genauer auf die finale Benutzeroberfläche eingeangen.
 
 \section{Hardware Komponenten}
 \subsection{Raspberry Pi 3B}
@@ -123,7 +113,7 @@ Um die vorgestellten Sensoren nutzen zu können, müssen diese an die korrekten 
 \subsubsection{Anschließen des BME680 Sensors} 
 
 
-Der BME680 besitzt sechs Pins, welche Abbildung \ref{bme_pins} zu entnehmen sind. Relevant sind hierbei die oberen 4 Pins, welche wie in Abbildung \ref{verkabelung_bme} aufgezeigt an den Raspberry Pi angeschlossen werden müssen. \cite{bme_anschluss}
+Der BME680 besitzt sechs Pins, welche Abbildung \ref{bme_pins} zu entnehmen sind. Relevant sind hierbei die oberen 4 Pins, welche wie in Abbildung \ref{verkabelung_bme} aufgezeigt, an den Raspberry Pi angeschlossen werden müssen. \cite{bme_anschluss}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=50mm]{fig/bme_pins.png}
@@ -186,26 +176,25 @@ Nach der Einrichtung des Raspberry Pi musste zunächst das I2C (Inter-Integrated
 \subsection{Datenübertragung}
 \label{chapter:datenuebertragung}
 Die Datenübertragung vom Raspberry Pi an die Webanwendung findet über ein Python-Skript statt. Python bietet sich hierbei als Programmiersprache aufgrund der knappen und prägnanten Syntax an und ist außerdem auf dem Betriebssystem des Raspberry Pi vorinstalliert, sodass kein zusätzlicher Aufwand nötig ist, um das Skript zum laufen zu bringen. Ein weiterer Vorteil von Python ist die Plattformunabhängigkeit, wodurch die Datenübertragung ebenfalls auf anderen Betriebssystemen wie Windows, Linux und MacOS problemlos ohne Änderungen ausgeführt werden könnte. \\
-Das Skript dient dazu, die von den Sensoren gemessenen Daten zu erfassen, entsprechend zu formatieren und an die Webanwendung zu senden. Es beginnt mit der Initialisierung und Erkennung der Sensoren. Das Skript versucht, den BME680 Sensor unter der primären I2C-Adresse zu initialisieren. Wird der Sensor erkannt, werden verschiedene Parameter wie Oversampling und Filtergröße konfiguriert, um genaue Messungen zu gewährleisten. Zusätzlich wird der MQ137-Sensor konfiguriert. Der digitale Ausgangspin dieses Sensors wird angesteuert, und es wird überprüft, ob der Sensor betriebsbereit ist. \\
-Im nächsten Schritt erfasst das Skript die Sensordaten und sendet sie per HTTP-Anfrage an die Webanwendung. Hierbei werden die aktuellen Sensorwerte ausgelesen und in ein JSON-Objekt verpackt. Dieses Objekt wird dann über eine vordefinierte Route mit der entsprechenden URL an die Webanwendung gesendet. Das Skript überprüft anschließend, ob die Übertragung erfolgreich war und gibt entsprechend eine Erfolgsmeldung oder eine Fehlermeldung zurück, falls der Raspberry Pi nicht mit dem Internet verbunden, oder die Webanwendung nicht erreichbar ist. Diese Meldungen werden zusammen mit den Sensordaten in einer Log-Datei gespeichert. Ein beispielhafter Log-Eintrag für eine erfolgreiche Datenübertragung ist in Abbildung \ref{send_data_success} zu sehen. 
+Das Skript dient dazu, die von den Sensoren gemessenen Daten zu erfassen, entsprechend zu formatieren und an die Webanwendung zu senden. Es beginnt mit der Initialisierung und Erkennung der Sensoren. Das Skript versucht, den BME680 Sensor unter der primären I2C-Adresse zu initialisieren. Wird der Sensor erkannt, werden verschiedene Parameter wie Oversampling und Filtergröße konfiguriert, um genaue Messungen zu gewährleisten. Zusätzlich wird der MQ137-Sensor konfiguriert. Der digitale Ausgangspin dieses Sensors wird angesteuert, und es wird überprüft, ob der Sensor erreichbar, bzw. betriebsbereit ist. \\
+Im nächsten Schritt erfasst das Skript die Sensordaten und sendet sie per HTTP-Anfrage an die Webanwendung. Hierbei werden die aktuellen Sensorwerte ausgelesen und in ein JSON-Objekt verpackt. Dieses Objekt wird dann über eine vordefinierte Route mit der entsprechenden URL an die Webanwendung gesendet. Das Skript überprüft anschließend, ob die Übertragung erfolgreich war und gibt entsprechend eine Erfolgsmeldung oder eine Fehlermeldung zurück, falls der Raspberry Pi nicht mit dem Internet verbunden, oder die Webanwendung nicht erreichbar ist. Diese Meldungen werden zusammen mit den Sensordaten in einer Log-Datei gespeichert. Ein beispielhafter Log-Eintrag für eine erfolgreiche Datenübertragung ist in Abbildung \ref{send_data_success} zu sehen. Zum Abschluss werden die verwendeten GPIO-Pins bereinigt, um sicherzustellen, dass keine Ressourcen unnötig belegt bleiben.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=85mm]{fig/daten_erfolgreich_gesendet.png}
 	\caption{Logeintrag für erfolgreich gesendete Sensordaten}
 	\label{send_data_success}
 \end{figure}
-
-Zum Abschluss werden die verwendeten GPIO-Pins bereinigt, um sicherzustellen, dass keine Ressourcen unnötig belegt bleiben. \\
 Um Ressourcen zu schonen, enthält das Skript keine Schleife, die die Daten in regelmäßigen Abständen ausliest und sendet. Stattdessen wird das Skript nach der Ausführung, also der einmaligen Datenübertragung, zunächst beendet. Für die regelmäßige Ausführung des Skripts wird Crontab genutzt. \\ 
-Crontab ist ein Dienst auf Unix-basierten Betriebssystemen, der es ermöglicht, Aufgaben zu einem bestimmten Zeitplan auszuführen. Es handelt sich um eine Zeitplanungsdatei, die als Crontab-Datei bezeichnet wird und in der definiert wird, wann und wie oft bestimmte Befehle oder Skripte automatisch ausgeführt werden sollen. Die Verwendung von Crontab zur regelmäßigen Ausführung eines Python-Skripts in festgelegten Intervallen bietet mehrere Vorteile. Diese umfassen eine effizientere Nutzung der Systemressourcen, eine vereinfachte Verwaltung und Fehlerbehebung sowie eine erleichterte Systemwartung. Ein dauerhaft laufendes Skript verbraucht kontinuierlich Speicher, selbst wenn es inaktiv ist. Crontab startet das Skript nur bei Bedarf, wodurch der Speicherverbrauch erheblich reduziert wird und die Systemressourcen effizienter genutzt werden. Darüber hinaus erleichtert Crontab die Verwaltung und das Debugging. Jedes Mal, wenn das Skript neu startet, beginnt es in einem sauberen Zustand, was die Fehlersuche vereinfacht und die Stabilität erhöht. Fehler oder inkonsistente Zustände, die sich in einem dauerhaft laufenden Skript ansammeln könnten, werden durch den Neustart behoben. Ein weiterer Vorteil ist die automatische Handhabung von Systemwartungen. Während dauerhaft laufende Skripte nach einem Neustart manuell neu gestartet werden müssen, starten Crontab-Jobs automatisch, was die Wiederherstellung des Betriebs nach Wartung, Updates oder unerwarteten Neustarts erleichtert.
+Crontab ist ein Dienst auf Unix-basierten Betriebssystemen, der es ermöglicht, Aufgaben zu einem bestimmten Zeitplan auszuführen. Es handelt sich um eine Zeitplanungsdatei, die als Crontab-Datei bezeichnet wird und in der definiert wird, wann und wie oft bestimmte Befehle oder Skripte automatisch ausgeführt werden sollen. Die Verwendung von Crontab zur regelmäßigen Ausführung eines Python-Skripts in festgelegten Intervallen bietet mehrere Vorteile. Diese umfassen eine effizientere Nutzung der Systemressourcen, eine vereinfachte Verwaltung und Fehlerbehebung sowie eine erleichterte Systemwartung. Ein dauerhaft laufendes Skript verbraucht kontinuierlich Speicher, selbst wenn es inaktiv ist. \\
+Crontab startet das Skript nur bei Bedarf, wodurch der Speicherverbrauch erheblich reduziert wird und die Systemressourcen effizienter genutzt werden. Darüber hinaus erleichtert Crontab die Verwaltung und das Debugging. Jedes Mal, wenn das Skript neu startet, beginnt es in einem sauberen Zustand, was die Fehlersuche vereinfacht und die Stabilität erhöht. Fehler oder inkonsistente Zustände, die sich in einem dauerhaft laufenden Skript ansammeln könnten, werden durch den Neustart behoben. Ein weiterer Vorteil ist die automatische Handhabung von Systemwartungen. Während dauerhaft laufende Skripte nach einem Neustart manuell neu gestartet werden müssen, starten Crontab-Jobs automatisch, was die Wiederherstellung des Betriebs nach Wartung, Updates oder unerwarteten Neustarts erleichtert.
 
 \section{Webanwendung}
 \subsection{Architektur}
 Die Webanwendung wurde mit dem ASP.NET Core Framework für C-Sharp, unter Verwendung der .NET-Plattform, entwickelt. ASP.NET Core ist ein modernes, plattformübergreifendes Framework für die Entwicklung von Webanwendungen. Es bietet eine modularisierte Architektur, die Entwicklern ermöglicht, nur benötigte Komponenten zu verwenden, was die Performance verbessert und die Anpassungsfähigkeit erhöht. Durch seine Plattformunabhängigkeit läuft ASP.NET Core auf Windows, macOS und Linux, was Flexibilität bei der Bereitstellung ermöglicht. Das Framework ist stark auf Performance optimiert und unterstützt moderne Webentwicklungsmuster \cite{dotNET} \cite{csharp}. \\
 Ein Beispiel hierfür ist MVC (Model-View-Controller), welches für die Webanwendung verwendet wurde. Hierbei handelt es sich um ein moderneres Designmuster, das die Trennung von Datenmodell, Präsentationsschicht und Steuerungslogik fördert, was die Struktur und Übersichtlichkeit der Webanwendung verbessert.
 \subsection{Hosting}
-Die Webanwendung wird auf einem Oracle Cloud Webserver gehostet, der mit dem Linux-Betriebssystem läuft. Diese Entscheidung bietet mehrere Vorteile für das Projekt. Einerseits gewährleistet der Oracle Cloud Webserver eine hohe Zuverlässigkeit und Verfügbarkeit der Anwendung durch seine robuste Infrastruktur und Service Level Agreements. Außerdem besteht die Möglichkeit, Ressourcen nach Bedarf zu skalieren, dass die Anwendung problemlos mit steigenden Benutzeranforderungen wachsen kann. Diese Flexibilität unterstützt auch eine kosteneffiziente Nutzung, da Ressourcen nur dann erhöht werden, wenn sie auch tatsächlich benötigt werden. \\
-Für die Durchführung des Projekts wurde die sogenannte \textit{Oracle Cloud Free Tier} genutzt, hierbei handelt es sich um einen kostenlosen Tarif mit entsprechend eingeschränkter Rechenleistung. Da sich die zur verfügung stehenden Ressourcen allerdings beliebig skalieren lassen, ist es jederzeit ohne Mehraufwand möglich zusätzliche Rechenleistung anzumieten, welche gegebenenfalls in der Zukunft bei Weiterentwicklung der Anwendung für zusätzliche Funktionen benötigt wird. Das Hosting auf einem Oracle Cloud Webserver bietet somit eine solide Grundlage für eine sichere, skalierbare und kosteneffiziente Bereitstellung der Webanwendung. \\
+Die Webanwendung wird auf einem Oracle Cloud Webserver gehostet, der mit dem Linux-Betriebssystem läuft. Diese Entscheidung bietet mehrere Vorteile für das Projekt. Einerseits gewährleistet der Oracle Cloud Webserver eine hohe Zuverlässigkeit und Verfügbarkeit der Anwendung durch seine robuste Infrastruktur und Service Level Agreements. Außerdem besteht die Möglichkeit, Ressourcen nach Bedarf zu skalieren, dass die Anwendung problemlos mit steigenden Benutzeranforderungen wachsen kann. Diese Flexibilität unterstützt auch eine kosteneffiziente Nutzung, da Ressourcen nur dann erhöht werden, wenn sie auch tatsächlich benötigt werden. Für die Durchführung des Projekts wurde die sogenannte \textit{Oracle Cloud Free Tier} genutzt. \\
+Hierbei handelt es sich um einen kostenlosen Tarif mit entsprechend eingeschränkter Rechenleistung. Da sich die zur verfügung stehenden Ressourcen allerdings beliebig skalieren lassen, ist es jederzeit ohne Mehraufwand möglich zusätzliche Rechenleistung anzumieten, welche gegebenenfalls in der Zukunft bei Weiterentwicklung der Anwendung für zusätzliche Funktionen benötigt wird. Das Hosting auf einem Oracle Cloud Webserver bietet somit eine solide Grundlage für eine sichere, skalierbare und kosteneffiziente Bereitstellung der Webanwendung. \\
 
 \subsection{Deployment}
 Das Deployment einer ASP.NET Core Webanwendung auf einem Linux Webserver umfasst mehrere Schritte, um sicherzustellen, dass die Anwendung ordnungsgemäß bereitgestellt und ausgeführt wird. Dieses Kapitel erläutert den den Prozess vom Entwicklungs- bis zum Produktionsumfeld
@@ -232,7 +221,8 @@ Schritte für das Deployment:
 \end{itemize}
 \subsection{Software Design}
 Das MVC-Framework in ASP.NET C\# ist eine Architektur, die die Strukturierung von Webanwendungen erleichtert, indem sie die Anwendung in drei Hauptkomponenten unterteilt: Model, View und Controller. Die Model-Komponente repräsentiert die Geschäftslogik und die Anwendungsdaten. Sie ist verantwortlich für die Verwaltung des Zustands der Anwendung und stellt Methoden zur Verfügung, um Daten zu speichern, abzurufen und zu manipulieren. Die View-Komponente ist für die Darstellung der Daten verantwortlich, die vom Model bereitgestellt werden. Sie stellt die Benutzeroberfläche dar und enthält HTML, CSS und JavaScript, um eine ansprechende und interaktive Benutzeroberfläche zu erstellen. In diesem Projekt bilden die Login- und auch die Hauptseite die View. Die Controller-Komponente verarbeitet Benutzereingaben, interagiert mit dem Model und wählt eine View zur Darstellung der Ergebnisse aus. Der Controller fungiert als Vermittler zwischen Model und View, indem er die Anwendungslogik implementiert und die entsprechenden Views rendert. In den Controllern dieses Projekts sind beipielsweise zwei Services implementiert, die für die Verarbeitung der gesendeten Daten zuständig sind. Der Service \textit{\_readService} liest die Daten aus der Datenbank aus während der \textit{\_writeService}, der im ReceiveDataController die Sensordaten in die Datenbank schreibt \cite{mvc}.
-\subsection{Anbindung der MYSQL Datenbank}
+\subsection{MYSQL Datenbank}
+\subsubsection{Anbindung}
 Die Anbindung einer MySQL-Datenbank in der ASP.NET Core Webanwendung erfolgt über das Entity Framework Core von Microsoft, welches zunächst in der Entwicklungsumgebung installiert werden muss. Anschließend werden Verbindungsdaten wie Hostname, Benutzername, Passwort und Datenbankname der gehosteten Datenbank benötigt. Die Verbindung wird als sogenannter \textit{ConnectionString} in einer separaten Konfigurationsdatei der Webanwendung definiert. Dieser sieht wie folgt aus: \\
 \begin{verbatim}
 "DefaultConnection": "Server=localhost;
@@ -240,8 +230,8 @@ Database=MeinDatenbankName;
 User=root;Password=MeinPasswort;"
 \end{verbatim}
 Die Webanwendung kann sich mit Hilfe des entsprechenden Frameworks und den Zugangsdaten mit der Datenbank verbinden und Anweisungen, sogenannte SQL-Querys in Form von Strings senden, welche der MYSQL-Syntax entsprechen müssen. Die Query-Strings können anschließend einem Objekt der Klasse \textit{MySqlCommand} zugewiesen und über dieses an die Datenbank übermittelt werden.
-\subsection{Datenbanktabelle}
-Der Aufbau der Datenbanktabelle \textit{sensordata} ist einfach gehalten. In diese Tabelle werden die Sensordaten über den \textit{\_writeService} eingefügt. Die Tabelle enthält unter anderem einen Zeitstempel, der als Primary Key fungiert. Ein Primary Key in einer Datenbank ist ein spezielles Feld oder eine Kombination von Feldern, das jeden Datensatz in einer Tabelle eindeutig identifiziert und keine NULL-Werte enthalten darf. Die Struktur von \textit{sensordata} ist in der folgenden Tabelle dargestellt:
+\subsubsection{Tabellenstruktur}
+Der Aufbau der Datenbanktabelle \textit{sensordata} ist einfach gehalten. In diese Tabelle werden die Sensordaten über den \textit{\_writeService} eingefügt. Die Tabelle enthält unter anderem einen Zeitstempel, der als Primary Key fungiert. Ein Primary Key in einer Datenbank ist ein spezielles Feld oder eine Kombination von Feldern, das jeden Datensatz in einer Tabelle eindeutig identifiziert und keine NULL-Werte enthalten darf. Die Sensorwerte für Ammoniak, Luftfeuchtigkeit und Temperatur werden jeweils als Gleitkommazahlen in der Datenbank gespeichert. Die Spalten und Datentypen der Tabelle \textit{sensordata} ist im Folgenden zu sehen:
 \begin{table}[h!]
     \centering
     \begin{tabular}{|c|c|c|}
@@ -277,9 +267,9 @@ Der Controller ruft anschließend einen Service auf, welcher eine Funktion enth�
 
 
 \subsection{Auslesen und Anzeigen der Sensordaten}
-Für die Anzeige der Sensordaten in der Webanwendung wurden bestimmte Anforderungen definiert. Zum einen sollten die Daten in einem Liniendiagramm dargestellt werden, und zum anderen sollte die Webanwendung sowohl auf PCs und Laptops als auch auf mobilen Geräten reibungslos funktionieren. Dies erforderte die Nutzung eines responsiven Frameworks wie Bootstrap.
+Für die Anzeige der Sensordaten in der Webanwendung wurden bestimmte Anforderungen definiert. Zum einen sollten die Daten in einem Liniendiagramm dargestellt werden, und zum anderen sollte die Webanwendung sowohl auf PCs und Laptops als auch auf mobilen Geräten reibungslos funktionieren. Dies erforderte die Nutzung eines responsiven Frameworks wie Bootstrap. \\
 Bootstrap wurde gewählt, da es eine breite Palette an vorgefertigten UI-Komponenten und ein responsives Grid-System bietet. Dies ermöglicht eine einfache Integration und schnelle Entwicklung von modernen und benutzerfreundlichen Webseiten, unabhängig vom verwendeten Gerät \cite{bootstrap}.
-Um Bootstrap effektiv zu nutzen, wurden folgende JavaScript-Bibliotheken integriert:
+Um Bootstrap effektiv zu nutzen, wurden folgende JavaScript-Bibliotheken integriert: \\
 jQuery: Diese leistungsstarke Bibliothek unterstützt die Manipulation des DOM und erleichtert AJAX-Interaktionen. In Verbindung mit Bootstrap ermöglicht sie die dynamische Aktualisierung von Inhalten und die Interaktion mit Benutzeroberflächenelementen wie Dropdown-Menüs oder Modalfenstern.
 \begin{verbatim}
 <script src="https://code.jquery.com/
@@ -297,8 +287,8 @@ Bootstrap: Das Bootstrap-Bundle enthält das Haupt-JavaScript von Bootstrap. Die
 npm/bootstrap@4.6.2/dist/js/bootstrap.
 bundle.min.js"></script>
 \end{verbatim}
-Zusammen stellen diese Skript-Links sicher, dass Bootstrap nahtlos in die Webanwendung integriert wird und eine optimale Benutzerinteraktion sowie eine responsive Darstellung auf verschiedenen Geräten gewährleistet ist.
-Für die Darstellung der Sensordaten in einem Liniendiagramm wurde Chart.js gewählt. Diese Bibliothek bietet eine einfache und flexible Möglichkeit, Daten visuell ansprechend darzustellen. Im Vergleich zu Grafana, das eher für umfangreichere und komplexe Datenvisualisierungen in großen Systemen verwendet wird \cite{grafana}, ist Chart.js leichter in kleinere Webanwendungen zu integrieren und bietet dennoch ausreichend Funktionalität für die Anforderungen der Sensordatenvisualisierung \cite{chart.js}.
+Zusammen stellen diese Skript-Links sicher, dass Bootstrap nahtlos in die Webanwendung integriert wird und eine optimale Benutzerinteraktion sowie eine responsive Darstellung auf verschiedenen Geräten gewährleistet ist. \\
+Für die Darstellung der Sensordaten in einem Liniendiagramm wurde Chart.js gewählt. Diese Bibliothek bietet eine einfache und flexible Möglichkeit, Daten visuell ansprechend darzustellen. Im Vergleich zu Grafana, das eher für umfangreichere und komplexe Datenvisualisierungen in großen Systemen verwendet wird \cite{grafana}, ist Chart.js leichter in kleinere Webanwendungen zu integrieren und bietet dennoch ausreichend Funktionalität für die Anforderungen der Sensordatenvisualisierung \cite{chart.js}. \\
 Die folgenden Links integrieren Chart.js und das zugehörige Datum-Adapter-Bundle in die Webseite:
 \begin{verbatim}
 <script src="https://cdn.jsdelivr.net/npm/
@@ -311,28 +301,48 @@ Diese Entscheidungen zusammen ermöglichen eine effektive und effiziente Darstel
 Nachdem die benötigten Bibliotheken eingebunden wurden, können die Diagramme in der Webanwendung aufgebaut werden. Der  HTML-Code in \ref{sec:htmlCodeDiagrammAnhang} definiert die Struktur eines Diagramms inklusive dem aktuellen Wert anhand der Temperatur.
 
 Das eigentliche Diagramm wird durch das \textit{<canvas>}-Element mit der ID \textit{}{lineChartTemperatur} dargestellt. Mir dieser ID kann genau dieses Diagramm bearbeitet werden.
-Um die Sensordaten für beispielsweise die Temperatur abzurufen, wird AJAX verwendet. AJAX ermöglicht es, Daten asynchron im Hintergrund zu laden, ohne die gesamte Webseite neu zu laden. Der JavaScript-Code in Anhang \ref{sec:ajaxAnhang} zeigt einen Beispielaufruf.
-Hierbei ist \textit{GetTemperatur} die URL, unter der die Sensordaten abgerufen werden. Hinter dieser URL steckt eine Funktion, die im C\#-Code in dem \textit{HomeController} implementiert ist. Diese Funktion bzw. der Service \textit{\_readService} ist dafür zuständig, alle Daten aus der Datenbank für einen Zeitraum von einer Woche und einem Tag abzurufen, sie in ein Objekt zu transformieren und dieses an die aufrufende Stelle zurückzusenden. Die empfangenen Daten werden anschließend im Frontend in ein JavaScript-Dictionary (\textit{temperaturWerteTagAktuellDictionary}) umgewandelt, um sie später im Diagramm anzeigen zu können.
+Um die Sensordaten für beispielsweise die Temperatur abzurufen, wird AJAX verwendet. AJAX ermöglicht es, Daten asynchron im Hintergrund zu laden, ohne die gesamte Webseite neu zu laden. Der JavaScript-Code in Anhang \ref{sec:ajaxAnhang} zeigt einen Beispielaufruf. \\
+Hierbei ist \textit{GetTemperatur} die URL, unter der die Sensordaten abgerufen werden. Hinter dieser URL steckt eine Funktion, die im C\#-Code in dem \textit{HomeController} implementiert ist. Diese Funktion bzw. der Service \textit{\_readService} ist dafür zuständig, alle Daten aus der Datenbank für einen Zeitraum von einer Woche und einem Tag abzurufen, sie in ein Objekt zu transformieren und dieses an die aufrufende Stelle zurückzusenden. Die empfangenen Daten werden anschließend im Frontend in ein JavaScript-Dictionary (\textit{temperaturWerteTagAktuellDictionary}) umgewandelt, um sie später im Diagramm anzeigen zu können. \\
 Die Verwendung von AJAX ist besonders nützlich, da sie eine flüssige Benutzererfahrung ermöglicht, indem Daten im Hintergrund geladen werden, während die Benutzeroberfläche weiterhin interaktiv bleibt. Dies ist wichtig für die dynamische Aktualisierung und Visualisierung von Echtzeitdaten.
-In der Funktion \textit{createTemperaturDiagramTag} wird das Diagramm erstellt, wobei die Sensordaten entsprechend bearbeitet werden müssen. Der folgenden Codeabschnitte ist hierbei von Bedeutung:
+In der Funktion \textit{createTemperaturDiagramTag} wird das Diagramm erstellt, wobei die Sensordaten entsprechend bearbeitet werden müssen. Der folgenden Codeabschnitte ist hierbei von Bedeutung: \\
 \begin{verbatim}var dataTemperaturValues = 
 parseDictionary(labels, dataValues); \end{verbatim}
-\textit{dataTemperaturValues} enthält die Datenpaare, die später im Diagramm angezeigt werden. Um sicherzustellen, dass diese korrekt dargestellt werden, müssen die Daten zunächst in das richtige Format gebracht werden. Die Funktion \textit{parseDictionary} wandelt beispielsweise einzelne Temperaturwerte von 23,45 in 23.45 um, da Chart.js nicht mit Kommazahlen umgehen kann. Ebenso müssen die Labels, also die Zeitstempel, angepasst werden.
+\textit{dataTemperaturValues} enthält die Datenpaare, die später im Diagramm angezeigt werden. Um sicherzustellen, dass diese korrekt dargestellt werden, müssen die Daten zunächst in das richtige Format gebracht werden. Die Funktion \textit{parseDictionary} wandelt beispielsweise einzelne Temperaturwerte von 23,45 in 23.45 um, da Chart.js nicht mit Kommazahlen umgehen kann. Ebenso müssen die Labels, also die Zeitstempel, angepasst werden. \\
+Sobald die Daten korrekt bearbeitet wurden, kann das Diagramm aufgebaut werden. Der Code wurde exemplarisch für das Diagramm in Anhang \ref{sec:jsdiagrammanhang} hinterlegt. \\
+Mit diesem Code wird das Diagramm konfiguriert und angezeigt. Dabei wird ein Liniendiagramm erstellt, das die aktuellen Temperaturwerte sowie eine festgelegte Temperaturgrenze darstellt. Die X-Achse ist als Zeitachse konfiguriert, die die Daten nach Stunden darstellt, während die Y-Achse die Temperatur in Grad Celsius anzeigt. Dieses Vorgehen wird ebenfalls für die Anzeige der Daten der letzten sieben Tage verwendet, wobei die entsprechenden Daten und Labels eebenfalls angepasst werden.
 
-Sobald die Daten korrekt bearbeitet wurden, kann das Diagramm aufgebaut werden. Der Code wurde exemplarisch für das Diagramm in Anhang \ref{sec:jsdiagrammanhang} hinterlegt.
-
-Mit diesem Code wird das Diagramm konfiguriert und angezeigt. Dabei wird ein Liniendiagramm erstellt, das die aktuellen Temperaturwerte sowie eine festgelegte Temperaturgrenze darstellt. Die X-Achse ist als Zeitachse konfiguriert, die die Daten nach Stunden darstellt, während die Y-Achse die Temperatur in Grad Celsius anzeigt.
-Dieses Vorgehen wird ebenfalls für die Anzeige der Daten der letzten sieben Tage verwendet, wobei die entsprechenden Daten und Labels eebenfalls angepasst werden.
+\subsection{Telegram Anbindung}
+Die Benachrichtigung per Telegram wird ausgelöst, wenn ein bestimmter Wert, wie beispielsweise die Temperatur, einen definierten Schwellenwert überschreitet. Telegram bietet sich aus mehreren Gründen hervorragend an, um Nachrichten in diesem Szenario zu versenden. Zum einen ist Telegram eine weit verbreitete Messaging-App, die auf verschiedenen Plattformen wie Android, iOS, Windows, macOS und im Web verfügbar ist. Das bedeutet, dass der Landwirt die Benachrichtigungen auf seinem Smartphone, Tablet oder Computer empfangen kann, unabhängig davon, welches Gerät er verwendet. Außerdem unterstützt Telegram Push-Benachrichtigungen, die in Echtzeit gesendet werden. \\
+Ein weiterer Vorteil ist die einfache Implementierung. Telegram bietet eine API,  die es Entwicklern ermöglicht, automatisierte Nachrichten einfach und effizient zu versenden. Darüber hinaus legt Telegram großen Wert auf Datenschutz und Sicherheit. Nachrichten werden verschlüsselt gesendet, was bedeutet, dass nur der Landwirt und die von ihm autorisierten Personen Zugriff auf die Informationen haben. Dies ist besonders wichtig, um sicherzustellen, dass sensible Daten nicht in die falschen Hände geraten. Ein weiterer Pluspunkt ist die Kosteneffizienz: Telegram ist kostenlos nutzbar und erfordert keine zusätzlichen Kosten für den Versand von Nachrichten \cite{telegram}.
+In diesem Projekt enthält die Nachricht den aktuellen Wert und eine Warnung, dass dieser zu hoch ist. Entscheidet sich der Landwirt, die automatische Steuerung abzuschalten, erhält er zusätzlich eine Mitteilung darüber, dass die Belüftung ausgeschaltet ist und er diese nun manuell steuern muss.
+Der folgende Code wird verwendet, um eine Telegram-Nachricht zu verschicken:
+\begin{verbatim}
+	string botToken = 
+	"6076806213:AAEXa-EkyOE9ImDtQO9BwmwXtMOMP
+	NgCIjI";
+	string chatId = "-4018396712";
+	string nachricht = message;
+	string apiUrl = $"https://api.telegram.org
+	/bot{botToken}/sendMessage";
+	using(HttpClient client = new HttpClient())
+	{
+		var content = new StringContent(
+		$"chat_id={chatId}&text={nachricht}", 
+		Encoding.UTF8, 
+		"application/x-www-form-urlencoded");
+		HttpResponseMessage response = 
+		await client.PostAsync(apiUrl, content);
+	}
+\end{verbatim}
+In diesem Code werden zunächst die botToken und die chatId definiert. Das botToken ist der eindeutige Schlüssel, der den Bot bei Telegram authentifiziert, während die chatId die Identifikation des Chat-Kanals darstellt, in den die Nachricht gesendet wird. Die Nachricht selbst wird in der Variable \textit{nachricht} gespeichert. \\
+Die URL der Telegram-API, die für das Senden von Nachrichten verwendet wird, wird in der Variable \textit{apiUrl} gespeichert. Mit einem \textit{HttpClient} wird eine HTTP-Post-Anfrage an diese URL gesendet. Dabei wird die Nachricht in einem Formular mit dem entsprechenden Chat-ID und dem Textinhalt als application/x-www-form-urlencoded kodiert und im Body der Anfrage übermittelt. Der Server antwortet daraufhin mit einem HttpResponseMessage, die den Erfolg oder Misserfolg der Anfrage dokumentiert.
 
 \subsection{Benutzeroberfläche}
 \label{ui}
-Oben auf der Seite befindet sich der Titel "SmartStall", der den Namen des Projekts kennzeichnet. Direkt darunter sind zwei Schalter platziert: Mit dem Schalter "Benachrichtigung" können Benachrichtigungen aktiviert oder deaktiviert werden. Bei Aktivierung werden Benachrichtigungen über Telegram gesendet, wenn die Messwerte bestimmte Grenzwerte überschreiten. Der Schalter "Belüftung" dient dazu, die automatische Belüftung ein- oder auszuschalten. Wenn dieser Schalter aktiviert ist, schaltet sich die Belüftung automatisch ein, sobald die Messwerte über die festgelegten Grenzwerte steigen.
-
-Die Webanwendung umfasst drei Hauptsektionen zur Überwachung der Luftqualität: Ammoniak, Luftfeuchtigkeit und Temperatur. Jede dieser Sektionen enthält ein interaktives Diagramm, das die Messwerte über einen Tages- oder Wochenverlauf anzeigt, je nach gewählter Ansicht und alle 3 Minuten aktualisiert wird. Die y-Achse der Diagramme zeigen die gemessenen Werte wie die Ammoniakkonzentration in ppm (parts per million), die Luftfeuchtigkeit in Prozent oder die Temperatur in Grad Celsius. Eine schwarze Linie stellt die aktuellen Messwerte dar, während eine rote Linie die festgelegten Grenzwerte anzeigt.
-
+Oben auf der Seite befindet sich der Titel "SmartStall", der den Namen des Projekts kennzeichnet. Direkt darunter sind zwei Schalter platziert: Mit dem Schalter "Benachrichtigung" können Benachrichtigungen aktiviert oder deaktiviert werden. Bei Aktivierung werden Benachrichtigungen über Telegram gesendet, wenn die Messwerte bestimmte Grenzwerte überschreiten. Der Schalter "Belüftung" dient dazu, die automatische Belüftung ein- oder auszuschalten. Wenn dieser Schalter aktiviert ist, schaltet sich die Belüftung automatisch ein, sobald die Messwerte über die festgelegten Grenzwerte steigen. \\
+Die Webanwendung umfasst drei Hauptsektionen zur Überwachung der Luftqualität: Ammoniak, Luftfeuchtigkeit und Temperatur. Jede dieser Sektionen enthält ein interaktives Diagramm, das die Messwerte über einen Tages- oder Wochenverlauf anzeigt, je nach gewählter Ansicht und alle 3 Minuten aktualisiert wird. Die y-Achse der Diagramme zeigen die gemessenen Werte wie die Ammoniakkonzentration in ppm (parts per million), die Luftfeuchtigkeit in Prozent oder die Temperatur in Grad Celsius. Eine schwarze Linie stellt die aktuellen Messwerte dar, während eine rote Linie die festgelegten Grenzwerte anzeigt. \\
 Neben jedem Diagramm wird der aktuelle Messwert groß und deutlich angezeigt. Dieser Wert ist grün hinterlegt, wenn er unterhalb der festgelegten Grenzwerte liegt, und rot hinterlegt, wenn er die Grenzwerte überschreitet. Dies ermöglicht den Benutzern, die aktuellen Bedingungen im Stall schnell zu erkennen.
 Die strukturierte Gestaltung des Interface stellt sicher, dass alle wichtigen Informationen auf einen Blick verfügbar sind und einfach verwaltet werden können.
-
 Das Userinterface kann dem Anhang \ref{sec:uiPCAnhang} für den PC und der Abbildung \ref{uiHandy} für ein Smartphone entnommen werden entnommen werden. 
 \begin{figure}[H]
 	\centering
@@ -347,36 +357,10 @@ Auf einem Smartphone kann die Webanwendung zusätzlich durch die Einstellung "Zu
 	\caption{Speichern der Webanwendung auf dem Startbildschirm des Smartphones, wodurch diese als App bedienbar ist}
 	\label{stApp}
 \end{figure}
-\subsection{Telegram Anbindung}
-Die Benachrichtigung per Telegram wird ausgelöst, wenn ein bestimmter Wert, wie beispielsweise die Temperatur, einen definierten Schwellenwert überschreitet. Telegram bietet sich aus mehreren Gründen hervorragend an, um Nachrichten in diesem Szenario zu versenden. Zum einen ist Telegram eine weit verbreitete Messaging-App, die auf verschiedenen Plattformen wie Android, iOS, Windows, macOS und im Web verfügbar ist. Das bedeutet, dass der Landwirt die Benachrichtigungen auf seinem Smartphone, Tablet oder Computer empfangen kann, unabhängig davon, welches Gerät er verwendet. Außerdem unterstützt Telegram Push-Benachrichtigungen, die in Echtzeit gesendet werden. Ein weiterer Vorteil ist die einfache Implementierung. Telegram bietet eine API,  die es Entwicklern ermöglicht, automatisierte Nachrichten einfach und effizient zu versenden. Darüber hinaus legt Telegram großen Wert auf Datenschutz und Sicherheit. Nachrichten werden verschlüsselt gesendet, was bedeutet, dass nur der Landwirt und die von ihm autorisierten Personen Zugriff auf die Informationen haben. Dies ist besonders wichtig, um sicherzustellen, dass sensible Daten nicht in die falschen Hände geraten. Ein weiterer Pluspunkt ist die Kosteneffizienz: Telegram ist kostenlos nutzbar und erfordert keine zusätzlichen Kosten für den Versand von Nachrichten \cite{telegram}.
-In diesem Projekt enthält die Nachricht den aktuellen Wert und eine Warnung, dass dieser zu hoch ist. Entscheidet sich der Landwirt, die automatische Steuerung abzuschalten, erhält er zusätzlich eine Mitteilung darüber, dass die Belüftung ausgeschaltet ist und er diese nun manuell steuern muss.
-Der folgende Code wird verwendet, um eine Telegram-Nachricht zu verschicken:
-\begin{verbatim}
-string botToken = 
-"6076806213:AAEXa-EkyOE9ImDtQO9BwmwXtMOMP
-NgCIjI";
-string chatId = "-4018396712";
-string nachricht = message;
-string apiUrl = $"https://api.telegram.org
-/bot{botToken}/sendMessage";
-using(HttpClient client = new HttpClient())
-{
-  var content = new StringContent(
-  $"chat_id={chatId}&text={nachricht}", 
-  Encoding.UTF8, 
-  "application/x-www-form-urlencoded");
-  HttpResponseMessage response = 
-  await client.PostAsync(apiUrl, content);
-}
-\end{verbatim}
-In diesem Code werden zunächst die botToken und die chatId definiert. Das botToken ist der eindeutige Schlüssel, der den Bot bei Telegram authentifiziert, während die chatId die Identifikation des Chat-Kanals darstellt, in den die Nachricht gesendet wird. Die Nachricht selbst wird in der Variable \textit{nachricht} gespeichert.
-Die URL der Telegram-API, die für das Senden von Nachrichten verwendet wird, wird in der Variable \textit{apiUrl} gespeichert. Mit einem \textit{HttpClient} wird eine HTTP-Post-Anfrage an diese URL gesendet. Dabei wird die Nachricht in einem Formular mit dem entsprechenden Chat-ID und dem Textinhalt als application/x-www-form-urlencoded kodiert und im Body der Anfrage übermittelt. Der Server antwortet daraufhin mit einem HttpResponseMessage, die den Erfolg oder Misserfolg der Anfrage dokumentiert.
-
 
 \subsection{Ansteuerung der Steckdose}
-Um die Belüftung zu steuern, ist es notwendig, eine WLAN-Steckdose zu integrieren, die mittels einer POST-Anfrage ein- oder ausgeschaltet werden kann. Zunächst muss die Steckdose mit dem WLAN verbunden werden. Dies erfolgt, indem die Steckdose an eine Stromquelle angeschlossen wird. Daraufhin erzeugt sie ein eigenes WLAN, mit dem sich mittels PC, Laptop oder Smartphone verbunden werden muss. Sobald die Verbindung hergestellt ist, öffnet sich eine Benutzeroberfläche, in der der Name des WLANs des Landwirtes und das zugehörige Passwort eingegeben werden. Nach einem Neustart verbindet sich die WLAN-Steckdose mit dem angegebenen Netzwerk.
+Um die Belüftung zu steuern, ist es notwendig, eine WLAN-Steckdose zu integrieren, die mittels einer POST-Anfrage ein- oder ausgeschaltet werden kann. Zunächst muss die Steckdose mit dem WLAN verbunden werden. Dies erfolgt, indem die Steckdose an eine Stromquelle angeschlossen wird. Daraufhin erzeugt sie ein eigenes WLAN, mit dem sich mittels PC, Laptop oder Smartphone verbunden werden muss. Sobald die Verbindung hergestellt ist, öffnet sich eine Benutzeroberfläche, in der der Name des WLANs des Landwirtes und das zugehörige Passwort eingegeben werden. Nach einem Neustart verbindet sich die WLAN-Steckdose mit dem angegebenen Netzwerk. \\
 Ist die Steckdose erfolgreich eingerichtet, kann sie entweder über das User Interface oder einen POST-Befehl im lokalen Netzwerk gesteuert werden. Beispielsweise kann folgende URL verwendet werden, um die Steckdose einzuschalten: \textit{http://localhost/cm?cmnd=Power\%20On}. Diese URL funktioniert jedoch nur innerhalb des eigenen Netzwerks \cite{delock}.
-
 \subsubsection{Dyndns}
 Um die Steckdose auch außerhalb des eigenen Netzwerks steuern zu können, sind zusätzliche Schritte erforderlich, wie die Einrichtung von DynDNS und die Konfiguration der Portfreigabe. DynDNS (Dynamic Domain Name System) ermöglicht den Zugriff auf das Heimnetzwerk über das Internet, indem eine dynamische IP-Adresse in eine statische Domain umgewandelt wird. Dies erfolgt durch Registrierung bei einem DynDNS-Anbieter (in diesem Projekt der Anbieter dyndnsfree) und die Konfiguration des Dienstes auf dem Router, um eine Domain zu erstellen, die auf die dynamische IP-Adresse verweist \cite{dyndns}.
 \subsubsection{Portfreigabe}
@@ -384,19 +368,15 @@ Für die Portfreigabe muss man sich in die Benutzeroberfläche des Routers einlo
 cm?cmnd=Power\%20On}
 
 \section{Test des gesamten Systemaufbaus}
-Im Folgenden werden zwei Tests unterschieden: ein Test, bei dem die Webanwendung lokal auf dem Rechner läuft, und ein finaler Test des gesamten Systems.
-
-Für den Test der lokalen Webanwendung musste zunächst ein Python-Skript erstellt werden, das regelmäßig Daten in die Testdatenbank schreibt. Da der Raspberry Pi die Sensordaten nur in die produktive Datenbank schreibt, die sich auf dem Server befindet und somit für die lokale Anwendung nicht zugänglich ist, musste das Senden der Sensordaten simuliert werden. Das Python-Skript verbindet sich mit der Testdatenbank und schreibt minütlich Daten für Ammoniak, Temperatur und Luftfeuchtigkeit, jeweils mit Zeitstempel, in die Datenbank. Dabei wurden Grenzen definiert, innerhalb derer sich die Daten befinden dürfen: Ammoniak zwischen 15 und 25, Temperatur zwischen 20 und 28, und Luftfeuchtigkeit zwischen 50 und 65.
-
-Die Webanwendung wurde lokal getestet. Dabei wurden beide Schalter für Benachrichtigung und Belüftung eingeschaltet und überprüft, ob diese gemäß der eingebauten Logik arbeiten und die Diagramme mit den entsprechenden Werten aktualisiert werden. Anschließend wurde der Schalter für die Belüftung ausgeschaltet und überprüft, ob eine Nachricht gesendet wird, die darüber informiert, dass die Belüftung ausgeschaltet ist und manuell gesteuert werden muss. Der lokale Test war erfolgreich.
-
+Im Folgenden werden zwei Tests unterschieden: ein Test, bei dem die Webanwendung lokal auf dem Rechner läuft, und ein finaler Test des gesamten Systems. Für den Test der lokalen Webanwendung musste zunächst ein Python-Skript erstellt werden, das regelmäßig Daten in die Testdatenbank schreibt. Da der Raspberry Pi die Sensordaten nur in die produktive Datenbank schreibt, die sich auf dem Server befindet und somit für die lokale Anwendung nicht zugänglich ist, musste das Senden der Sensordaten simuliert werden. Das Python-Skript verbindet sich mit der Testdatenbank und schreibt minütlich Daten für Ammoniak, Temperatur und Luftfeuchtigkeit, jeweils mit Zeitstempel, in die Datenbank. Dabei wurden Grenzen definiert, innerhalb derer sich die Daten befinden dürfen: Ammoniak zwischen 15 und 25, Temperatur zwischen 20 und 28, und Luftfeuchtigkeit zwischen 50 und 65. \\
+Die Webanwendung wurde lokal getestet. Dabei wurden beide Schalter für Benachrichtigung und Belüftung eingeschaltet und überprüft, ob diese gemäß der eingebauten Logik arbeiten und die Diagramme mit den entsprechenden Werten aktualisiert werden. Anschließend wurde der Schalter für die Belüftung ausgeschaltet und überprüft, ob eine Nachricht gesendet wird, die darüber informiert, dass die Belüftung ausgeschaltet ist und manuell gesteuert werden muss. Der lokale Test war erfolgreich. \\
 Der Test für die produktive Webanwendung verlief ähnlich. Zunächst wurde geprüft, ob der Raspberry Pi die Sensordaten mit dem korrekten Zeitstempel an die Webanwendung schickt. Hierfür wurde die Log-Datei verwendet, welche bereits in Kapitel \ref{chapter:datenuebertragung}
 beschrieben wurde. \\
 Anschließend wurde überprüft, ob die Daten korrekt in der Webanwendung visualisiert werden. Wie im lokalen Test wurden die Schalter für Benachrichtigung und Belüftung eingeschaltet. Die Sensoren wurden mit einem Föhn beheizt. Ein deutlicher Anstieg der Temperatur konnte über die Webanwendung erfasst werden, wie in Abbildung \ref{webanwendungtest} zu sehen ist. 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=90mm]{fig/anstiegTemperatur.jpg}
+	\includegraphics[width=80mm]{fig/anstiegTemperatur.jpg}
 	\caption{Visualisierung des Temperaturanstiegs in der Webanwendung}
 	\label{webanwendungtest}
 \end{figure}
@@ -404,22 +384,13 @@ Anschließend wurde überprüft, ob die Daten korrekt in der Webanwendung visual
 Die Temperaturwerte lagen dementsprechend über der festgelegten Grenze von 25. Die Benachrichtigung wurde korrekt gesendet und die WLAN-Steckdose eingeschaltet. Anschließend wurde der Schalter für die Belüftung ausgeschaltet und überprüft, ob eine Nachricht gesendet wird, die darüber informiert, dass die Belüftung ausgeschaltet ist und manuell gesteuert werden muss. Nachdem die Temperaturwerte sanken und alle Werte unter der Grenze lagen, schaltete sich die WLAN-Steckdose automatisch aus. Der produktive Test war ebenfalls erfolgreich.
 
 \section{Zusammenfassung und Ausblick}
-Das Projekt Smartstall wurde im Rahmen des Moduls "Hardware-cypher-physischer Systeme" des Masterstudiengangs Informatik entwickelt. Es behandelt die Schnittstellen und Datenübertragung von Endgeräten sowie deren Anbindung an die Cloud nach dem Internet of Things Konzept. Das Projekts erfasst verschiedene Sensordaten zur Überwachung der Luftqualität in einem Stall. Die erfassten Daten werden über einen Raspberry Pi an eine eigens entwickelte Webanwendung gesendet, sodass der Anwender die Möglichkeit hat, die Daten über eine benutzerfreundliche Oberfläche anzuzeigen und zu analysieren.
-
-Bei Überschreitung bestimmter, festgelegter Schwellwerte wie Temperatur, Luftfeuchtigkeit oder Ammoniakgehalt, soll der Anwender per Push-Benachrichtigung auf seinem Smartphone informiert werden. Zusätzlich soll die Belüftung bei Bedarf automatisch ein- und ausgeschaltet werden können. Dies wird durch die Steuerung einer WLAN-Steckdose umgesetzt.
-
-Die Anforderungen an das Projekt wurden in Rücksprache mit zwei verschiedenen landwirtschaftlichen Betrieben erfasst. Diese Betriebe legten unter anderem Wert auf eine einfache Anwendung und die Möglichkeit, die automatisierte Steuerung der Belüftung und die Push-Benachrichtigungen ein- und ausschalten zu können.
-
-Zur Erfassung der Luftqualitätsdaten ist der Raspberry Pi mit dem Bosch Sensortec BME680 Sensor für Temperatur und Luftfeuchtigkeit sowie dem MQ137 NH3-Gassensormodul für Ammoniak ausgestattet. Die erfassten Daten werden in eine MySQL-Datenbank geladen. Aus dieser Datenbank werden die Daten auf einer login-geschützten Webseite visualisiert, die mit den Programmiersprachen C\#, HTML, JavaScript, CSS sowie dem Framework Bootstrap und .NET umgesetzt wurde. Diese Webseite kann auch außerhalb des Netzwerks des Landwirts genutzt werden, um die Belüftung und Push-Benachrichtigungen zu steuern.
-
-Smartstall bietet somit eine kostengünstige Alternative zur automatisierten Steuerung und Kontrolle der Luftqualitätsdaten in einem Stall.
-
-Um das ProjektSmartStall in Zukunft weiter auszubauen, gibt es verschiedene Möglichkeiten. Ein Vorteil wäre es, die Luftqualität nicht nur an einem Punkt, sondern an mehreren Stellen im Stall zu messen, da die Luftqualität in einem großen Stall an verschiedenen Punkten unterschiedlich sein kann. Mehrere Sensoren könnten im Stall installiert werden, um einen detaillierteren Einblick in die Luftqualität zu erhalten. Entsprechend könnte auch die Belüftung nur in bestimmten Bereichen des Stalls aktiviert werden. Falls mehrere Sensoren verbaut werden, könnte das Userinterface umgestaltet werden, sodass der Landwirt sehen kann, an welchen Punkten im Stall die Luftqualität schlecht ist.
-
-Ein weiterer Aspekt zur Verbesserung des Projekts ist der Ausbau der Datenbank. Wenn SmartStall von mehreren Bauern genutzt wird, ist es sinnvoll, Nutzerdaten in der Datenbank zu hinterlegen, inklusive Logindaten. Für jeden Nutzer könnten auch individuelle Parameter wie die Grenzwerte hinterlegt werden. Dadurch besteht die Möglichkeit, ein individuelles Dashboard basierend auf den Daten aus der Datenbank zu erstellen.
-
-Zwei weitere Punkte betreffen den Ausbau der Funktionen, die dem Landwirt in der Webanwendung zur Verfügung stehen. Zum einen könnte eine Einstellungsseite hinzugefügt werden, auf der der Landwirt selbst die Grenzwerte für verschiedene Luftqualitätsdaten festlegen kann. Zum anderen wäre es möglich, dass der Landwirt auf Benachrichtigungen über eine Schwellwertüberschreitung in Telegram antworten und auf diesem Weg die Belüftung anschalten kann. Dies könnte jedoch dazu führen, dass einige Landwirte, die keinen technologischen Hintergrund haben, sich überfordert fühlen.
-
+Das Projekt Smartstall wurde im Rahmen des Moduls "Hardware-cypher-physischer Systeme" des Masterstudiengangs Informatik entwickelt. Es behandelt die Schnittstellen und Datenübertragung von Endgeräten sowie deren Anbindung an die Cloud nach dem Internet of Things Konzept. Das Projekts erfasst verschiedene Sensordaten zur Überwachung der Luftqualität in einem Stall. Die erfassten Daten werden über einen Raspberry Pi an eine eigens entwickelte Webanwendung gesendet, sodass der Anwender die Möglichkeit hat, die Daten über eine benutzerfreundliche Oberfläche anzuzeigen und zu analysieren. \\
+Bei Überschreitung bestimmter, festgelegter Schwellwerte wie Temperatur, Luftfeuchtigkeit oder Ammoniakgehalt, soll der Anwender per Push-Benachrichtigung auf seinem Smartphone informiert werden. Zusätzlich soll die Belüftung bei Bedarf automatisch ein- und ausgeschaltet werden können. Dies wird durch die Steuerung einer WLAN-Steckdose umgesetzt. \\
+Die Anforderungen an das Projekt wurden in Rücksprache mit zwei verschiedenen landwirtschaftlichen Betrieben erfasst. Diese Betriebe legten unter anderem Wert auf eine einfache Anwendung und die Möglichkeit, die automatisierte Steuerung der Belüftung und die Push-Benachrichtigungen ein- und ausschalten zu können. \\
+Zur Erfassung der Luftqualitätsdaten ist der Raspberry Pi mit dem Bosch Sensortec BME680 Sensor für Temperatur und Luftfeuchtigkeit sowie dem MQ137 NH3-Gassensormodul für Ammoniak ausgestattet. Die erfassten Daten werden in eine MySQL-Datenbank geladen. Aus dieser Datenbank werden die Daten auf einer login-geschützten Webseite visualisiert, die mit den Programmiersprachen C\#, HTML, JavaScript, CSS sowie dem Framework Bootstrap und .NET umgesetzt wurde. Diese Webseite kann auch außerhalb des Netzwerks des Landwirts genutzt werden, um die Belüftung und Push-Benachrichtigungen zu steuern. Smartstall bietet somit eine kostengünstige Alternative zur automatisierten Steuerung und Kontrolle der Luftqualitätsdaten in einem Stall. \\
+Um das ProjektSmartStall in Zukunft weiter auszubauen, gibt es verschiedene Möglichkeiten. Ein Vorteil wäre es, die Luftqualität nicht nur an einem Punkt, sondern an mehreren Stellen im Stall zu messen, da die Luftqualität in einem großen Stall an verschiedenen Punkten unterschiedlich sein kann. Mehrere Sensoren könnten im Stall installiert werden, um einen detaillierteren Einblick in die Luftqualität zu erhalten. Entsprechend könnte auch die Belüftung nur in bestimmten Bereichen des Stalls aktiviert werden. Falls mehrere Sensoren verbaut werden, könnte das Userinterface umgestaltet werden, sodass der Landwirt sehen kann, an welchen Punkten im Stall die Luftqualität schlecht ist. \\
+Ein weiterer Aspekt zur Verbesserung des Projekts ist der Ausbau der Datenbank. Wenn SmartStall von mehreren Bauern genutzt wird, ist es sinnvoll, Nutzerdaten in der Datenbank zu hinterlegen, inklusive Logindaten. Für jeden Nutzer könnten auch individuelle Parameter wie die Grenzwerte hinterlegt werden. Dadurch besteht die Möglichkeit, ein individuelles Dashboard basierend auf den Daten aus der Datenbank zu erstellen. \\
+Zwei weitere Punkte betreffen den Ausbau der Funktionen, die dem Landwirt in der Webanwendung zur Verfügung stehen. Zum einen könnte eine Einstellungsseite hinzugefügt werden, auf der der Landwirt selbst die Grenzwerte für verschiedene Luftqualitätsdaten festlegen kann. Zum anderen wäre es möglich, dass der Landwirt auf Benachrichtigungen über eine Schwellwertüberschreitung in Telegram antworten und auf diesem Weg die Belüftung anschalten kann. Dies könnte jedoch dazu führen, dass einige Landwirte, die keinen technologischen Hintergrund haben, sich überfordert fühlen. \\
 Insgesamt bietet SmartStall viel Potenzial für den weiteren Ausbau des Projekts und ermöglicht es Landwirten, die Belüftung ihres Stalls mit IoT-Technologie zu überwachen und zu steuern.
 
 \begin{thebibliography}{00}

@@ -86,7 +86,16 @@ Die Luftqualitätsdaten des Stalls werden über einen Raspberry Pi in eine Daten
 Neben den Diagrammen wird der aktuelle Wert angezeigt, der in roter Schrift dargestellt ist, wenn der Wert die schädliche Grenze überschreitet, und in grüner Schrift, wenn er im unkritischen Bereich liegt. Es gibt außerdem zwei Schalter, mit denen die Automatisierung der Belüftung und das Benachrichtigen per Push-Nachricht bei Überschreitung des Grenzwerts aktiviert werden können.
 Die Push-Benachrichtigungen werden an eine Telegram-Gruppe gesendet, in die alle Mitarbeiter eines Bauernhofs aufgenommen werden können, sodass alle relevanten Personen informiert werden. Eine Benachrichtigung wird auch gesendet, wenn die Steuerung der Belüftung deaktiviert wird, woraufhin das System die Belüftung abschaltet. Dies verhindert, dass die Belüftung unnötig lange läuft, falls sie zum Zeitpunkt der Deaktivierung noch aktiv ist, und trägt dazu bei, den Energieverbrauch des Stalls zu reduzieren. In Abschnitt \ref{ui} wird genauer auf die finale Benutzeroberfläche eingeangen.
 
+\section{Aufbau und Zusammenspiel der Komponenten}
+In diesem Kapitel werden die einzelnen Komponenten beleuchtet und es wird auf deren Zusammenspiel im Kontext dieses Projekts eingegangen. In Anhang \ref{sec:AufbauAnhang} ist ebenfalls eine Skizze des Aufbaus zu finden. \\
+Angefangen bei der Datenerfassung stehen die Sensoren, die verschiedene Parameter zur Luftqualität messen. Diese Sensoren sind über das I2C-Protokoll mit einem Raspberry Pi verbunden, der als zentrale Steuerungseinheit fungiert. Auf die genauen Modelle der Hardwarekomponenten wird anschließend in Kapitel \ref{chapter:hw_komponenten} eingegangen. \\
+Der Raspberry Pi sammelt kontinuierlich die Daten von den Sensoren und verarbeitet diese über ein Python-Skript weiter. Die gesammelten Daten werden über einen WLAN-Router, welcher die Verbindung zum Internet herstellt per HTTP-Protokoll an eine, über den Anbieter Oracle Cloud gehostete, Webanwendung weitergeleitet. Auf dem Webserver wird außerdem eine MYSQL-Datenbank gehostet und an die Webanwendung angebunden. Mit Hilfe dieser Anbindung können die Daten von der Webanwendung in die Datenbank weitergeleitet und dort gespeichert werden. \\
+Die Webanwendung in der Oracle Cloud ermöglicht es Benutzern, über eine Weboberfläche auf die Daten zuzugreifen. Dies kann über den Browser eines beliebigen Endgeräts erfolgen. Neben der reinen Datenanzeige bietet die Webanwendung auch die Möglichkeit, Benachrichtigungen und Warnungen über den Telegram Messenger zu versenden. Diese Benachrichtigungen informieren die Benutzer in Echtzeit über kritische Zustände, wie beispielsweise hohe Ammoniakkonzentrationen. \\
+Ein weiterer wichtiger Aspekt des Systems ist die Steuerung der Belüftungsanlage im SmartStall. Basierend auf den erfassten Sensordaten kann die Webanwendung die Belüftungsanlage über eine Smart-Steckdose automatisch ansteuern und die Belüftung somit ein- oder ausschalten sobald ein beliebiger Schwellwert eines Parameters, wie beispielsweise der Ammoniakgehalt, überschritten wird. 
+
+
 \section{Hardware Komponenten}
+\label{chapter:hw_komponenten}
 \subsection{Raspberry Pi 3B}
 Der Raspberry Pi (Modell 3B) ist ein beliebter Einplatinencomputer, der von der Raspberry Pi Foundation entwickelt wurde. Er bietet ausreichend Rechenleistung, Speicher und Konnektivität, um komplexe Aufgaben auszuführen und eine Vielzahl von Erweiterungen und Anwendungen zu unterstützen und ist somit eine kostengünstige und vielseitige Plattform für Projekte im Bereich der Einbettung von Computern und des IoT--Konzepts. Die umfangreiche Community und Dokumentation rund um den Raspberry Pi machen es einfach, Projekte zu starten und Unterstützung zu erhalten. Es gibt eine Vielzahl von Erweiterungsmodulen und Zubehörteilen, die den Raspberry Pi erweitern und an individuelle Anforderungen anpassen können. Um den Raspberry Pi 3B zu nutzen, ist eine grundlegende Einrichtung erforderlich, auf welche in Kapitel \ref{pi} genauer eingegangen wird  \cite{raspy}.
 
@@ -138,7 +147,7 @@ Der MQ137 Sensor besitzt, wie in Abbildung \ref{mq137_pins} zu sehen 4 Pins, wel
 	\item AO: analoger Signalausgang
 \end{itemize}
 \begin{figure}[H]
-	\centerline{\includegraphics[height=40mm]{fig/mq137_pins.png}}
+	\centerline{\includegraphics[height=30mm]{fig/mq137_pins.png}}
 	\caption{MQ137 Gassensormodul}
 	\label{mq137_pins}
 \end{figure}
@@ -151,7 +160,6 @@ Die Sensoren wurden mittels Jumper-Kabeln und einem Breadboard mit dem Raspberry
 	\caption{Verkabelung der Sensoren mit dem Raspberry Pi}
 	\label{aufbau}
 \end{figure}
-
 \newpage
 \section{Einrichtung Raspberry Pi}
 \label{pi}
@@ -165,6 +173,7 @@ Die erstmalige Einrichtung eines Raspberry Pi 3B umfasst mehrere Schritte, welch
 	\item HDMI-Kabel
 	\item Bildschirm oder Fernseher mit HDMI-Eingang
 \end{itemize}
+
 Wenn das Anschließen von Ein- und Ausgabegeräten an den Raspberry Pi nicht gewünscht oder möglich ist, kann dieser nach der ersten Einrichtung alternativ auch über einen anderen Computer angesteuert werden, entweder per Remotedesktopverbindung oder per Kommandozeile mit Hilfe des Secure Shell (SSH) Netzwerkprotokolls \cite{raspy}. Zur erstmaligen Einrichtung muss zunächst das gewünschte Betriebssystem für den Raspberry Pi heruntergeladen werden, in diesem Fall Raspbian. Hierfür wurde das Program Raspberry Pi Imager von der offiziellen Raspberry Pi Website verwendet, welches die ausgewählte Version des Betriebssystems herunterlädt und diese direkt auf der MicroSD-Karte installiert. Anschließend kann die MicroSD-Karte in den Raspberry Pi eingesetzt und dieser gestartet werden. Für die Einrichtung muss nun lediglich den Anweisungen auf dem Bildschirm gefolgt werden, anschließend kann der Raspberry Pi über die grafische Benutzeroberfläche verwendet oder über Konsole angesteuert werden.  
 
 
@@ -197,7 +206,7 @@ Die Webanwendung wurde mit dem ASP.NET Core Framework für C-Sharp, unter Verwen
 Ein Beispiel hierfür ist MVC (Model-View-Controller), welches für die Webanwendung verwendet wurde. Hierbei handelt es sich um ein moderneres Designmuster, das die Trennung von Datenmodell, Präsentationsschicht und Steuerungslogik fördert, was die Struktur und Übersichtlichkeit der Webanwendung verbessert.
 \subsection{Hosting}
 Die Webanwendung wird auf einem Oracle Cloud Webserver gehostet, der mit dem Linux-Betriebssystem läuft. Diese Entscheidung bietet mehrere Vorteile für das Projekt. Einerseits gewährleistet der Oracle Cloud Webserver eine hohe Zuverlässigkeit und Verfügbarkeit der Anwendung durch seine robuste Infrastruktur und Service Level Agreements. Außerdem besteht die Möglichkeit, Ressourcen nach Bedarf zu skalieren, dass die Anwendung problemlos mit steigenden Benutzeranforderungen wachsen kann. Diese Flexibilität unterstützt auch eine kosteneffiziente Nutzung, da Ressourcen nur dann erhöht werden, wenn sie auch tatsächlich benötigt werden. Für die Durchführung des Projekts wurde die sogenannte \textit{Oracle Cloud Free Tier} genutzt. \\
-Hierbei handelt es sich um einen kostenlosen Tarif mit entsprechend eingeschränkter Rechenleistung. Da sich die zur verfügung stehenden Ressourcen allerdings beliebig skalieren lassen, ist es jederzeit ohne Mehraufwand möglich zusätzliche Rechenleistung anzumieten, welche gegebenenfalls in der Zukunft bei Weiterentwicklung der Anwendung für zusätzliche Funktionen benötigt wird. Das Hosting auf einem Oracle Cloud Webserver bietet somit eine solide Grundlage für eine sichere, skalierbare und kosteneffiziente Bereitstellung der Webanwendung. \\
+Hierbei handelt es sich um einen kostenlosen Tarif mit entsprechend eingeschränkter Rechenleistung. Da sich die zur Verfügung stehenden Ressourcen allerdings beliebig skalieren lassen, ist es jederzeit ohne Mehraufwand möglich zusätzliche Rechenleistung anzumieten, welche gegebenenfalls in der Zukunft bei Weiterentwicklung der Anwendung für zusätzliche Funktionen benötigt wird. Das Hosting auf einem Oracle Cloud Webserver bietet somit eine solide Grundlage für eine sichere, skalierbare und kosteneffiziente Bereitstellung der Webanwendung. \\
 
 \subsection{Deployment}
 Das Deployment einer ASP.NET Core Webanwendung auf einem Linux Webserver umfasst mehrere Schritte, um sicherzustellen, dass die Anwendung ordnungsgemäß bereitgestellt und ausgeführt wird. Dieses Kapitel erläutert den den Prozess vom Entwicklungs- bis zum Produktionsumfeld
@@ -225,6 +234,7 @@ Für die Webanwendung wurde die sogenannte Model-View-Controller Architektur ang
 Das MVC-Muster ist besonders geeignet für interaktive Anwendungen, die eine flexible Schnittstelle zwischen Mensch und Maschine erfordern. MVC unterteilt die Programmlogik einer Benutzeroberfläche in drei Hauptkomponenten: Model, View und Controller. Das Model verwaltet die Daten und Geschäftsregeln der Anwendung. Die View stellt diese Daten dar, und der Controller ermöglicht die Interaktion mit dem Benutzer. \cite{mvc} \\
 In diesem Projekt werden Models zur Datenhaltung zwischen dem Empfangen der Daten und dem Abspeichern in der Datenbank. Hierfür wurde beispielsweise ein Model \text{Datenpaket} erstellt, welches die einzelnen Sensordaten der drei betrachteten Parameter Temperatur, Luftfeuchtigkeit und Ammoniak in Variablen zwischenspeichert. Die View besteht aus der Login-Seite und der Hauptseite. Benutzer melden sich mit Passwort und Benutzernamen an, bevor sie zur Hauptseite gelangen, wo die Diagramme visualisiert werden. Im Controller sind zwei Funktionen besonders wichtig: \\
 Der \textit{DbWriteService}, welcher das empfangene Datenpaket in die Datenbank schreibt und der \textit{DbReadService}, welcher die Sensordaten jeweils für eine Woche bzw. für einen Tag aus der Datenbank ausliest und diese an die Diagramme in der Benutzeroberfläche weitergibt. Die Kommunikation zwischen View und Controller erfolgt über AJAX-Aufrufe, wodurch die Sensordaten, wie in Kapitel \ref{sec:sensordaten-auslesen} beschrieben, abgerufen werden.
+\newpage
 \subsection{MYSQL Datenbank}
 \subsubsection{Anbindung}
 Die Anbindung einer MySQL-Datenbank in der ASP.NET Core Webanwendung erfolgt über das Entity Framework Core von Microsoft, welches zunächst in der Entwicklungsumgebung installiert werden muss. Anschließend werden Verbindungsdaten wie Hostname, Benutzername, Passwort und Datenbankname der gehosteten Datenbank benötigt. Die Verbindung wird als sogenannter \textit{ConnectionString} in einer separaten Konfigurationsdatei der Webanwendung definiert. Dieser sieht wie folgt aus: \\
@@ -275,6 +285,7 @@ Der Controller ruft anschließend einen Service auf, welcher eine Funktion enth�
 Für die Anzeige der Sensordaten in der Webanwendung wurden bestimmte Anforderungen definiert. Zum einen sollten die Daten in einem Liniendiagramm dargestellt werden, und zum anderen sollte die Webanwendung sowohl auf PCs und Laptops als auch auf mobilen Geräten reibungslos funktionieren. Um dieses Problem zu lösen wurde das Bootstrap Framework gewählt.\\
 Bootstrap besitzt eine breite Palette an vorgefertigten UI-Komponenten und bietet ein Grid-System, welches sich responsive gegenüber unterschiedlichen Bildschirmgrößen und Auflösungen auf verschiedenen Endgeräten verhält. Dies ermöglicht eine einfache Integration und schnelle Entwicklung von modernen und benutzerfreundlichen Webseiten, unabhängig vom verwendeten Gerät \cite{bootstrap}. \\
 Um Bootstrap effektiv zu nutzen, wurden folgende JavaScript-Bibliotheken integriert: 
+\newpage
 \begin{itemize}
 \item jQuery: \\
 Diese leistungsstarke Bibliothek unterstützt die Manipulation des DOM und erleichtert AJAX-Interaktionen. In Verbindung mit Bootstrap ermöglicht sie die dynamische Aktualisierung von Inhalten und die Interaktion mit Benutzeroberflächenelementen wie Dropdown-Menüs oder Modalfenstern.
@@ -299,7 +310,6 @@ bundle.min.js"></script>
 Zusammen stellen diese Skript-Links sicher, dass Bootstrap nahtlos in die Webanwendung integriert wird und eine optimale Benutzerinteraktion sowie eine responsive Darstellung auf verschiedenen Geräten gewährleistet ist. \\
 \item Chart.js: \\
 Für die Darstellung der Sensordaten in einem Liniendiagramm wurde Chart.js gewählt. Diese Bibliothek bietet eine einfache und flexible Möglichkeit, Daten visuell ansprechend darzustellen. Im Vergleich zu Grafana, das eher für umfangreichere und komplexe Datenvisualisierungen in großen Systemen verwendet wird \cite{grafana}, ist Chart.js leichter in kleinere Webanwendungen zu integrieren und bietet dennoch ausreichend Funktionalität für die Anforderungen der Sensordatenvisualisierung \cite{chart.js}. \\
-\newpage
 Die folgenden Links integrieren Chart.js und das zugehörige Datum-Adapter-Bundle in die Webseite:
 \begin{verbatim}
 <script src="https://cdn.jsdelivr.net/npm/
@@ -461,8 +471,17 @@ Telegram Foundation, "Telegram APIs", Online. Verfügbar unter: https://core.tel
 https://www.laub-home.de/wiki/Raspberry\_Pi\_BME680\_Gas\_Sensor [Zugriffsdatum: 20. Juli 2024].
 
 \end{thebibliography}
+
 \clearpage
 \begin{appendices}
+	\section{Aufbau und Zusammenspiel der Komponenten}
+	\label{sec:AufbauAnhang}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.99\textwidth]{fig/Projektaufbau.png}
+	\end{figure}
+	
+\clearpage
 \section{HTML-Code für Digrammabschnitt}
 \label{sec:htmlCodeDiagrammAnhang}
 \begin{figure}[h]

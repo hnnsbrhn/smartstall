@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.3.31) (preloaded format=pdflatex 2024.4.15)  21 JUL 2024 17:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.3.31) (preloaded format=pdflatex 2024.4.15)  31 JUL 2024 15:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -423,753 +423,772 @@ Underfull \hbox (badness 5832) in paragraph at lines 79--80
  []
 
 [2 <./fig/firstUI.JPG>]
-Underfull \hbox (badness 1377) in paragraph at lines 94--96
+Underfull \hbox (badness 7168) in paragraph at lines 90--95
+\OT1/ptm/m/n/10 Die We-ban-wen-dung in der Or-a-cle Cloud erm[]oglicht
+ []
+
+
+Underfull \hbox (badness 2970) in paragraph at lines 90--95
+\OT1/ptm/m/n/10 es Be-nutzern, []uber eine We-boberfl[]ache auf die Daten
+ []
+
+
+Underfull \hbox (badness 5133) in paragraph at lines 90--95
+\OT1/ptm/m/n/10 Diese Be-nachrich-ti-gun-gen in-formieren die Be-nutzer in
+ []
+
+
+Underfull \hbox (badness 2334) in paragraph at lines 90--95
+\OT1/ptm/m/n/10 der Bel[]uftungsanlage im Smart-Stall. Basierend auf den
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 90--95
+\OT1/ptm/m/n/10 er-fassten Sen-sor-daten kann die We-ban-wen-dung die
+ []
+
+
+Underfull \hbox (badness 2469) in paragraph at lines 90--95
+\OT1/ptm/m/n/10 Bel[]uftungsanlage []uber eine Smart-Steckdose au-toma-tisch
+ []
+
+
+Underfull \hbox (badness 1377) in paragraph at lines 103--105
 []\OT1/ptm/m/n/10 Der Bosch Sen-sortec BME680 ist ein fortschrit-tlicher
  []
 
 
-Underfull \hbox (badness 1521) in paragraph at lines 99--100
+Underfull \hbox (badness 1521) in paragraph at lines 108--109
 []\OT1/ptm/m/n/10 Luftqualit[]at: Der BME680 Sen-sor ist in der Lage,
  []
 
 
-Underfull \hbox (badness 1424) in paragraph at lines 99--100
+Underfull \hbox (badness 1424) in paragraph at lines 108--109
 \OT1/ptm/m/n/10 fl[]uchtige or-gan-is-che Verbindun-gen (VOCs) und ver-
  []
 
 
-Underfull \hbox (badness 5388) in paragraph at lines 103--104
+Underfull \hbox (badness 5388) in paragraph at lines 112--113
 \OT1/ptm/m/n/10 bungsluft zu messen. Er basiert auf der Metalloxid-
  []
 
-<fig/pi_pins.png, id=14, 1400.98407pt x 763.35187pt>
+[3]
+<fig/pi_pins.png, id=17, 1400.98407pt x 763.35187pt>
 File: fig/pi_pins.png Graphic file (type png)
 <use fig/pi_pins.png>
-Package pdftex.def Info: fig/pi_pins.png  used on input line 110.
+Package pdftex.def Info: fig/pi_pins.png  used on input line 119.
 (pdftex.def)             Requested size: 256.0748pt x 139.5173pt.
 
-Overfull \hbox (4.0748pt too wide) in paragraph at lines 110--111
+Overfull \hbox (4.0748pt too wide) in paragraph at lines 119--120
  [][] 
  []
 
-<fig/bme_pins.png, id=15, 179.16937pt x 124.96687pt>
+<fig/bme_pins.png, id=18, 179.16937pt x 124.96687pt>
 File: fig/bme_pins.png Graphic file (type png)
 <use fig/bme_pins.png>
-Package pdftex.def Info: fig/bme_pins.png  used on input line 121.
+Package pdftex.def Info: fig/bme_pins.png  used on input line 130.
 (pdftex.def)             Requested size: 142.26378pt x 99.23187pt.
-<fig/verkabelung_bme.png, id=16, 408.77719pt x 263.48438pt>
+<fig/verkabelung_bme.png, id=19, 408.77719pt x 263.48438pt>
 File: fig/verkabelung_bme.png Graphic file (type png)
 <use fig/verkabelung_bme.png>
-Package pdftex.def Info: fig/verkabelung_bme.png  used on input line 126.
+Package pdftex.def Info: fig/verkabelung_bme.png  used on input line 135.
 (pdftex.def)             Requested size: 142.26378pt x 91.69824pt.
-
-Underfull \vbox (badness 3199) has occurred while \output is active []
-
- [3 <./fig/pi_pins.png>]
 <fig/mq137_pins.png, id=20, 541.27219pt x 521.69907pt>
 File: fig/mq137_pins.png Graphic file (type png)
 <use fig/mq137_pins.png>
-Package pdftex.def Info: fig/mq137_pins.png  used on input line 141.
-(pdftex.def)             Requested size: 118.08089pt x 113.81102pt.
+Package pdftex.def Info: fig/mq137_pins.png  used on input line 150.
+(pdftex.def)             Requested size: 88.55447pt x 85.35826pt.
 <fig/aufbau.png, id=21, 663.22781pt x 556.32843pt>
 File: fig/aufbau.png Graphic file (type png)
 <use fig/aufbau.png>
-Package pdftex.def Info: fig/aufbau.png  used on input line 150.
+Package pdftex.def Info: fig/aufbau.png  used on input line 159.
 (pdftex.def)             Requested size: 227.62204pt x 190.93182pt.
- [4 <./fig/bme_pins.png> <./fig/verkabelung_bme.png> <./fig/mq137_pins.png> <./
-fig/aufbau.png>]
+[4 <./fig/pi_pins.png> <./fig/bme_pins.png> <./fig/verkabelung_bme.png> <./fig/
+mq137_pins.png> <./fig/aufbau.png>]
 <fig/daten_erfolgreich_gesendet.png, id=25, 438.8897pt x 182.18062pt>
 File: fig/daten_erfolgreich_gesendet.png Graphic file (type png)
 <use fig/daten_erfolgreich_gesendet.png>
 Package pdftex.def Info: fig/daten_erfolgreich_gesendet.png  used on input line
- 186.
+ 195.
 (pdftex.def)             Requested size: 241.84842pt x 100.39145pt.
 
-Underfull \hbox (badness 1365) in paragraph at lines 190--193
+Underfull \hbox (badness 1365) in paragraph at lines 199--202
 []\OT1/ptm/m/n/10 Um Ressourcen zu scho-nen, enth[]alt das Skript keine
  []
 
-
-Underfull \hbox (badness 3078) in paragraph at lines 196--198
+[5 <./fig/daten_erfolgreich_gesendet.png>]
+Underfull \hbox (badness 3078) in paragraph at lines 205--207
 []\OT1/ptm/m/n/10 Die We-ban-wen-dung wurde mit dem ASP.NET Core
  []
 
 
-Underfull \hbox (badness 3536) in paragraph at lines 196--198
+Underfull \hbox (badness 3536) in paragraph at lines 205--207
 \OT1/ptm/m/n/10 Frame-work f[]ur C-Sharp, unter Ver-wen-dung der .NET-
  []
 
 
-Underfull \hbox (badness 2142) in paragraph at lines 196--198
+Underfull \hbox (badness 2142) in paragraph at lines 205--207
 \OT1/ptm/m/n/10 Plattform, en-twick-elt. ASP.NET Core ist ein mod-ernes,
  []
 
 
-Underfull \hbox (badness 4156) in paragraph at lines 196--198
+Underfull \hbox (badness 4156) in paragraph at lines 205--207
 \OT1/ptm/m/n/10 plat-tform[]ubergreifendes Frame-work f[]ur die En-twick-lung
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 196--198
+Underfull \hbox (badness 10000) in paragraph at lines 205--207
 \OT1/ptm/m/n/10 von We-ban-wen-dun-gen. Es bi-etet eine mod-u-lar-isierte
  []
 
 
-Underfull \hbox (badness 5667) in paragraph at lines 196--198
+Underfull \hbox (badness 5667) in paragraph at lines 205--207
 \OT1/ptm/m/n/10 Ar-chitek-tur, die En-twick-lern erm[]oglicht, nur ben[]otigte
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 196--198
+Underfull \hbox (badness 10000) in paragraph at lines 205--207
 \OT1/ptm/m/n/10 Kom-po-nen-ten zu ver-wen-den, was die Per-for-mance
  []
 
 
-Underfull \hbox (badness 4132) in paragraph at lines 196--198
+Underfull \hbox (badness 4132) in paragraph at lines 205--207
 \OT1/ptm/m/n/10 erm[]oglicht. Das Frame-work ist stark auf Per-for-mance
  []
 
 
-Underfull \hbox (badness 3503) in paragraph at lines 196--198
+Underfull \hbox (badness 3503) in paragraph at lines 205--207
 \OT1/ptm/m/n/10 Ein Beispiel hi-erf[]ur ist MVC (Model-View-Controller),
  []
 
 
-Underfull \hbox (badness 2564) in paragraph at lines 196--198
+Underfull \hbox (badness 2564) in paragraph at lines 205--207
 \OT1/ptm/m/n/10 han-delt es sich um ein mod-erneres De-sign-muster, das
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 196--198
+Underfull \hbox (badness 10000) in paragraph at lines 205--207
 \OT1/ptm/m/n/10 die Tren-nung von Daten-mod-ell, Pr[]asentationsschicht
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 196--198
+Underfull \hbox (badness 10000) in paragraph at lines 205--207
 \OT1/ptm/m/n/10 und Steuerungslogik f[]ordert, was die Struk-tur und
  []
 
-[5 <./fig/daten_erfolgreich_gesendet.png>]
-Underfull \hbox (badness 6252) in paragraph at lines 199--201
+
+Underfull \hbox (badness 6252) in paragraph at lines 208--210
 []\OT1/ptm/m/n/10 Die We-ban-wen-dung wird auf einem Or-a-cle Cloud
  []
 
 
-Underfull \hbox (badness 4156) in paragraph at lines 199--201
+Underfull \hbox (badness 4156) in paragraph at lines 208--210
 \OT1/ptm/m/n/10 Be-nutzer-an-forderun-gen wach-sen kann. Diese Flex-i-bilit[]at
 
  []
 
 
-Underfull \hbox (badness 2213) in paragraph at lines 199--201
+Underfull \hbox (badness 2213) in paragraph at lines 208--210
 \OT1/ptm/m/n/10 wer-den. F[]ur die Durchf[]uhrung des Pro-jekts wurde die
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 199--201
+Underfull \hbox (badness 10000) in paragraph at lines 208--210
 
  []
 
 
-Underfull \hbox (badness 1383) in paragraph at lines 208--210
+Underfull \hbox (badness 1383) in paragraph at lines 217--219
 \OT1/ptm/m/n/10 Kon-fig-u-ra-tion vollst[]andig kom-piliert wer-den. Hi-er-bei
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 210--214
+Underfull \hbox (badness 10000) in paragraph at lines 219--223
 \OT1/ptm/m/n/10 Die An-wen-dung wird als Deployment-Paket
  []
 
 
-Underfull \hbox (badness 4846) in paragraph at lines 210--214
+Underfull \hbox (badness 4846) in paragraph at lines 219--223
 \OT1/ptm/m/n/10 ver[]offentlicht, das alle er-forder-lichen Dateien und
  []
 
 
-Underfull \hbox (badness 4967) in paragraph at lines 210--214
+Underfull \hbox (badness 4967) in paragraph at lines 219--223
 \OT1/ptm/m/n/10 mit einem .NET-SDK-Befehl er-stellt. Dieser sieht
  []
 
 
-Underfull \hbox (badness 3471) in paragraph at lines 210--214
+Underfull \hbox (badness 3471) in paragraph at lines 219--223
 \OT1/ptm/m/n/10 Der Pa-ram-e-ter \OT1/ptm/m/it/10 --self-contained \OT1/ptm/m/n
 /10 wird ver-wen-det um
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 210--214
+Underfull \hbox (badness 10000) in paragraph at lines 219--223
 \OT1/ptm/m/n/10 sicherzustellen, dass alle ben[]otigten .NET Core
  []
 
 
-Underfull \hbox (badness 3884) in paragraph at lines 210--214
+Underfull \hbox (badness 3884) in paragraph at lines 219--223
 \OT1/ptm/m/n/10 Laufzeit-dateien en-thal-ten sind, mit dem Pa-ram-e-ter
  []
 
 
-Underfull \hbox (badness 1755) in paragraph at lines 210--214
+Underfull \hbox (badness 1755) in paragraph at lines 219--223
 \OT1/ptm/m/it/10 -r linux-x64 \OT1/ptm/m/n/10 wird die Zielplat-form, in diesem
  Fall
  []
 
-
-Underfull \hbox (badness 3612) in paragraph at lines 224--228
+[6]
+Underfull \hbox (badness 3612) in paragraph at lines 233--237
 \OT1/ptm/m/n/10 View-Controller Ar-chitek-tur angewen-det. Dies ist eines
  []
 
-[6]
-Underfull \hbox (badness 1584) in paragraph at lines 230--231
+
+Underfull \hbox (badness 1584) in paragraph at lines 240--241
 \OT1/ptm/m/n/10 in der ASP.NET Core We-ban-wen-dung er-folgt []uber das
  []
 
 
-Underfull \hbox (badness 4479) in paragraph at lines 230--231
+Underfull \hbox (badness 4479) in paragraph at lines 240--241
 \OT1/ptm/m/n/10 in der En-twick-lung-sumge-bung in-stal-liert wer-den muss.
  []
 
 
-Underfull \hbox (badness 6300) in paragraph at lines 230--231
+Underfull \hbox (badness 6300) in paragraph at lines 240--241
 \OT1/ptm/m/n/10 An-schlie^^Yend wer-den Verbindungs-daten wie Host-name,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 230--231
+Underfull \hbox (badness 10000) in paragraph at lines 240--241
 
  []
 
 LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 2
-31.
+41.
 (C:\Users\hanne\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-Underfull \hbox (badness 7362) in paragraph at lines 260--262
+Underfull \hbox (badness 7362) in paragraph at lines 270--272
 \OT1/ptm/m/n/10 Die Funk-tion be-ginnt mit der Her-stel-lung einer
  []
 
-
-Underfull \hbox (badness 1776) in paragraph at lines 275--279
+[7]
+Underfull \hbox (badness 1776) in paragraph at lines 285--288
 \OT1/ptm/m/n/10 Aufl[]osungen auf ver-schiede-nen Endger[]aten verh[]alt. Dies
  []
 
-[7]
-Underfull \hbox (badness 6658) in paragraph at lines 285--287
+
+Underfull \hbox (badness 6658) in paragraph at lines 296--298
 \OT1/ptm/m/n/10 Anwendung zu po-si-tion-ieren. Dies verbessert die
  []
 
 
-Underfull \hbox (badness 3333) in paragraph at lines 285--287
+Underfull \hbox (badness 3333) in paragraph at lines 296--298
 \OT1/ptm/m/n/10 Be-nutzer-fre-undlichkeit und sorgt f[]ur eine op-ti-male
  []
 
 
-Overfull \hbox (14.09729pt too wide) in paragraph at lines 291--291
+Overfull \hbox (14.09729pt too wide) in paragraph at lines 302--302
  []\OT1/pcr/m/n/10 npm/popper.js@1.16.1/dist/umd/popper.min.[] 
  []
 
 
-Underfull \hbox (badness 6110) in paragraph at lines 299--300
+Underfull \hbox (badness 6110) in paragraph at lines 310--311
 \OT1/ptm/m/n/10 Zusammen stellen diese Skript-Links sicher, dass
  []
 
 
-Underfull \hbox (badness 4132) in paragraph at lines 299--300
+Underfull \hbox (badness 4132) in paragraph at lines 310--311
 \OT1/ptm/m/n/10 Boot-strap naht-los in die We-ban-wen-dung in-te-gri-ert
  []
 
 
-Underfull \hbox (badness 4608) in paragraph at lines 299--300
+Underfull \hbox (badness 4608) in paragraph at lines 310--311
 \OT1/ptm/m/n/10 wird und eine op-ti-male Be-nutzer-in-ter-ak-tion sowie
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 299--300
+Underfull \hbox (badness 10000) in paragraph at lines 310--311
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 300--302
-\OT1/ptm/m/n/10 F[]ur die Darstel-lung der Sen-sor-daten in einem
+Underfull \hbox (badness 4001) in paragraph at lines 311--314
+\OT1/ptm/m/n/10 Die fol-gen-den Links in-te-gri-eren Chart.js und das
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 300--302
-\OT1/ptm/m/n/10 Lin-ien-di-a-gramm wurde Chart.js gew[]ahlt. Diese
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 300--302
-\OT1/ptm/m/n/10 zu Grafana, das eher f[]ur um-fan-gre-ichere und
- []
-
-
-Underfull \hbox (badness 1688) in paragraph at lines 300--302
-\OT1/ptm/m/n/10 kom-plexe Daten-vi-su-al-isierun-gen in gro^^Yen Sys-te-men
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 300--302
-
- []
-
-
-Underfull \hbox (badness 4001) in paragraph at lines 303--304
-[]\OT1/ptm/m/n/10 Die fol-gen-den Links in-te-gri-eren Chart.js und das
- []
-
-
-Overfull \hbox (20.09729pt too wide) in paragraph at lines 310--310
+Overfull \hbox (20.09729pt too wide) in paragraph at lines 320--320
  []\OT1/pcr/m/n/10 <script src="https://cdn.jsdelivr.net/npm/[] 
  []
 
 
-Overfull \hbox (14.09729pt too wide) in paragraph at lines 310--310
+Overfull \hbox (14.09729pt too wide) in paragraph at lines 320--320
  []\OT1/pcr/m/n/10 <script src="https://cdn.jsdelivr.net/npm[] 
  []
 
 
-Overfull \hbox (2.09729pt too wide) in paragraph at lines 310--310
+Overfull \hbox (2.09729pt too wide) in paragraph at lines 320--320
  []\OT1/pcr/m/n/10 /chartjs-adapter-date-fns/dist/chartjs-[] 
  []
 
 
-Overfull \hbox (14.09729pt too wide) in paragraph at lines 310--310
+Overfull \hbox (14.09729pt too wide) in paragraph at lines 320--320
  []\OT1/pcr/m/n/10 adapter-date-fns.bundle.min.js"></script>[] 
  []
 
 LaTeX Font Info:    Trying to load font information for OML+ptm on input line 3
-14.
+24.
 (C:\Users\hanne\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\omlptm.fd
 File: omlptm.fd 
 )
 LaTeX Font Info:    Font shape `OML/ptm/m/it' in size <10> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 314.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 324.
 
-Underfull \hbox (badness 1708) in paragraph at lines 321--324
+[8]
+Underfull \hbox (badness 1708) in paragraph at lines 331--334
 \OT1/ptm/m/n/10 Mit diesem Code wird das Di-a-gramm kon-fig-uri-ert und
  []
 
-[8]
-<fig/uiTelegram.jpg, id=43, 693.34032pt x 1483.79344pt>
+[9]
+<fig/uiTelegram.jpg, id=46, 693.34032pt x 1483.79344pt>
 File: fig/uiTelegram.jpg Graphic file (type jpg)
 <use fig/uiTelegram.jpg>
-Package pdftex.def Info: fig/uiTelegram.jpg  used on input line 355.
+Package pdftex.def Info: fig/uiTelegram.jpg  used on input line 365.
 (pdftex.def)             Requested size: 170.71652pt x 365.33252pt.
 
-Underfull \hbox (badness 2680) in paragraph at lines 351--358
+Underfull \hbox (badness 2680) in paragraph at lines 361--368
 \OT1/ptm/m/n/10 Die URL der Telegram-API, die f[]ur das Senden von
  []
 
-<fig/uiHandy.jpg, id=44, 693.34032pt x 1301.61281pt>
+<fig/uiHandy.jpg, id=47, 693.34032pt x 1301.61281pt>
 File: fig/uiHandy.jpg Graphic file (type jpg)
 <use fig/uiHandy.jpg>
-Package pdftex.def Info: fig/uiHandy.jpg  used on input line 366.
+Package pdftex.def Info: fig/uiHandy.jpg  used on input line 376.
 (pdftex.def)             Requested size: 119.50157pt x 224.32983pt.
 
-Underfull \hbox (badness 7397) in paragraph at lines 361--370
+Underfull \hbox (badness 7397) in paragraph at lines 371--380
 \OT1/ptm/m/n/10 gesendet, wenn die Mess-werte bes-timmte Gren-zw-erte
  []
 
 
-Underfull \hbox (badness 1983) in paragraph at lines 361--370
+Underfull \hbox (badness 1983) in paragraph at lines 371--380
 []\OT1/ptm/m/n/10 uberschreiten. Der Schal-ter "Bel[]uftung" di-ent dazu, die
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 361--370
+Underfull \hbox (badness 10000) in paragraph at lines 371--380
 \OT1/ptm/m/n/10 Die We-ban-wen-dung um-fasst drei Haupt-sek-tio-nen zur
  []
 
 
-Underfull \hbox (badness 2269) in paragraph at lines 361--370
+Underfull \hbox (badness 2269) in paragraph at lines 371--380
 \OT1/ptm/m/n/10 Di-a-gramm, das die Mess-werte []uber einen Tages- oder
  []
 
 
-Underfull \hbox (badness 1466) in paragraph at lines 361--370
+Underfull \hbox (badness 1466) in paragraph at lines 371--380
 \OT1/ptm/m/n/10 und deut-lich angezeigt. Dieser Wert ist gr[]un hin-ter-legt,
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [9 <./fig/uiTelegram.jpg>]
-<fig/stApp.jpg, id=48, 693.34032pt x 1541.76pt>
+ [10 <./fig/uiTelegram.jpg> <./fig/uiHandy.jpg>]
+<fig/stApp.jpg, id=51, 693.34032pt x 1541.76pt>
 File: fig/stApp.jpg Graphic file (type jpg)
 <use fig/stApp.jpg>
-Package pdftex.def Info: fig/stApp.jpg  used on input line 374.
+Package pdftex.def Info: fig/stApp.jpg  used on input line 384.
 (pdftex.def)             Requested size: 119.50157pt x 265.71863pt.
- [10 <./fig/uiHandy.jpg> <./fig/stApp.jpg>]
-Underfull \hbox (badness 1742) in paragraph at lines 385--386
+
+Underfull \hbox (badness 1742) in paragraph at lines 395--396
  \OT1/ptm/m/it/10 2) Port-freigabe: [][] \OT1/ptm/m/n/10 F[]ur die Port-freigab
 e muss man sich
  []
 
 
-Underfull \hbox (badness 2253) in paragraph at lines 385--386
+Underfull \hbox (badness 2253) in paragraph at lines 395--396
 \OT1/ptm/m/n/10 eine Regel hinzugef[]ugt, die den Port (in diesem Pro-
  []
 
 
-Underfull \hbox (badness 1694) in paragraph at lines 385--386
+Underfull \hbox (badness 1694) in paragraph at lines 395--396
 \OT1/ptm/m/n/10 diese Kon-fig-u-ra-tion wird die Steck-dose []uber das In-ter-
  []
 
 
-Underfull \hbox (badness 1668) in paragraph at lines 385--386
+Underfull \hbox (badness 1668) in paragraph at lines 395--396
 \OT1/ptm/m/n/10 net er-re-ich-bar und kann entsprechend ges-teuert wer-den.
  []
 
 
-Underfull \hbox (badness 1430) in paragraph at lines 389--391
+Underfull \hbox (badness 1430) in paragraph at lines 399--401
 \OT1/ptm/m/n/10 nur in die pro-duk-tive Daten-bank schreibt, die sich auf
  []
 
 
-Underfull \hbox (badness 3375) in paragraph at lines 389--391
+Underfull \hbox (badness 3375) in paragraph at lines 399--401
 \OT1/ptm/m/n/10 Di-a-gramme mit den entsprechen-den Werten ak-tu-al-isiert
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 389--391
+Underfull \hbox (badness 10000) in paragraph at lines 399--401
 
  []
 
 
-Underfull \hbox (badness 1371) in paragraph at lines 392--396
+Underfull \hbox (badness 1371) in paragraph at lines 402--406
 \OT1/ptm/m/n/10 Anschlie^^Yend wurde []uberpr[]uft, ob die Daten ko-r-rekt in
  []
 
 
-Underfull \hbox (badness 1454) in paragraph at lines 392--396
+Underfull \hbox (badness 1454) in paragraph at lines 402--406
 \OT1/ptm/m/n/10 der We-ban-wen-dung vi-su-al-isiert wer-den. Wie im lokalen
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 392--396
+Underfull \hbox (badness 10000) in paragraph at lines 402--406
 \OT1/ptm/m/n/10 Test wur-den die Schal-ter f[]ur Be-nachrich-ti-gung und
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 392--396
+Underfull \hbox (badness 10000) in paragraph at lines 402--406
 \OT1/ptm/m/n/10 Bel[]uftung eingeschal-tet. Der Rasp-ber-ryPi wurde von
  []
 
 
-Underfull \hbox (badness 7558) in paragraph at lines 392--396
+Underfull \hbox (badness 7558) in paragraph at lines 402--406
 \OT1/ptm/m/n/10 einem Dachgeschossz-im-mer in den Keller umgestellt.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 392--396
+Underfull \hbox (badness 10000) in paragraph at lines 402--406
 \OT1/ptm/m/n/10 De-mentsprechend fiel die Tem-per-atur und stieg die
  []
 
 
-Underfull \hbox (badness 5475) in paragraph at lines 392--396
+Underfull \hbox (badness 5475) in paragraph at lines 402--406
 \OT1/ptm/m/n/10 Die Tem-per-atur-w-erte la-gen vor der Ver-lagerung []uber
  []
 
 
-Underfull \hbox (badness 3118) in paragraph at lines 392--396
+Underfull \hbox (badness 3118) in paragraph at lines 402--406
 \OT1/ptm/m/n/10 der fest-gelegten Grenze von 25. Die Be-nachrich-ti-gung
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 392--396
+Underfull \hbox (badness 10000) in paragraph at lines 402--406
 \OT1/ptm/m/n/10 wurde ko-r-rekt gesendet und die WLAN-Steckdose
  []
 
 
-Underfull \hbox (badness 2662) in paragraph at lines 392--396
+Underfull \hbox (badness 2662) in paragraph at lines 402--406
 \OT1/ptm/m/n/10 eingeschal-tet. An-schlie^^Yend wurde der Schal-ter f[]ur die
  []
 
-
-Underfull \hbox (badness 4181) in paragraph at lines 398--402
+[11 <./fig/stApp.jpg>]
+Underfull \hbox (badness 4181) in paragraph at lines 408--412
 \OT1/ptm/m/n/10 er-fasst ver-schiedene Sen-sor-daten zur []Uberwachung der
  []
 
 
-Underfull \hbox (badness 1418) in paragraph at lines 398--402
+Underfull \hbox (badness 1418) in paragraph at lines 408--412
 \OT1/ptm/m/n/10 Bei []Uberschreitung bes-timmter, fest-gelegter Schwell-w-erte
  []
 
 
-Underfull \hbox (badness 4229) in paragraph at lines 398--402
+Underfull \hbox (badness 4229) in paragraph at lines 408--412
 \OT1/ptm/m/n/10 wie Tem-per-atur, Luft-feuchtigkeit oder Am-mo-ni-akge-halt,
  []
 
 
-Underfull \hbox (badness 3503) in paragraph at lines 398--402
+Underfull \hbox (badness 3503) in paragraph at lines 408--412
 \OT1/ptm/m/n/10 beschrieben durch die Steuerung der WLAN-Steckdose
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 398--402
+Underfull \hbox (badness 10000) in paragraph at lines 408--412
 \OT1/ptm/m/n/10 mit zwei ver-schiede-nen land-wirtschaftlichen Be-trieben
  []
 
 
-Underfull \hbox (badness 5077) in paragraph at lines 398--402
+Underfull \hbox (badness 5077) in paragraph at lines 408--412
 \OT1/ptm/m/n/10 geschrieben und an-schlie^^Yend von der We-ban-wen-dung
  []
 
 
-Underfull \hbox (badness 7012) in paragraph at lines 398--402
+Underfull \hbox (badness 7012) in paragraph at lines 408--412
 \OT1/ptm/m/n/10 aus-ge-le-sen und vi-su-al-isiert. Die Web-seite kann auch
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 398--402
+Underfull \hbox (badness 10000) in paragraph at lines 408--412
 \OT1/ptm/m/n/10 um die Bel[]uftung und Push-Benachrichtigungen zu
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 398--402
+Underfull \hbox (badness 10000) in paragraph at lines 408--412
 \OT1/ptm/m/n/10 steuern. Smart-stall bi-etet somit eine kosteng[]unstige
  []
 
 
-Underfull \hbox (badness 2503) in paragraph at lines 398--402
+Underfull \hbox (badness 2503) in paragraph at lines 408--412
 \OT1/ptm/m/n/10 Al-ter-na-tive zur au-toma-tisierten Steuerung und Kon-trolle
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 398--402
+Underfull \hbox (badness 10000) in paragraph at lines 408--412
 
  []
 
-[11]
-Underfull \hbox (badness 1466) in paragraph at lines 404--408
+
+Underfull \hbox (badness 1466) in paragraph at lines 414--418
 \OT1/ptm/m/n/10 Luftqualit[]atsdaten fes-tle-gen kann. Zum an-deren w[]are es
  []
 
-
-Underfull \hbox (badness 1424) in paragraph at lines 413--414
+[12]
+Underfull \hbox (badness 1424) in paragraph at lines 423--424
 \OT1/ptm/m/n/8 Verf[]ugbar unter: https://avm.de/service/wissensdatenbank/dok/F
 RITZ-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 413--414
+Underfull \hbox (badness 10000) in paragraph at lines 423--424
 \OT1/ptm/m/n/8 Box-7590/30[]Dynamic-DNS-in-FRITZ-Box-einrichten/. [Zu-griffs-da
 -
  []
 
 
-Underfull \hbox (badness 1424) in paragraph at lines 416--417
+Underfull \hbox (badness 1424) in paragraph at lines 426--427
 \OT1/ptm/m/n/8 Verf[]ugbar unter: https://avm.de/service/wissensdatenbank/dok/F
 RITZ-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 419--420
+Underfull \hbox (badness 10000) in paragraph at lines 429--430
 []\OT1/ptm/m/n/8 Bayerischer Rund-funk, "Am-mo-niak - giftiger Grund-stoff
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 419--420
+Underfull \hbox (badness 10000) in paragraph at lines 429--430
 \OT1/ptm/m/n/8 f[]ur Sprengstoff und D[]unger", On-line. Verf[]ugbar unter:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 419--420
+Underfull \hbox (badness 10000) in paragraph at lines 429--430
 \OT1/ptm/m/n/8 https://www.br.de/nachrichten/wissen/ammoniak-gas-reizendes-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 419--420
+Underfull \hbox (badness 10000) in paragraph at lines 429--430
 \OT1/ptm/m/n/8 kaeltemittel-fuer-augen-und-atemwege,RLvCroD. [Zu-griffs-da-tum:
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 422--423
+Underfull \hbox (badness 10000) in paragraph at lines 432--433
 []\OT1/ptm/m/n/8 Chart.js, "Line Chart", On-line. Verf[]ugbar unter:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 422--423
+Underfull \hbox (badness 10000) in paragraph at lines 432--433
 \OT1/ptm/m/n/8 https://www.chartjs.org/docs/latest/charts/line.html. [Zu-griffs
 -da-tum:
  []
 
 
-Underfull \hbox (badness 2310) in paragraph at lines 425--426
+Underfull \hbox (badness 2310) in paragraph at lines 435--436
 []\OT1/ptm/m/n/8 Delock, "Wlan Power Socket Switch", On-line. Verf[]ugbar unter
 :
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 428--429
+Underfull \hbox (badness 10000) in paragraph at lines 438--439
 []\OT1/ptm/m/n/8 DLG e. V., "Hitzestress im Stall? Erken-nen und Ma^^Y-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 428--429
+Underfull \hbox (badness 10000) in paragraph at lines 438--439
 \OT1/ptm/m/n/8 nah-men", On-line. Verf[]ugbar unter: https://www.fokus-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 428--429
+Underfull \hbox (badness 10000) in paragraph at lines 438--439
 \OT1/ptm/m/n/8 tierwohl.de/de/rind/fachinformationen-milchvieh/hitzestress-bei-
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 434--435
+Underfull \hbox (badness 10000) in paragraph at lines 444--445
 []\OT1/ptm/m/n/8 Heise Me-dien GmbH & Co. KG, "Pat-terns in der Soft-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 434--435
+Underfull \hbox (badness 10000) in paragraph at lines 444--445
 \OT1/ptm/m/n/8 https://www.heise.de/blog/Patterns-in-der-Softwarearchitektur-Mo
 del-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 437--438
+Underfull \hbox (badness 10000) in paragraph at lines 447--448
 \OT1/ptm/m/n/8 unter: https://getbootstrap.com/docs/5.3/getting-started/introdu
 ction/.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 440--441
+Underfull \hbox (badness 10000) in paragraph at lines 450--451
 []\OT1/ptm/m/n/8 Joy-It, "BME680", On-line. Verf[]ugbar unter: https://joy-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 443--444
+Underfull \hbox (badness 10000) in paragraph at lines 453--454
 []\OT1/ptm/m/n/8 Laub-Home Wiki, "Rasp-berry Pi BME680 Gas Sen-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 443--444
+Underfull \hbox (badness 10000) in paragraph at lines 453--454
 \OT1/ptm/m/n/8 sor", On-line. Verf[]ugbar unter: https://www.laub-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 443--444
+Underfull \hbox (badness 10000) in paragraph at lines 453--454
 \OT1/ptm/m/n/8 home.de/wiki/Raspberry[]Pi[]BME680[]Gas[]Sensor. [[Zu-griffs-da-
 tum:
  []
 
 
-Underfull \hbox (badness 3792) in paragraph at lines 446--447
+Underfull \hbox (badness 3792) in paragraph at lines 456--457
 []\OT1/ptm/m/n/8 Microsoft Cor-po-ra-tion, ".NET-Dokumentation", On-line. Verf[
 ]ugbar
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 449--450
+Underfull \hbox (badness 10000) in paragraph at lines 459--460
 []\OT1/ptm/m/n/8 Microsoft Cor-po-ra-tion, "C#-Dokumentation", On-line. Verf[]u
 gbar
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 449--450
+Underfull \hbox (badness 10000) in paragraph at lines 459--460
 \OT1/ptm/m/n/8 unter: https://learn.microsoft.com/de-de/dotnet/csharp/tour-of-c
 sharp/.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 455--456
+Underfull \hbox (badness 10000) in paragraph at lines 465--466
 []\OT1/ptm/m/n/8 Stuttgarter Zeitung Ver-lags-ge-sellschaft mbH, "Ab welcher
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 455--456
+Underfull \hbox (badness 10000) in paragraph at lines 465--466
 \OT1/ptm/m/n/8 Luft-feuchtigkeit entsteht Schim-mel?", On-line. Verf[]ugbar unt
 er:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 455--456
+Underfull \hbox (badness 10000) in paragraph at lines 465--466
 \OT1/ptm/m/n/8 https://www.stuttgarter-zeitung.de/inhalt.ab-welcher-luftfeuchti
 gkeit-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 455--456
+Underfull \hbox (badness 10000) in paragraph at lines 465--466
 \OT1/ptm/m/n/8 schimmel-mhsd.54e71b67-c3b7-4820-a80a-abcb4061c18b.html.
  []
 
 
-Underfull \hbox (badness 1852) in paragraph at lines 458--459
+Underfull \hbox (badness 1852) in paragraph at lines 468--469
 []\OT1/ptm/m/n/8 Telegram Foun-da-tion, "Tele-gram APIs", On-line. Verf[]ugbar 
 unter:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 461--462
+Underfull \hbox (badness 10000) in paragraph at lines 471--472
 []\OT1/ptm/m/n/8 https://www.laub-home.de/wiki/Raspberry[]Pi[]BME680[]Gas[]Sens
 or
  []
 
-[12]
-<fig/htmlcode.JPG, id=58, 670.75594pt x 325.96782pt>
-File: fig/htmlcode.JPG Graphic file (type jpg)
-<use fig/htmlcode.JPG>
-Package pdftex.def Info: fig/htmlcode.JPG  used on input line 470.
-(pdftex.def)             Requested size: 510.84283pt x 248.25539pt.
-
-Overfull \hbox (258.84283pt too wide) in paragraph at lines 470--471
- [][] 
- []
-
 [13
 
+]
+<fig/Projektaufbau.png, id=62, 1030.60031pt x 819.8128pt>
+File: fig/Projektaufbau.png Graphic file (type png)
+<use fig/Projektaufbau.png>
+Package pdftex.def Info: fig/Projektaufbau.png  used on input line 481.
+(pdftex.def)             Requested size: 510.84283pt x 406.35274pt.
 
- <./fig/htmlcode.JPG>]
-<fig/uiPC.jpg, id=63, 715.17188pt x 988.44281pt>
-File: fig/uiPC.jpg Graphic file (type jpg)
-<use fig/uiPC.jpg>
-Package pdftex.def Info: fig/uiPC.jpg  used on input line 478.
-(pdftex.def)             Requested size: 412.80157pt x 570.53716pt.
-
-Overfull \hbox (160.80157pt too wide) in paragraph at lines 478--479
+Overfull \hbox (258.84283pt too wide) in paragraph at lines 481--482
  [][] 
  []
 
 [14
 
 
- <./fig/uiPC.jpg>]
-<fig/ajax.JPG, id=67, 673.76718pt x 331.2375pt>
-File: fig/ajax.JPG Graphic file (type jpg)
-<use fig/ajax.JPG>
-Package pdftex.def Info: fig/ajax.JPG  used on input line 486.
-(pdftex.def)             Requested size: 510.84283pt x 251.14165pt.
+ <./fig/Projektaufbau.png>]
+<fig/htmlcode.JPG, id=67, 670.75594pt x 325.96782pt>
+File: fig/htmlcode.JPG Graphic file (type jpg)
+<use fig/htmlcode.JPG>
+Package pdftex.def Info: fig/htmlcode.JPG  used on input line 489.
+(pdftex.def)             Requested size: 510.84283pt x 248.25539pt.
 
-Overfull \hbox (258.84283pt too wide) in paragraph at lines 486--487
+Overfull \hbox (258.84283pt too wide) in paragraph at lines 489--490
  [][] 
  []
 
 [15
 
 
- <./fig/ajax.JPG>]
-<fig/diagrammCode.JPG, id=71, 398.99063pt x 746.79pt>
-File: fig/diagrammCode.JPG Graphic file (type jpg)
-<use fig/diagrammCode.JPG>
-Package pdftex.def Info: fig/diagrammCode.JPG  used on input line 494.
-(pdftex.def)             Requested size: 309.60315pt x 579.50833pt.
+ <./fig/htmlcode.JPG>]
+<fig/uiPC.jpg, id=71, 714.41907pt x 611.28375pt>
+File: fig/uiPC.jpg Graphic file (type jpg)
+<use fig/uiPC.jpg>
+Package pdftex.def Info: fig/uiPC.jpg  used on input line 497.
+(pdftex.def)             Requested size: 412.80157pt x 353.211pt.
 
-Overfull \hbox (57.60315pt too wide) in paragraph at lines 494--495
+Overfull \hbox (160.80157pt too wide) in paragraph at lines 497--498
  [][] 
  []
 
 [16
 
 
+ <./fig/uiPC.jpg>]
+<fig/ajax.JPG, id=75, 673.76718pt x 331.2375pt>
+File: fig/ajax.JPG Graphic file (type jpg)
+<use fig/ajax.JPG>
+Package pdftex.def Info: fig/ajax.JPG  used on input line 505.
+(pdftex.def)             Requested size: 510.84283pt x 251.14165pt.
+
+Overfull \hbox (258.84283pt too wide) in paragraph at lines 505--506
+ [][] 
+ []
+
+[17
+
+
+ <./fig/ajax.JPG>]
+<fig/diagrammCode.JPG, id=79, 398.99063pt x 746.79pt>
+File: fig/diagrammCode.JPG Graphic file (type jpg)
+<use fig/diagrammCode.JPG>
+Package pdftex.def Info: fig/diagrammCode.JPG  used on input line 513.
+(pdftex.def)             Requested size: 309.60315pt x 579.50833pt.
+
+Overfull \hbox (57.60315pt too wide) in paragraph at lines 513--514
+ [][] 
+ []
+
+[18
+
+
  <./fig/diagrammCode.JPG>]
-<fig/test.JPG, id=75, 708.39656pt x 946.28531pt>
+<fig/test.JPG, id=83, 708.39656pt x 946.28531pt>
 File: fig/test.JPG Graphic file (type jpg)
 <use fig/test.JPG>
-Package pdftex.def Info: fig/test.JPG  used on input line 502.
+Package pdftex.def Info: fig/test.JPG  used on input line 521.
 (pdftex.def)             Requested size: 412.80157pt x 551.43047pt.
 
-Overfull \hbox (160.80157pt too wide) in paragraph at lines 502--503
+Overfull \hbox (160.80157pt too wide) in paragraph at lines 521--522
  [][] 
  []
 
@@ -1184,7 +1203,7 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[17
+[19
 
 
  <./fig/test.JPG>] (smartstall_doku.aux)
@@ -1194,10 +1213,10 @@ L3 programming layer <2024-03-14>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 4666 strings out of 474423
- 74341 string characters out of 5741718
+ 4675 strings out of 474423
+ 74578 string characters out of 5741718
  1946496 words of memory out of 5000000
- 26965 multiletter control sequences out of 15000+600000
+ 26974 multiletter control sequences out of 15000+600000
  598792 words of font info for 123 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,11n,65p,1111b,334s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1209,9 +1228,9 @@ urw/times/utmb8a.pfb><C:/Users/hanne/AppData/Local/Programs/MiKTeX/fonts/type1/
 urw/times/utmbi8a.pfb><C:/Users/hanne/AppData/Local/Programs/MiKTeX/fonts/type1
 /urw/times/utmr8a.pfb><C:/Users/hanne/AppData/Local/Programs/MiKTeX/fonts/type1
 /urw/times/utmri8a.pfb>
-Output written on smartstall_doku.pdf (17 pages, 3380736 bytes).
+Output written on smartstall_doku.pdf (19 pages, 3469422 bytes).
 PDF statistics:
- 110 PDF objects out of 1000 (max. 8388607)
+ 119 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 76 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 81 words of extra memory for PDF output out of 10000 (max. 10000000)
 

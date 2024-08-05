@@ -2262,11 +2262,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Benutzer1\\source\\repos\\smartstall_04.07.2024\\smartstall.csproj",
+      "projectUniqueName": "C:\\Users\\Benutzer1\\source\\repos\\SmartStallWebanwendung\\smartstall.csproj",
       "projectName": "smartstall",
-      "projectPath": "C:\\Users\\Benutzer1\\source\\repos\\smartstall_04.07.2024\\smartstall.csproj",
+      "projectPath": "C:\\Users\\Benutzer1\\source\\repos\\SmartStallWebanwendung\\smartstall.csproj",
       "packagesPath": "C:\\Users\\Benutzer1\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Benutzer1\\source\\repos\\smartstall_04.07.2024\\obj\\",
+      "outputPath": "C:\\Users\\Benutzer1\\source\\repos\\SmartStallWebanwendung\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Benutzer1\\AppData\\Roaming\\NuGet\\NuGet.Config",

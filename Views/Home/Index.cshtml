@@ -51,11 +51,11 @@
                     var username = document.getElementById("username").value;
                     var password = document.getElementById("password").value;
 
-                    //Ajax-Anfrage an den Server senden
+                    
                     $.ajax({
-                        url: '/Home/Checkpassword', // URL der Controller-Methode
+                        url: '/Home/Checkpassword', 
                         type: 'POST',
-                        data: { username: username, password: password }, // Daten als JSON senden
+                        data: { username: username, password: password }, 
                         success: function (response) {
                             if (response) {
                                 window.location.href = "Home/Hauptseite";
@@ -67,7 +67,7 @@
                             console.error('Error:', error);
                         }
                     });
-                    return false; // Verhindert das Standardformular-Submit-Verhalten
+                    return false;
                 }
             </script>
         </main>
@@ -75,19 +75,6 @@
     <script src="/lib/jquery/dist/jquery.min.js"></script>
     <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0"></script>
-
-
-    <script>
-        function meineJavascriptFunktion() {
-            if (window.location.pathname === "/") {
-                // Wenn ja, verweise auf die Indexseite
-                window.location.href = "/";
-            } else {
-                // Wenn nein, verweise auf die Hauptseite (oder andere Seite)
-                window.location.href = "Hauptseite";
-            }
-        }
-    </script>
 
     <!-- Visual Studio Browser Link -->
     <script type="text/javascript" src="/_vs/browserLink" async="async" id="__browserLink_initializationData" data-requestId="a59907835e9745d7815190f85a81d942" data-requestMappingFromServer="false" data-connectUrl="http://localhost:49348/2732c78b3d9d4d99be060d3d25ba3925/browserLink"></script>

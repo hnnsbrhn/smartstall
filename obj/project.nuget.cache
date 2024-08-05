@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "MV4zsv88GizX+1n6mCrBkZ2aXTTAWwcbkYoySy9eAWgpVICMa5+B9V0RHVzWsX7z4Mryj9lQcEDcZ/loh9t17Q==",
+  "dgSpecHash": "ZOTRgrzlhxq/i/1jJIbGyCPZ3iE/5MEYrKAdH3YUTcYFMkECoG5dAUbR9+19kII3Jo+Y8sjR6wPMoT4RlFkXKg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Benutzer1\\source\\repos\\smartstall_04.07.2024\\smartstall.csproj",
+  "projectFilePath": "C:\\Users\\Benutzer1\\source\\repos\\SmartStallWebanwendung\\smartstall.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Benutzer1\\.nuget\\packages\\google.protobuf\\3.21.9\\google.protobuf.3.21.9.nupkg.sha512",
     "C:\\Users\\Benutzer1\\.nuget\\packages\\k4os.compression.lz4\\1.3.5\\k4os.compression.lz4.1.3.5.nupkg.sha512",

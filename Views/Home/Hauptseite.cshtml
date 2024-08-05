@@ -180,13 +180,13 @@
         buttonTemperaturTag.addEventListener('click', handleButtonTemperaturTagClick);
     }
 
-    //hier habe ich ein asnyc entfernt
+    
     function handleCheckboxChangeBenachrichtigung(checkbox) {
-        benachrichtigungflag = checkbox.checked; // true, wenn angehakt, false, wenn ausgehakt
+        benachrichtigungflag = checkbox.checked; 
         $.ajax({
-            url: 'SetAttributes', // Ersetzen Sie 'ControllerName' durch den Namen Ihres Controllers
+            url: 'SetAttributes', 
             type: 'POST',
-            data: { attribute: "Benachrichtigung", flag: checkbox.checked }, // Beispielwerte für 'attribute' und 'flag'
+            data: { attribute: "Benachrichtigung", flag: checkbox.checked }, 
             success: function (response) {
                 console.log('Erfolgreich:', response);
             },
@@ -197,12 +197,12 @@
     }
 
     function handleCheckboxChangeBelüftung(checkbox) {
-        belüftungflag = checkbox.checked; // true, wenn angehakt, false, wenn ausgehakt
+        belüftungflag = checkbox.checked; 
 
         $.ajax({
-            url: 'SetAttributes', // Ersetzen Sie 'ControllerName' durch den Namen Ihres Controllers
+            url: 'SetAttributes', 
             type: 'POST',
-            data: { attribute: "Belüftung", flag: checkbox.checked }, // Beispielwerte für 'attribute' und 'flag'
+            data: { attribute: "Belüftung", flag: checkbox.checked }, 
             success: function (response) {
                 console.log('Erfolgreich:', response);
             },

@@ -6,6 +6,11 @@
 \usepackage{algorithmic}
 \usepackage{graphicx}
 \usepackage{textcomp}
+
+%Für Tabellen
+\usepackage{caption}
+\renewcommand{\arraystretch}{1.5}
+
 \usepackage{xcolor}
 \usepackage{float}
 \usepackage{fancyhdr}
@@ -62,7 +67,7 @@ Daraufhin folgt die Durchführung eines Tests des Gesamtsystems, bei dem noch ei
 \subsection{Ursprüngliche Überlegungen}
 Das Ziel von SmartStall ist die Kontrolle der Luftqualität in einem Stall. Durch den Einsatz von Sensoren sollen Ammoniak, Temperatur und Luftfeuchtigkeit überwacht werden, um sicherzustellen, dass diese Werte nicht in Bereiche gelangen, die für die Tiere schädlich sein können. Da die Umrüstung auf ein automatisiertes Gesamtsystem für die Belüftung sehr kostspielig sein kann, soll SmartStall eine kostengünstige Alternative bieten. \\
 Die erfassten Luftqualitätsdaten sollen in Diagrammen in einer Webanwendung visualisiert werden, welche den Verlauf über einen Tag, bzw. einer Woche zeigen. Die Webanwendung soll mit einem Login-Formular geschützt werden, bei dem Benutzername und Passwort eingegeben werden müssen. In den Diagrammen sollen die Grenzen, ab denen die einzelnen Luftdaten schädlich werden, rot markiert sein. Neben den aktuellen Daten sollen auch die durchschnittlichen Werte für eine Woche und einen Tag angezeigt werden. Es gibt insgesamt drei Diagramme: eines für Ammoniak, eines für Temperatur und eines für Luftfeuchtigkeit. \\
-Nach den ersten Überlegungen zu dem Projekt SmartStall wurde folgende Skizze für eine mögliche Benutzeroberfläche entwickelt:
+Nach den ersten Überlegungen zu dem Projekt SmartStall wurde ein erster Entwurf für die Benutzeroberfläche entwickelt, welcher in Abbildung \ref{firstUI} zu sehen ist.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=80mm]{fig/firstUI.JPG}
@@ -84,7 +89,7 @@ Da SmartStall ein IT-Produkt für Landwirte mit Tierhaltungsbetriebe werden soll
 Nach Abstimmungen mit den genannten Landwirten sehen die Anforderungen an das Projekt SmartStall wie folgt aus: \\
 Die Luftqualitätsdaten des Stalls werden über einen Raspberry Pi in eine Datenbank geschrieben. Diese Daten werden in einer passwortgeschützten Webanwendung visualisiert, die drei verschiedene Diagramme enthält: eines für Ammoniak, eines für Luftfeuchtigkeit und eines für Temperatur. Die Diagramme zeigen die aktuellen Werte des Tages bzw. der letzten sieben Tage an. Die durchschnittlichen Werte für Tag und Woche wurden entfernt, um die Lesbarkeit zu verbessern.
 Neben den Diagrammen wird der aktuelle Wert angezeigt, der in roter Schrift dargestellt ist, wenn der Wert die schädliche Grenze überschreitet, und in grüner Schrift, wenn er im unkritischen Bereich liegt. Es gibt außerdem zwei Schalter, mit denen die Automatisierung der Belüftung und das Benachrichtigen per Push-Nachricht bei Überschreitung des Grenzwerts aktiviert werden können.
-Die Push-Benachrichtigungen werden an eine Telegram-Gruppe gesendet, in die alle Mitarbeiter eines Bauernhofs aufgenommen werden können, sodass alle relevanten Personen informiert werden. Eine Benachrichtigung wird auch gesendet, wenn die Steuerung der Belüftung deaktiviert wird, woraufhin das System die Belüftung abschaltet. Dies verhindert, dass die Belüftung unnötig lange läuft, falls sie zum Zeitpunkt der Deaktivierung noch aktiv ist, und trägt dazu bei, den Energieverbrauch des Stalls zu reduzieren. In Abschnitt \ref{ui} wird genauer auf die finale Benutzeroberfläche eingeangen.
+Die Push-Benachrichtigungen werden an eine Telegram-Gruppe gesendet, in die alle Mitarbeiter eines Bauernhofs aufgenommen werden können, sodass alle relevanten Personen informiert werden. Eine Benachrichtigung per Telegram wird auch dann gesendet, wenn die automatische, schwellwertgesteuerte Belüftung in der Benutzeroberfläche der Webanwendung deaktiviert wird. Hierbei schaltet die Webanwendung die Smart-Steckdose und somit die Belüftung aus und informiert alle Mitglieder der Telegramm Gruppe darüber. Dies verhindert, dass die Belüftung unnötig lange läuft, falls sie zum Zeitpunkt der Deaktivierung noch aktiv ist, und trägt dazu bei, den Energieverbrauch des Stalls zu reduzieren. In Abschnitt \ref{ui} wird genauer auf die finale Benutzeroberfläche eingeangen.
 
 \section{Aufbau und Zusammenspiel der Komponenten}
 In diesem Kapitel werden die einzelnen Komponenten beleuchtet und es wird auf deren Zusammenspiel im Kontext dieses Projekts eingegangen. In Anhang \ref{sec:AufbauAnhang} ist ebenfalls eine Skizze des Aufbaus zu finden. \\
@@ -97,19 +102,19 @@ Ein weiterer wichtiger Aspekt des Systems ist die Steuerung der Belüftungsanlag
 \section{Hardware Komponenten}
 \label{chapter:hw_komponenten}
 \subsection{Raspberry Pi 3B}
-Der Raspberry Pi (Modell 3B) ist ein beliebter Einplatinencomputer, der von der Raspberry Pi Foundation entwickelt wurde. Er bietet ausreichend Rechenleistung, Speicher und Konnektivität, um komplexe Aufgaben auszuführen und eine Vielzahl von Erweiterungen und Anwendungen zu unterstützen und ist somit eine kostengünstige und vielseitige Plattform für Projekte im Bereich der Einbettung von Computern und des IoT--Konzepts. Die umfangreiche Community und Dokumentation rund um den Raspberry Pi machen es einfach, Projekte zu starten und Unterstützung zu erhalten. Es gibt eine Vielzahl von Erweiterungsmodulen und Zubehörteilen, die den Raspberry Pi erweitern und an individuelle Anforderungen anpassen können. Um den Raspberry Pi 3B zu nutzen, ist eine grundlegende Einrichtung erforderlich, auf welche in Kapitel \ref{pi} genauer eingegangen wird  \cite{raspy}.
+Der Raspberry Pi (Modell 3B) ist ein beliebter Einplatinencomputer, der von der Raspberry Pi Foundation entwickelt wurde. Er bietet ausreichend Rechenleistung, Speicher und Konnektivität, um komplexe Aufgaben auszuführen und eine Vielzahl von Erweiterungen und Anwendungen zu unterstützen und ist somit eine kostengünstige und vielseitige Plattform für Projekte im Bereich der Einbettung von Computern und des IoT--Konzepts. Die umfangreiche Community und Dokumentation rund um den Raspberry Pi machen es einfach, Projekte zu starten und Unterstützung zu erhalten. Es gibt eine Vielzahl von Erweiterungsmodulen und Zubehörteilen, die den Raspberry Pi erweitern und an individuelle Anforderungen anpassen können \cite{raspy}. Um den Raspberry Pi 3B zu nutzen, ist eine grundlegende Einrichtung erforderlich, auf welche in Kapitel \ref{pi} genauer eingegangen wird.
 
 \subsection{Bosch Sensortec BME680 Sensor}
-Der Bosch Sensortec BME680 ist ein fortschrittlicher Umweltsensor, der verschiedene Messungen in einer kompakten Einheit vereint. Der BME680 Sensor ermöglicht die Messung von vier Umweltparametern:
+Der Bosch Sensortec BME680 ist ein Umweltsensor, der verschiedene Messungen in einer kompakten Einheit vereint. Der BME680 Sensor ermöglicht die Messung von vier Umweltparametern:
 \begin{itemize}
 	\item Temperatur: Der Sensor misst die Umgebungstemperatur mit hoher Präzision.
 	\item Luftfeuchtigkeit: Er erfasst die relative Luftfeuchtigkeit und liefert genaue Feuchtigkeitswerte.
 	\item Luftdruck: Der Sensor kann den atmosphärischen Druck messen und damit Wettervorhersagen ermöglichen.
 	\item Luftqualität: Der BME680 Sensor ist in der Lage, flüchtige organische Verbindungen (VOCs) und verschiedene Gase wie Kohlenmonoxid (CO) und Stickstoffdioxid (NO2) zu erkennen.
 \end{itemize}
-Der BME680 Sensor findet Anwendung in einer Vielzahl von Bereichen, wie beispielsweise der Erfassung von Wetterdaten in Außenbereichen und der Überwachung von Luftqualität in Innenräumen \cite{bme}. 
+Der BME680 Sensor findet Anwendung in einer Vielzahl von Bereichen, wie beispielsweise der Erfassung von Wetterdaten in Außenbereichen und der Überwachung von Luftqualität in Innenräumen \cite{bme} \cite{bmeDataSheet}. 
 \subsection{MQ137 NH3-Gassensormodul}
-Das MQ137 Gassensor-Modul ist ein Sensor, der speziell entwickelt wurde, um Ammoniakgas (NH3) in der Umgebungsluft zu messen. Er basiert auf der Metalloxid-Gassensortechnologie und erfasst die Konzentration von Ammoniak in Parts per Million (ppm). Der Sensor reagiert auf das Vorhandensein von Ammoniak, indem er Änderungen in der elektrischen Leitfähigkeit erkennt. Das MQ137 Gassensor-Modul ermöglicht eine präzise Erfassung von Ammoniakgas und findet Anwendung in verschiedenen Bereichen wie Industrie, Landwirtschaft und Umweltüberwachung.
+Das MQ137 Gassensor-Modul ist ein Sensor, der speziell entwickelt wurde, um Ammoniakgas (NH3) in der Umgebungsluft zu messen. Er basiert auf der Metalloxid-Gassensortechnologie und erfasst die Konzentration von Ammoniak in Parts per Million (ppm). Der Sensor reagiert auf das Vorhandensein von Ammoniak, indem er Änderungen in der elektrischen Leitfähigkeit erkennt. Das MQ137 Gassensor-Modul ermöglicht eine präzise Erfassung von Ammoniakgas und findet Anwendung in verschiedenen Bereichen wie Industrie, Landwirtschaft und Umweltüberwachung \cite{mqDataSheet}. Dieser Sensor wurde gewählt, da er eine kosteneffiziente Alternative zu komplexeren hochpreisigen Sensoren darstellt, welche neben Ammoniak weitere Parameter messen, die für den Kontext der Luftqualitätsüberwachung in einem Stall allerdings nicht benötigt, oder bereits durch den BME680 Sensor abgedeckt werden.
 
 \subsection{Verbinden der Komponenten}
 Um die vorgestellten Sensoren nutzen zu können, müssen diese an die korrekten Pins des Raspberry Pis angeschlossen werden. Die zur Verfügung stehenden Pins des Raspberry Pis sind in Abbildung \ref{pi_pins} dargestellt.
@@ -136,10 +141,10 @@ Der BME680 besitzt sechs Pins, welche Abbildung \ref{bme_pins} zu entnehmen sind
 	\caption{Pin Verbindungen von Raspberry Pi und BME680 \cite{bmeAbbildungen}}
 	\label{verkabelung_bme}
 \end{figure}
+Über die Pins VCC und GND wird die Stromversorgung des BME680 über den Raspberry Pi sichergestellt. Für die Datenübertragung wird die sogenannte Inter-Integrated-Circuit Schnittstelle (I$^2$C) genutzt. I$^2$C ist ein synchrones, serielles Kommunikationsprotokoll, das über zwei Leitungen eine bidirektionale Kommunikation zwischen einem oder mehreren Master- und Slave-Geräten ermöglicht. Der SDA Pin dient hierbei als Datenleitung und der SCL Pin ist für die Übertragung des Takts für die Datenübertragung zuständig. Die Datenübertragung funktioniert nach dem Master-Slave-Prinzip, es gibt ein Master-Gerät, welches die Kommunikation initiiert und den Takt vorgibt, in diesem Fall der Raspberry Pi und ein oder mehrere Slave-Geräte, welche auf die Befehle des Masters reagieren, in diesem Fall der BME680 Sensor \cite{i2cDoc}. \\
 
 \subsubsection{Anschließen des MQ137 Sensors} 
-
-Der MQ137 Sensor besitzt, wie in Abbildung \ref{mq137_pins} zu sehen 4 Pins, welche ebenfalls mit den jeweiligen Pins des Raspberry Pis verbunden werden müssen:
+Der MQ137 Sensor besitzt, wie in Abbildung \ref{mq137_pins} zu sehen, 4 Pins, welche ebenfalls mit den jeweiligen Pins des Raspberry Pis verbunden werden müssen:
 \begin{itemize}
 	\item VCC: Stromversorgung (5V)
 	\item GND: Ground
@@ -147,20 +152,36 @@ Der MQ137 Sensor besitzt, wie in Abbildung \ref{mq137_pins} zu sehen 4 Pins, wel
 	\item AO: analoger Signalausgang
 \end{itemize}
 \begin{figure}[H]
-	\centerline{\includegraphics[height=30mm]{fig/mq137_pins.png}}
+	\centerline{\includegraphics[height=25mm]{fig/mq137_pins.png}}
 	\caption{MQ137 Gassensormodul}
 	\label{mq137_pins}
 \end{figure}
+Um den MQ137 Sensor mit Strom zu versorgen und zunächst über den digitalen Output Pin an den Raspberry Pi ein High bzw. Low Signal senden zu können, je nachdem ob ein bestimmter Schwellwert von Ammoniak gemessen wird oder nicht, müssen folgende Pins zwischen Raspberry Pi und MQ137 Sensor verbunden werden:
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|p{4cm}|p{4cm}|}
+		\hline
+		\textbf{Raspberry Pi GPIO Pin} & \textbf{MQ-137 Pin} \\
+		\hline
+		3 (5V power) & VCC \\
+		\cline{1-2}
+		6 (Ground) & GND \\
+		\cline{1-2}
+		38 (GPIO20 / PCM\_DIN) & DO \\
+		\hline
+	\end{tabular}
+	%\caption*{Pin-Verbindungen zwischen Raspberry Pi und MQ-137}
+\end{table}
 
+\newpage
 \subsubsection{Gesamtaufbau}
 Die Sensoren wurden mittels Jumper-Kabeln und einem Breadboard mit dem Raspberry Pi verbunden. Der Aufbau und die beschriebene Verkabelung der Sensoren mit dem Raspberry Pi ist Abbildung \ref{aufbau} zu sehen.
-
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=80mm]{fig/aufbau.png}}
 	\caption{Verkabelung der Sensoren mit dem Raspberry Pi}
 	\label{aufbau}
 \end{figure}
-\newpage
+
 \section{Einrichtung Raspberry Pi}
 \label{pi}
 \subsection{Konfiguration}
@@ -180,15 +201,21 @@ Wenn das Anschließen von Ein- und Ausgabegeräten an den Raspberry Pi nicht gew
 \subsection{Software und Bibliotheken}
 Nach der Einrichtung des Raspberry Pi musste zunächst das I2C (Inter-Integrated Circuit) Interface über die raspi-config aktiviert werden. I2C  ist ein serieller Kommunikationsbus zur Verbindung von elektronischen Bauteilen über nur zwei Datenleitungen: SDA (Serial Data Line) und SCL (Serial Clock Line). Es ermöglicht die einfache Kommunikation zwischen verschiedenen Geräten wie Mikrocontrollern, Sensoren und Aktoren. Dieser wird vom BME680 Sensor zur Übertragung der Messwerte genutzt. Da für das Abfragen der Sensordaten in diesem Projekt Python verwendet wird, welches bereits standardmäßig mit dem Raspian Betriebssystem mitinstalliert wird, müssen zusätzlich noch einige Bibliotheken installiert werden: 
 \begin{itemize}
-	\item python3-smbus: Ermöglicht die Kommunikation über in I2C-Bus in Python. Es werden Funktionen bereitgestellt I2C-Geräte anzusprechen und Daten zu senden und zu empfangen.
-	\item i2c-tools: Wird für die Verwaltung und Diagnose des I2C-Busses verwendet. Dies bietet zusätzliche Funktionalitäten wie das Anzeigen angeschlossener Geräte.
-	\item adafruit-circuitpython-bme680: 
+	\item python3-smbus: \\
+	Ermöglicht die Kommunikation über in I2C-Bus in Python. Es werden Funktionen bereitgestellt I2C-Geräte anzusprechen und Daten zu senden und zu empfangen.
+	\item i2c-tools: \\
+	 Wird für die Verwaltung und Diagnose des I2C-Busses verwendet. Dies bietet zusätzliche Funktionalitäten wie das Anzeigen angeschlossener Geräte.
+	\item adafruit-circuitpython-bme680: \\
+	Dies ist eine Bibliothek zur Kommunikation mit dem BME680 Sensor, welche die Interaktion mit dem Sensor ermöglicht, um Sensordaten auszulesen und die Messgenauigkeit zu beeinflussen.
+	\item rpi.gpio: \\
+	Hierbei handelt es sich um eine Bibliothek, welche für die Konfiguration und Überwachung der GPIO-Pins des Raspberry Pis entwickelt wurde. Sie wird in diesem Kontext verwendet um einen Pin als digitalen Eingang zu konfigurieren, um das digitale Out Signal des MQ137 Sensors auszulesen.
 \end{itemize}
 
 \subsection{Datenübertragung}
 \label{chapter:datenuebertragung}
 Die Datenübertragung vom Raspberry Pi an die Webanwendung findet über ein Python-Skript statt. Python bietet sich hierbei als Programmiersprache aufgrund der knappen und prägnanten Syntax an und ist außerdem auf dem Betriebssystem des Raspberry Pi vorinstalliert, sodass kein zusätzlicher Aufwand nötig ist, um das Skript zum laufen zu bringen. Ein weiterer Vorteil von Python ist die Plattformunabhängigkeit, wodurch die Datenübertragung ebenfalls auf anderen Betriebssystemen wie Windows, Linux und MacOS problemlos ohne Änderungen ausgeführt werden könnte. \\
-Das Skript dient dazu, die von den Sensoren gemessenen Daten zu erfassen, entsprechend zu formatieren und an die Webanwendung zu senden. Es beginnt mit der Initialisierung und Erkennung der Sensoren. Das Skript versucht, den BME680 Sensor unter der primären I2C-Adresse zu initialisieren. Wird der Sensor erkannt, werden verschiedene Parameter wie Oversampling und Filtergröße konfiguriert, um genaue Messungen zu gewährleisten. Zusätzlich wird der MQ137-Sensor konfiguriert. Der digitale Ausgangspin dieses Sensors wird angesteuert, und es wird überprüft, ob der Sensor erreichbar, bzw. betriebsbereit ist. \\
+Das Skript dient dazu, die von den Sensoren gemessenen Daten zu erfassen, entsprechend zu formatieren und an die Webanwendung zu senden. Es beginnt mit der Initialisierung und Erkennung der Sensoren. Das Skript versucht, den BME680 Sensor unter der primären I2C-Adresse zu initialisieren. Wird der Sensor erkannt, werden verschiedene Parameter wie Oversampling und Filtergröße konfiguriert, um genaue Messungen zu gewährleisten. Unter Oversampling versteht man die Anzahl der Messungen zu einem Messzeitpunkt, um anschließend den Durchschnittswert zu berechnen und so die Genauigkeit der Messung zu erhöhen. Filtergröße bezieht sich auf den digitalen Filter, der verwendet wird, um Rauschen und kleine Schwankungen in den Sensordaten zu glätten. Der Filter reduziert die Auswirkungen von plötzlichen Änderungen oder Rauschen, indem er eine gleitende Durchschnittsberechnung anwendet. \\
+Zusätzlich wird der MQ137-Sensor konfiguriert. Der digitale Ausgangspin dieses Sensors wird angesteuert, und es wird überprüft, ob der Sensor erreichbar ist. \\
 Im nächsten Schritt erfasst das Skript die Sensordaten und sendet sie per HTTP-Anfrage an die Webanwendung. Hierbei werden die aktuellen Sensorwerte ausgelesen und in ein JSON-Objekt verpackt. Dieses Objekt wird dann über eine vordefinierte Route mit der entsprechenden URL an die Webanwendung gesendet. Das Skript überprüft anschließend, ob die Übertragung erfolgreich war und gibt entsprechend eine Erfolgsmeldung oder eine Fehlermeldung zurück, falls der Raspberry Pi nicht mit dem Internet verbunden, oder die Webanwendung nicht erreichbar ist. Diese Meldungen werden zusammen mit den Sensordaten in einer Log-Datei gespeichert. Ein beispielhafter Log-Eintrag für eine erfolgreiche Datenübertragung ist in Abbildung \ref{send_data_success} zu sehen. Zum Abschluss werden die verwendeten GPIO-Pins bereinigt, um sicherzustellen, dass keine Ressourcen unnötig belegt bleiben.
 \begin{figure}[H]
 	\centering
@@ -197,7 +224,7 @@ Im nächsten Schritt erfasst das Skript die Sensordaten und sendet sie per HTTP-
 	\label{send_data_success}
 \end{figure}
 Um Ressourcen zu schonen, enthält das Skript keine Schleife, die die Daten in regelmäßigen Abständen ausliest und sendet. Stattdessen wird das Skript nach der Ausführung, also der einmaligen Datenübertragung, zunächst beendet. Für die regelmäßige Ausführung des Skripts wird Crontab genutzt. \\ 
-Crontab ist ein Dienst auf Unix-basierten Betriebssystemen, der es ermöglicht, Aufgaben zu einem bestimmten Zeitplan auszuführen. Es handelt sich um eine Zeitplanungsdatei, die als Crontab-Datei bezeichnet wird und in der definiert wird, wann und wie oft bestimmte Befehle oder Skripte automatisch ausgeführt werden sollen. Die Verwendung von Crontab zur regelmäßigen Ausführung eines Python-Skripts in festgelegten Intervallen bietet mehrere Vorteile. Diese umfassen eine effizientere Nutzung der Systemressourcen, eine vereinfachte Verwaltung und Fehlerbehebung sowie eine erleichterte Systemwartung. Ein dauerhaft laufendes Skript verbraucht kontinuierlich Speicher, selbst wenn es inaktiv ist. \\
+Crontab ist ein Dienst auf Unix-basierten Betriebssystemen, der es ermöglicht, Aufgaben zu einem bestimmten Zeitplan auszuführen. Es handelt sich um eine Zeitplanungsdatei, die als Crontab-Datei bezeichnet wird und in der definiert wird, wann und wie oft bestimmte Befehle oder Skripte automatisch ausgeführt werden sollen \cite{crontab}. Die Verwendung von Crontab zur regelmäßigen Ausführung eines Python-Skripts in festgelegten Intervallen bietet mehrere Vorteile. Diese umfassen eine effizientere Nutzung der Systemressourcen, eine vereinfachte Verwaltung und Fehlerbehebung sowie eine erleichterte Systemwartung. Ein dauerhaft laufendes Skript verbraucht kontinuierlich Speicher, selbst wenn es inaktiv ist. \\
 Crontab startet das Skript nur bei Bedarf, wodurch der Speicherverbrauch erheblich reduziert wird und die Systemressourcen effizienter genutzt werden. Darüber hinaus erleichtert Crontab die Verwaltung und das Debugging. Jedes Mal, wenn das Skript neu startet, beginnt es in einem sauberen Zustand, was die Fehlersuche vereinfacht und die Stabilität erhöht. Fehler oder inkonsistente Zustände, die sich in einem dauerhaft laufenden Skript ansammeln könnten, werden durch den Neustart behoben. Ein weiterer Vorteil ist die automatische Handhabung von Systemwartungen. Während dauerhaft laufende Skripte nach einem Neustart manuell neu gestartet werden müssen, starten Crontab-Jobs automatisch, was die Wiederherstellung des Betriebs nach Wartung, Updates oder unerwarteten Neustarts erleichtert.
 
 \section{Webanwendung}
@@ -207,7 +234,6 @@ Ein Beispiel hierfür ist MVC (Model-View-Controller), welches für die Webanwen
 \subsection{Hosting}
 Die Webanwendung wird auf einem Oracle Cloud Webserver gehostet, der mit dem Linux-Betriebssystem läuft. Diese Entscheidung bietet mehrere Vorteile für das Projekt. Einerseits gewährleistet der Oracle Cloud Webserver eine hohe Zuverlässigkeit und Verfügbarkeit der Anwendung durch seine robuste Infrastruktur und Service Level Agreements. Außerdem besteht die Möglichkeit, Ressourcen nach Bedarf zu skalieren, dass die Anwendung problemlos mit steigenden Benutzeranforderungen wachsen kann. Diese Flexibilität unterstützt auch eine kosteneffiziente Nutzung, da Ressourcen nur dann erhöht werden, wenn sie auch tatsächlich benötigt werden. Für die Durchführung des Projekts wurde die sogenannte \textit{Oracle Cloud Free Tier} genutzt. \\
 Hierbei handelt es sich um einen kostenlosen Tarif mit entsprechend eingeschränkter Rechenleistung. Da sich die zur Verfügung stehenden Ressourcen allerdings beliebig skalieren lassen, ist es jederzeit ohne Mehraufwand möglich zusätzliche Rechenleistung anzumieten, welche gegebenenfalls in der Zukunft bei Weiterentwicklung der Anwendung für zusätzliche Funktionen benötigt wird. Das Hosting auf einem Oracle Cloud Webserver bietet somit eine solide Grundlage für eine sichere, skalierbare und kosteneffiziente Bereitstellung der Webanwendung. \\
-
 \subsection{Deployment}
 Das Deployment einer ASP.NET Core Webanwendung auf einem Linux Webserver umfasst mehrere Schritte, um sicherzustellen, dass die Anwendung ordnungsgemäß bereitgestellt und ausgeführt wird. Dieses Kapitel erläutert den den Prozess vom Entwicklungs- bis zum Produktionsumfeld
 Notwendige Schritte für das Deployment sind:
@@ -469,6 +495,18 @@ Telegram Foundation, "Telegram APIs", Online. Verfügbar unter: https://core.tel
 
 \bibitem{bmeAbbildungen}
 https://www.laub-home.de/wiki/Raspberry\_Pi\_BME680\_Gas\_Sensor [Zugriffsdatum: 20. Juli 2024].
+
+\bibitem{bmeDataSheet}
+https://www.bosch-sensortec.com/products/environmental-sensors/gas-sensors/bme680/ [Zugriffsdatum: 05. August 2024].
+
+\bibitem{mqDataSheet}
+https://www.winsen-sensor.com/d/files/semiconductor/mq137.pdf [Zugriffsdatum: 05. August 2024].
+
+\bibitem{i2cDoc}
+https://www.nxp.com/docs/en/user-guide/UM10204.pdf [Zugriffsdatum: 05. August 2024].
+
+\bibitem{crontab}
+https://help.ubuntu.com/community/CronHowto [Zugriffsdatum: 05. August 2024].
 
 \end{thebibliography}
 

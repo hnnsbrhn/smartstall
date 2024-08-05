@@ -230,7 +230,7 @@ Crontab startet das Skript nur bei Bedarf, wodurch der Speicherverbrauch erhebli
 \section{Webanwendung}
 \subsection{Architektur}
 Die Webanwendung wurde mit dem ASP.NET Core Framework für C-Sharp, unter Verwendung der .NET-Plattform, entwickelt. ASP.NET Core ist ein modernes, plattformübergreifendes Framework für die Entwicklung von Webanwendungen. Es bietet eine modularisierte Architektur, die Entwicklern ermöglicht, nur benötigte Komponenten zu verwenden, was die Performance verbessert und die Anpassungsfähigkeit erhöht. Durch seine Plattformunabhängigkeit läuft ASP.NET Core auf Windows, macOS und Linux, was Flexibilität bei der Bereitstellung ermöglicht. Das Framework ist stark auf Performance optimiert und unterstützt moderne Webentwicklungsmuster \cite{dotNET} \cite{csharp}. \\
-Ein Beispiel hierfür ist MVC (Model-View-Controller), welches für die Webanwendung verwendet wurde. Hierbei handelt es sich um ein moderneres Designmuster, das die Trennung von Datenmodell, Präsentationsschicht und Steuerungslogik fördert, was die Struktur und Übersichtlichkeit der Webanwendung verbessert.
+Ein Beispiel hierfür das Model-View-Controller, kurz MVC, welches für die Webanwendung verwendet wurde. Hierbei handelt es sich um ein moderneres Designmuster, das die Trennung von Datenmodell, Präsentationsschicht und Steuerungslogik fördert, was die Struktur und Übersichtlichkeit der Webanwendung verbessert.
 \subsection{Hosting}
 Die Webanwendung wird auf einem Oracle Cloud Webserver gehostet, der mit dem Linux-Betriebssystem läuft. Diese Entscheidung bietet mehrere Vorteile für das Projekt. Einerseits gewährleistet der Oracle Cloud Webserver eine hohe Zuverlässigkeit und Verfügbarkeit der Anwendung durch seine robuste Infrastruktur und Service Level Agreements. Außerdem besteht die Möglichkeit, Ressourcen nach Bedarf zu skalieren, dass die Anwendung problemlos mit steigenden Benutzeranforderungen wachsen kann. Diese Flexibilität unterstützt auch eine kosteneffiziente Nutzung, da Ressourcen nur dann erhöht werden, wenn sie auch tatsächlich benötigt werden. Für die Durchführung des Projekts wurde die sogenannte \textit{Oracle Cloud Free Tier} genutzt. \\
 Hierbei handelt es sich um einen kostenlosen Tarif mit entsprechend eingeschränkter Rechenleistung. Da sich die zur Verfügung stehenden Ressourcen allerdings beliebig skalieren lassen, ist es jederzeit ohne Mehraufwand möglich zusätzliche Rechenleistung anzumieten, welche gegebenenfalls in der Zukunft bei Weiterentwicklung der Anwendung für zusätzliche Funktionen benötigt wird. Das Hosting auf einem Oracle Cloud Webserver bietet somit eine solide Grundlage für eine sichere, skalierbare und kosteneffiziente Bereitstellung der Webanwendung. \\
@@ -256,7 +256,7 @@ Notwendige Schritte für das Deployment sind:
 	Das Deployment Paket beinhaltet eine ausführbare \textit{.dll} Datei, welche von einer zusätzlich konfigurierten Linux Service-Datei automatisch beim Start des Webservers ausgeführt und somit die Webanwendung gestartet wird.
 \end{itemize}
 \subsection{Software Design}
-Für die Webanwendung wurde die sogenannte Model-View-Controller Architektur angewendet. Dies ist eines der etablierten Architekturmuster und teil des verwendeten ASP.NET C\# Frameworks. Architekturmuster bzw. Patterns sind in der modernen Softwareentwicklung und -architektur von großer Bedeutung, da sie eine klar definierte Terminologie und eine saubere Dokumentation bieten.  \\
+Für die Webanwendung wurde die MVC Architektur angewendet. Dies ist eines der etablierten Architekturmuster und teil des verwendeten ASP.NET C\# Frameworks. Architekturmuster bzw. Patterns sind in der modernen Softwareentwicklung und -architektur von großer Bedeutung, da sie eine klar definierte Terminologie und eine saubere Dokumentation bieten.  \\
 Das MVC-Muster ist besonders geeignet für interaktive Anwendungen, die eine flexible Schnittstelle zwischen Mensch und Maschine erfordern. MVC unterteilt die Programmlogik einer Benutzeroberfläche in drei Hauptkomponenten: Model, View und Controller. Das Model verwaltet die Daten und Geschäftsregeln der Anwendung. Die View stellt diese Daten dar, und der Controller ermöglicht die Interaktion mit dem Benutzer. \cite{mvc} \\
 In diesem Projekt werden Models zur Datenhaltung zwischen dem Empfangen der Daten und dem Abspeichern in der Datenbank. Hierfür wurde beispielsweise ein Model \text{Datenpaket} erstellt, welches die einzelnen Sensordaten der drei betrachteten Parameter Temperatur, Luftfeuchtigkeit und Ammoniak in Variablen zwischenspeichert. Die View besteht aus der Login-Seite und der Hauptseite. Benutzer melden sich mit Passwort und Benutzernamen an, bevor sie zur Hauptseite gelangen, wo die Diagramme visualisiert werden. Im Controller sind zwei Funktionen besonders wichtig: \\
 Der \textit{DbWriteService}, welcher das empfangene Datenpaket in die Datenbank schreibt und der \textit{DbReadService}, welcher die Sensordaten jeweils für eine Woche bzw. für einen Tag aus der Datenbank ausliest und diese an die Diagramme in der Benutzeroberfläche weitergibt. Die Kommunikation zwischen View und Controller erfolgt über AJAX-Aufrufe, wodurch die Sensordaten, wie in Kapitel \ref{sec:sensordaten-auslesen} beschrieben, abgerufen werden.
@@ -385,6 +385,8 @@ Der folgende Codeabschnitt wird verwendet, um eine Telegram-Nachricht zu verschi
 }
 \newpage
 In diesem Code werden zunächst die botToken und die chatId definiert. Das botToken ist der eindeutige Schlüssel, der den Bot bei Telegram authentifiziert, während die chatId die Identifikation des Chat-Kanals darstellt, in den die Nachricht gesendet wird. Die Nachricht selbst wird in der Variable \textit{nachricht} gespeichert. \\
+Um einen Bot für das Senden von Nachrichten in eine Telegram-Gruppe einzurichten, sind die folgenden Schritte notwendig. Zunächst muss eine Registrierung bei Telegram erfolgen, um die Anwendung nutzen zu können. Danach wird ein Bot erstellt, indem mit dem sogenannten \textit{Botfather} kommuniziert wird. Dazu werden die Befehle \textit{/start} und \textit{/newbot} gesendet. Anschließend sind ein Name und ein Benutzername für den Bot festzulegen, in diesem Fall \textit{SmartStallNotificationBot}.\\
+Der neu erstellte Bot muss dann zur gewünschten Gruppe hinzugefügt werden, in die Nachrichten gesendet werden sollen. Um das Bot-Token zu erhalten, wird der Befehl \textit{/mybots} an den \textit{Botfather} gesendet, der daraufhin das Token bereitstellt. Zur Ermittlung der Chat-ID des Gruppenchats wird der Befehl \textit{/test} verwendet.\\
 Die URL der Telegram-API, die für das Senden von Nachrichten verwendet wird, wird in der Variable \textit{apiUrl} gespeichert. Mit einem \textit{HttpClient} wird eine HTTP-Post-Anfrage an diese URL gesendet. Dabei wird die Nachricht in einem Formular mit dem entsprechenden Chat-ID und dem Textinhalt als application/x-www-form-urlencoded kodiert und im Body der Anfrage übermittelt. Der Server antwortet daraufhin mit einem HttpResponseMessage, die den Erfolg oder Misserfolg der Anfrage dokumentiert. In der folgenden Abbildung \ref{telegram} können Beipielnachrichten aus Telegram entnommen werden. Ein Vorteil von Telegram ist außerdem, dass die Nachrichten mit Zeitstempeln versehen sind mit denen die Aktualität der Nachrichten geprüft werden können.
 \begin{figure}[H]
 	\centering
@@ -392,6 +394,9 @@ Die URL der Telegram-API, die für das Senden von Nachrichten verwendet wird, wi
 	\caption{Beispielnachrichten der Telegramgruppe}
 	\label{telegram}
 \end{figure}
+\subsection{Login-Seite}
+Die Login-Seite besteht aus einem Formular, in das der Benutzername und das zugehörige Passwort eingegeben werden müssen. Bei fehlerhaften Eingaben wird ein Popup-Fenster angezeigt, das den Benutzer auffordert, die Daten erneut einzugeben. Bei korrekten Anmeldedaten erfolgt eine Weiterleitung zur Hauptseite.
+Das Formular für die Benutzereingaben wird mithilfe des Frameworks Bootstrap erstellt, um die Implementierung der Login-Seite zu vereinfachen. Nach dem Ausfüllen der Eingabefelder und dem Klicken auf \textit{Anmelden} werden die Daten über einen AJAX-Aufruf an den Controller gesendet, wo sie überprüft werden.
 \subsection{Benutzeroberfläche}
 \label{ui}
 Oben auf der Seite befindet sich der Titel "SmartStall", der den Namen des Projekts kennzeichnet. Direkt darunter sind zwei Schalter platziert: Mit dem Schalter "Benachrichtigung" können Benachrichtigungen aktiviert oder deaktiviert werden. Bei Aktivierung werden Benachrichtigungen über Telegram gesendet, wenn die Messwerte bestimmte Grenzwerte überschreiten. Der Schalter "Belüftung" dient dazu, die automatische Belüftung ein- oder auszuschalten. Wenn dieser Schalter aktiviert ist, schaltet sich die Belüftung automatisch ein, sobald die Messwerte über die festgelegten Grenzwerte steigen. \\
@@ -445,56 +450,20 @@ Insgesamt bietet SmartStall viel Potenzial für den weiteren Ausbau des Projekts
 \newpage
 \begin{thebibliography}{00}
 
-\bibitem{dyndns}
-AVM Foundation, "Dynamic DNS in FRITZ!Box einrichten", Online. Verfügbar unter: https://avm.de/service/wissensdatenbank/dok/FRITZ-Box-7590/30\_Dynamic-DNS-in-FRITZ-Box-einrichten/. [Zugriffsdatum: 05. Juli 2024].
-
-\bibitem{portfreigabe}
-AVM Foundation, "Portfreigabe in FRITZ!Box einrichten", Online. Verfügbar unter: https://avm.de/service/wissensdatenbank/dok/FRITZ-Box-7490/34\_Portfreigaben-in-FRITZ-Box-einrichten/. [Zugriffsdatum: 05. Juli 2024].
-
 \bibitem{ammoniak}
 Bayerischer Rundfunk, "Ammoniak - giftiger Grundstoff für Sprengstoff und Dünger", Online. Verfügbar unter: https://www.br.de/nachrichten/wissen/ammoniak-gas-reizendes-kaeltemittel-fuer-augen-und-atemwege,RLvCroD. [Zugriffsdatum: 18. Juli 2024].
-
-\bibitem{chart.js}
-Chart.js, "Line Chart", Online. Verfügbar unter: https://www.chartjs.org/docs/latest/charts/line.html. [Zugriffsdatum: 05. Juli 2024].
-
-\bibitem{delock}
-Delock, "Wlan Power Socket Switch", Online. Verfügbar unter: https://www.delock.de/files/71415.download. [Zugriffsdatum: 05. Juli 2024].
-
-\bibitem{temperatur}
-DLG e. V., "Hitzestress im Stall? Erkennen und Maßnahmen", Online. Verfügbar unter: https://www.fokus-tierwohl.de/de/rind/fachinformationen-milchvieh/hitzestress-bei-milchkuehen. [Zugriffsdatum: 18. Juli 2024].
-
-\bibitem{grafana}
-Grafana Labs, "Grafana documentation", Online. Verfügbar unter: https://grafana.com/docs/grafana/latest/. [Zugriffsdatum: 05. Juli 2024].
-
-\bibitem{mvc}
-Heise Medien GmbH \& Co. KG, "Patterns in der Softwarearchitektur: Model-View-Controller ", Online. Verfügbar unter: https://www.heise.de/blog/Patterns-in-der-Softwarearchitektur-Model-View-Controller-8956787.html. [Zugriffsdatum: 18. Juli 2024].
-
-\bibitem{bootstrap}
-JavaScript Bootstrap, "Get started with Bootstrap", Online. Verfügbar unter: https://getbootstrap.com/docs/5.3/getting-started/introduction/. [Zugriffsdatum: 05. Juli 2024].
-
-\bibitem{bme}
-Joy-It, "BME680", Online. Verfügbar unter: https://joy-it.net/de/products/SEN-BME680. [Zugriffsdatum: 20. Juli 2024].
-
-\bibitem{bme_anschluss}
-Laub-Home Wiki, "Raspberry Pi BME680 Gas Sensor", Online. Verfügbar unter: https://www.laub-home.de/wiki/Raspberry\_Pi\_BME680\_Gas\_Sensor. [[Zugriffsdatum: 20. Juli 2024].
-
-\bibitem{dotNET}
-Microsoft Corporation, ".NET-Dokumentation", Online. Verfügbar unter: https://learn.microsoft.com/de-de/dotnet/. [Zugriffsdatum: 18. Juli 2024].
-
-\bibitem{csharp}
-Microsoft Corporation, "C\#-Dokumentation", Online. Verfügbar unter: https://learn.microsoft.com/de-de/dotnet/csharp/tour-of-csharp/. [Zugriffsdatum: 18. Juli 2024].
-
-\bibitem{raspy}
-Raspberry Pi Foundation, "Raspberry Pi", Online. Verfügbar unter: https://www.raspberrypi.com. [Zugriffsdatum: 20. Juli 2024].
 
 \bibitem{luftfeuchtigkeit}
 Stuttgarter Zeitung Verlagsgesellschaft mbH, "Ab welcher Luftfeuchtigkeit entsteht Schimmel?", Online. Verfügbar unter: https://www.stuttgarter-zeitung.de/inhalt.ab-welcher-luftfeuchtigkeit-schimmel-mhsd.54e71b67-c3b7-4820-a80a-abcb4061c18b.html. [Zugriffsdatum: 18. Juli 2024].
 
-\bibitem{telegram}
-Telegram Foundation, "Telegram APIs", Online. Verfügbar unter: https://core.telegram.org/. [Zugriffsdatum: 05. Juli 2024].
+\bibitem{temperatur}
+DLG e. V., "Hitzestress im Stall? Erkennen und Maßnahmen", Online. Verfügbar unter: https://www.fokus-tierwohl.de/de/rind/fachinformationen-milchvieh/hitzestress-bei-milchkuehen. [Zugriffsdatum: 18. Juli 2024].
 
-\bibitem{bmeAbbildungen}
-https://www.laub-home.de/wiki/Raspberry\_Pi\_BME680\_Gas\_Sensor [Zugriffsdatum: 20. Juli 2024].
+\bibitem{raspy}
+Raspberry Pi Foundation, "Raspberry Pi", Online. Verfügbar unter: https://www.raspberrypi.com. [Zugriffsdatum: 20. Juli 2024].
+
+\bibitem{bme}
+Joy-It, "BME680", Online. Verfügbar unter: https://joy-it.net/de/products/SEN-BME680. [Zugriffsdatum: 20. Juli 2024].
 
 \bibitem{bmeDataSheet}
 https://www.bosch-sensortec.com/products/environmental-sensors/gas-sensors/bme680/ [Zugriffsdatum: 05. August 2024].
@@ -502,11 +471,47 @@ https://www.bosch-sensortec.com/products/environmental-sensors/gas-sensors/bme68
 \bibitem{mqDataSheet}
 https://www.winsen-sensor.com/d/files/semiconductor/mq137.pdf [Zugriffsdatum: 05. August 2024].
 
+\bibitem{bmeAbbildungen}
+https://www.laub-home.de/wiki/Raspberry\_Pi\_BME680\_Gas\_Sensor [Zugriffsdatum: 20. Juli 2024].
+
+\bibitem{bme_anschluss}
+Laub-Home Wiki, "Raspberry Pi BME680 Gas Sensor", Online. Verfügbar unter: https://www.laub-home.de/wiki/Raspberry\_Pi\_BME680\_Gas\_Sensor. [[Zugriffsdatum: 20. Juli 2024].
+
 \bibitem{i2cDoc}
 https://www.nxp.com/docs/en/user-guide/UM10204.pdf [Zugriffsdatum: 05. August 2024].
 
 \bibitem{crontab}
 https://help.ubuntu.com/community/CronHowto [Zugriffsdatum: 05. August 2024].
+
+\bibitem{dotNET}
+Microsoft Corporation, ".NET-Dokumentation", Online. Verfügbar unter: https://learn.microsoft.com/de-de/dotnet/. [Zugriffsdatum: 18. Juli 2024].
+
+\bibitem{csharp}
+Microsoft Corporation, "C\#-Dokumentation", Online. Verfügbar unter: https://learn.microsoft.com/de-de/dotnet/csharp/tour-of-csharp/. [Zugriffsdatum: 18. Juli 2024].
+
+\bibitem{mvc}
+Heise Medien GmbH \& Co. KG, "Patterns in der Softwarearchitektur: Model-View-Controller ", Online. Verfügbar unter: https://www.heise.de/blog/Patterns-in-der-Softwarearchitektur-Model-View-Controller-8956787.html. [Zugriffsdatum: 18. Juli 2024].
+
+\bibitem{bootstrap}
+JavaScript Bootstrap, "Get started with Bootstrap", Online. Verfügbar unter: https://getbootstrap.com/docs/5.3/getting-started/introduction/. [Zugriffsdatum: 05. Juli 2024].
+
+\bibitem{grafana}
+Grafana Labs, "Grafana documentation", Online. Verfügbar unter: https://grafana.com/docs/grafana/latest/. [Zugriffsdatum: 05. Juli 2024].
+
+\bibitem{chart.js}
+Chart.js, "Line Chart", Online. Verfügbar unter: https://www.chartjs.org/docs/latest/charts/line.html. [Zugriffsdatum: 05. Juli 2024].
+
+\bibitem{telegram}
+Telegram Foundation, "Telegram APIs", Online. Verfügbar unter: https://core.telegram.org/. [Zugriffsdatum: 05. Juli 2024].
+
+\bibitem{delock}
+Delock, "Wlan Power Socket Switch", Online. Verfügbar unter: https://www.delock.de/files/71415.download. [Zugriffsdatum: 05. Juli 2024].
+
+\bibitem{dyndns}
+AVM Foundation, "Dynamic DNS in FRITZ!Box einrichten", Online. Verfügbar unter: https://avm.de/service/wissensdatenbank/dok/FRITZ-Box-7590/30\_Dynamic-DNS-in-FRITZ-Box-einrichten/. [Zugriffsdatum: 05. Juli 2024].
+
+\bibitem{portfreigabe}
+AVM Foundation, "Portfreigabe in FRITZ!Box einrichten", Online. Verfügbar unter: https://avm.de/service/wissensdatenbank/dok/FRITZ-Box-7490/34\_Portfreigaben-in-FRITZ-Box-einrichten/. [Zugriffsdatum: 05. Juli 2024].
 
 \end{thebibliography}
 
